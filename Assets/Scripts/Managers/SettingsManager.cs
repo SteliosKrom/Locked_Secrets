@@ -11,6 +11,11 @@ public class SettingsManager : MonoBehaviour
     public const string gameVol = "GameVol";
     public const string sfxVol = "SFXVol";
 
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERNCES")]
+    [SerializeField] private FirstPersonCamera firstPersonCamera;
+    #endregion
+
     #region AUDIO
     [Header("AUDIO")]
     [SerializeField] private AudioMixer myAudioMixer;
@@ -38,8 +43,6 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Current game resolution is " + Screen.currentResolution.width + "x" + Screen.currentResolution.height);
-        Debug.Log("Display mode is " + displayModeToggle.isOn);
         LoadSettings();
     }
 
@@ -65,6 +68,8 @@ public class SettingsManager : MonoBehaviour
         int savedResolutionWidth = PlayerPrefs.GetInt("ScreenWidth", currentWidth);
         int savedResolutionHeight = PlayerPrefs.GetInt("ScreenHeight", currentHeight);
 
+        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 0.5f);
+
         bool savedDisplayMode = PlayerPrefs.GetInt("DisplayMode", 1) != 0;
 
         //Graphics saved values
@@ -85,6 +90,7 @@ public class SettingsManager : MonoBehaviour
         // Display
         Screen.SetResolution(savedResolutionWidth, savedResolutionHeight, savedDisplayMode);
         displayModeToggle.isOn = savedDisplayMode;
+        firstPersonCamera.SensitivitySlider.value = savedSensitivity;
 
         // Graphics
         QualitySettings.SetQualityLevel(savedQualityLevel);
