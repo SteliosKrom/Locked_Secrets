@@ -28240,20 +28240,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-<<<<<<< HEAD
   - {fileID: 1296283100}
   - {fileID: 453363506}
-=======
-  - {fileID: 2037551636}
-  - {fileID: 993789665}
-  - {fileID: 1911580777}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
   m_Father: {fileID: 1535786859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
