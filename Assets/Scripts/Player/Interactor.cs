@@ -1,11 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    #region SCRIPT REFERENCES
-    [Header("SCRIPT REFERENCES")]
-    [SerializeField] private Interactable currentInteractable;
-    #endregion
+    private IInteractable currentInteractable;
 
     #region LAYERS
     [Header("LAYERS")]
@@ -45,22 +42,16 @@ public class Interactor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactionRange, interactable))
         {
-            currentInteractable = hit.collider.GetComponent<Interactable>();
+            currentInteractable = hit.collider.GetComponent<IInteractable>();
 
-            switch (GameManager.Instance.CurrentGameState)
+            if (GameManager.Instance.CurrentGameState != GameState.OnPlaying)
             {
-                case GameState.OnPlaying:
-                    interactHUD.SetActive(true);
-                    break;
-                case GameState.OnPaused:
-                    interactHUD.SetActive(false);
-                    dot.SetActive(false);
-                    break;
-                default:
-                    interactHUD.SetActive(false);
-                    dot.SetActive(false);
-                    break;
+                interactHUD.SetActive(false);
+                dot.SetActive(false);
+                return;
             }
+            interactHUD.SetActive(true);
+            dot.SetActive(false);
         }
         else
         {
