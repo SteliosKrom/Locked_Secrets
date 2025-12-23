@@ -28247,9 +28247,12 @@ RectTransform:
   - {fileID: 2037551636}
   - {fileID: 993789665}
   - {fileID: 1911580777}
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 >>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
 =======
+=======
+>>>>>>> Stashed changes
 >>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
   m_Father: {fileID: 1535786859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
