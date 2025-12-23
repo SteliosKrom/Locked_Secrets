@@ -19,6 +19,15 @@ public enum MenuState
     OnCategorySettings
 }
 
+public enum DoorState
+{
+    Idle,
+    Opened,
+    Closed,
+    Locked,
+    Unlocked
+}
+
 public enum PlayerState
 {
     OnIdle,
@@ -34,10 +43,15 @@ public class GameManager : MonoBehaviour
     [Header("STATES")]
     [SerializeField] private GameState currentGameState;
     [SerializeField] private MenuState currentMenuState;
+    [SerializeField] private PlayerState currentPlayerState;
+    [SerializeField] private DoorState currentDoorState;
     #endregion
 
     public GameState CurrentGameState { get { return currentGameState; } set { currentGameState = value; } }
     public MenuState CurrentMenuState { get { return currentMenuState; } set { currentMenuState = value; } }
+    public PlayerState CurrentPlayerState { get { return currentPlayerState; } set { currentPlayerState = value; } }
+    public DoorState CurrentDoorState { get { return currentDoorState; } set { currentDoorState = value; } }
+
     private void Awake()
     {
         if (Instance == null)
@@ -54,5 +68,7 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.None;
         currentMenuState = MenuState.OnTitleMenu;
+        currentPlayerState = PlayerState.OnIdle;
+        currentDoorState = DoorState.Idle;
     }
 }

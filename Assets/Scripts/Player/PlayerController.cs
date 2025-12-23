@@ -33,13 +33,17 @@ public class PlayerController : MonoBehaviour
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
 
-            if (isGrounded)
-               velocity.y = groundedVelocity;
+            if (horizontalInput != 0f || verticalInput != 0f) 
+                GameManager.Instance.CurrentPlayerState = PlayerState.OnWalking;
             else
-               velocity.y += gravity * Time.deltaTime;
+                GameManager.Instance.CurrentPlayerState = PlayerState.OnIdle;
+
+            if (isGrounded)
+                velocity.y = groundedVelocity;
+            else
+                velocity.y += gravity * Time.deltaTime;
 
             Vector3 moveDirection = (transform.forward * verticalInput + -transform.right * horizontalInput).normalized;
-
             Vector3 finalMovement = moveDirection * moveSpeed;
 
             smoothMoveVelocity = Vector3.Lerp(smoothMoveVelocity, finalMovement, 0.15f);
@@ -48,10 +52,5 @@ public class PlayerController : MonoBehaviour
             finalMovement.y = velocity.y;
             characterController.Move(finalMovement * Time.deltaTime);
         }
-    }
-
-    public void CheckGround()
-    {
-        // Here we are going to make a ground check for the player
     }
 }
