@@ -68,7 +68,7 @@ public class SettingsManager : MonoBehaviour
         int savedResolutionWidth = PlayerPrefs.GetInt("ScreenWidth", currentWidth);
         int savedResolutionHeight = PlayerPrefs.GetInt("ScreenHeight", currentHeight);
 
-        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 0.5f);
+        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 1f);
 
         bool savedDisplayMode = PlayerPrefs.GetInt("DisplayMode", 1) != 0;
 
