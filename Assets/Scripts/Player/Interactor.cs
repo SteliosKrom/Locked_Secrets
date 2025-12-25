@@ -4,6 +4,8 @@ public class Interactor : MonoBehaviour
 {
     private IInteractable currentInteractable;
 
+    [SerializeField] private bool detected = false;
+     
     #region LAYERS
     [Header("LAYERS")]
     [SerializeField] private LayerMask interactable;
@@ -29,7 +31,7 @@ public class Interactor : MonoBehaviour
 
     public void InputForInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && detected == true)
         {
             currentInteractable.Interact();
         }
@@ -52,9 +54,12 @@ public class Interactor : MonoBehaviour
             }
             interactHUD.SetActive(true);
             dot.SetActive(false);
+            detected = true;
         }
         else
         {
+            detected = false;
+
             if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
             {
                 interactHUD.SetActive(false);

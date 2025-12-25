@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class LanternInteract : MonoBehaviour, IInteractable 
+public class ItemInteract : MonoBehaviour, IInteractable
 {
     #region OBJECTS
     [Header("OBJECTS")]
@@ -9,10 +10,16 @@ public class LanternInteract : MonoBehaviour, IInteractable
     [SerializeField] private GameObject lanternIcon;
     #endregion
 
+    #region ANIMATIONS
+    [Header("ANIMATOR")]
+    [SerializeField] private Animator baseEquipItemAnimator;
+    #endregion
+
     public void Interact()
     {
         worldLantern.SetActive(false);
         playerLantern.SetActive(true);
         lanternIcon.SetActive(true);
+        baseEquipItemAnimator.SetTrigger("Equip");
     }
 }
