@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class ItemInteract : MonoBehaviour, IInteractable
+public class LanternInteract : MonoBehaviour, IInteractable
 {
     #region OBJECTS
     [Header("OBJECTS")]

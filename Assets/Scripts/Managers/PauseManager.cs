@@ -25,6 +25,8 @@ public class PauseManager : MonoBehaviour
 
     public void HandlePauseInput()
     {
+        if (GameManager.Instance.CanInteract()) return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             switch (GameManager.Instance.CurrentGameState)

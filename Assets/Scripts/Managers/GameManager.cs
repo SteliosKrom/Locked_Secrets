@@ -12,6 +12,9 @@ public enum MenuState
 {
     None,
     OnPausedMenu,
+    OnRoomKeyMenu,
+    OnInventoryMenu,
+    OnNoteMenu,
     OnTitleMenu,
     OnMainMenu,
     OnMenuSettings,
@@ -19,11 +22,19 @@ public enum MenuState
     OnCategorySettings
 }
 
+public enum ItemState
+{
+    None,
+    Key
+}
+
 public enum DoorState
 {
+    None,
     Idle,
     Opening,
-    Closing
+    Closing,
+    Locked
 }
 
 public enum PlayerState
@@ -42,11 +53,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameState currentGameState;
     [SerializeField] private MenuState currentMenuState;
     [SerializeField] private PlayerState currentPlayerState;
+    [SerializeField] private ItemState currentItemState;
     #endregion
 
     public GameState CurrentGameState { get { return currentGameState; } set { currentGameState = value; } }
     public MenuState CurrentMenuState { get { return currentMenuState; } set { currentMenuState = value; } }
     public PlayerState CurrentPlayerState { get { return currentPlayerState; } set { currentPlayerState = value; } }
+    public ItemState CurrentItemState { get { return currentItemState; } set { currentItemState = value; } }
 
     private void Awake()
     {
@@ -65,5 +78,13 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.None;
         currentMenuState = MenuState.OnTitleMenu;
         currentPlayerState = PlayerState.OnIdle;
+        currentItemState = ItemState.None;
+    }
+
+    public bool CanInteract()
+    {
+        return currentMenuState == MenuState.OnInventoryMenu
+            || currentMenuState == MenuState.OnNoteMenu
+            || currentMenuState == MenuState.OnRoomKeyMenu;
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Rendering.UI;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,14 +23,16 @@ public class PlayerController : MonoBehaviour
 
     public void HandlePlayerMovement()
     {
+        bool isGrounded = characterController.isGrounded;
+        
+        if (GameManager.Instance.CanInteract()) return;
+
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {
-            bool isGrounded = characterController.isGrounded;
-
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
 
-            if (horizontalInput != 0f || verticalInput != 0f) 
+            if (horizontalInput != 0f || verticalInput != 0f)
                 GameManager.Instance.CurrentPlayerState = PlayerState.OnWalking;
             else
                 GameManager.Instance.CurrentPlayerState = PlayerState.OnIdle;

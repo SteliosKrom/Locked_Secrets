@@ -1,16 +1,53 @@
+using System.Collections;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private bool isInventoryOpen = false;
+    [SerializeField] private bool canOpenInventory = true;
+
+    private float inventoryInputDelay = 1f;
+
+    #region OBJECTS
+    [Header("OBJECTS")]
+    [SerializeField] private GameObject inventory;
+    #endregion
+
+    private void Update()
     {
-        
+        InventoryInput();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InventoryInput()
     {
-        
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu 
+            || GameManager.Instance.CurrentMenuState == MenuState.OnRoomKeyMenu) return;
+
+        if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
+        {
+            if (Input.GetKeyDown(KeyCode.I) && canOpenInventory)
+            {
+                if (isInventoryOpen)
+                {
+                    inventory.SetActive(false);
+                    isInventoryOpen = false;
+                    GameManager.Instance.CurrentMenuState = MenuState.None;
+                }
+                else
+                {
+                    inventory.SetActive(true);
+                    isInventoryOpen = true;
+                    GameManager.Instance.CurrentMenuState = MenuState.OnInventoryMenu;
+                }
+                StartCoroutine(InventoryInputDelay());
+            }
+        }
+    }
+
+    public IEnumerator InventoryInputDelay()
+    {
+        canOpenInventory = false;
+        yield return new WaitForSecondsRealtime(inventoryInputDelay);
+        canOpenInventory = true;
     }
 }

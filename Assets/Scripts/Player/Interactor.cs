@@ -2,10 +2,8 @@
 
 public class Interactor : MonoBehaviour
 {
-    private IInteractable currentInteractable;
-
     [SerializeField] private bool detected = false;
-     
+
     #region LAYERS
     [Header("LAYERS")]
     [SerializeField] private LayerMask interactable;
@@ -26,46 +24,36 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         DetectInteractable();
-        InputForInteraction();
-    }
-
-    public void InputForInteraction()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && detected == true)
-        {
-            currentInteractable.Interact();
-        }
     }
 
     public void DetectInteractable()
     {
-        Ray ray = new Ray(interactionSource.position, interactionSource.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, interactionRange, interactable))
+        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying)
         {
-            currentInteractable = hit.collider.GetComponent<IInteractable>();
+            interactHUD.SetActive(false);
+            dot.SetActive(false);
+            return;
+        }
 
-            if (GameManager.Instance.CurrentGameState != GameState.OnPlaying)
-            {
-                interactHUD.SetActive(false);
-                dot.SetActive(false);
-                return;
-            }
+        if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, interactable))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+            detected = true;
             interactHUD.SetActive(true);
             dot.SetActive(false);
-            detected = true;
+
+            if (Input.GetKeyDown(KeyCode.E) && detected)
+            {
+                interactable.Interact();
+            }
         }
         else
         {
             detected = false;
-
-            if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
-            {
-                interactHUD.SetActive(false);
-                dot.SetActive(true);
-            }
+            interactHUD.SetActive(false);
+            dot.SetActive(true);
+            return;
         }
-        Debug.DrawRay(ray.origin, ray.direction * interactionRange, Color.red);
     }
 }

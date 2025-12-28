@@ -21,32 +21,27 @@ public class FirstPersonCamera : MonoBehaviour
     #endregion
 
     public Slider SensitivitySlider { get { return sensitivitySlider; } set { sensitivitySlider = value; } }
-    private void Start()
-    {
-        xRotation = transform.localRotation.eulerAngles.x;
-
-        if (xRotation > 180f)
-            xRotation -= 360f;
-    }
 
     private void LateUpdate()
     {
-        if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
-        {
-            CameraInput();
-        }
+        CameraInput();
     }
 
     public void CameraInput()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivitySlider.value;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivitySlider.value;
+        if (GameManager.Instance.CanInteract()) return;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+        if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * sensitivitySlider.value;
+            float mouseY = Input.GetAxis("Mouse Y") * sensitivitySlider.value;
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        player.Rotate(Vector3.up * mouseX);
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            player.Rotate(Vector3.up * mouseX);
+        }
     }
 
     public void OnSensitivityChanged()

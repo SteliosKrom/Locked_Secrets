@@ -1,19 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-guid: 9f310106ea071834687bc005684d6e03
-=======
-guid: 0023188ef694b624e8e870f76a0554e6
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-<<<<<<< Updated upstream
-=======
-guid: 0023188ef694b624e8e870f76a0554e6
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
->>>>>>> Stashed changes
+guid: 0bf38ce31d766b048930b4f01355ed21
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -53,21 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-    wrapW: 1
-=======
     wrapW: 0
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-<<<<<<< Updated upstream
-=======
-    wrapW: 0
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
->>>>>>> Stashed changes
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -122,35 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
-=======
->>>>>>> Stashed changes
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-<<<<<<< Updated upstream
-<<<<<<< HEAD
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -163,35 +106,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
-=======
->>>>>>> Stashed changes
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< Updated upstream
-<<<<<<< HEAD
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> c77c27ec0db15a2b6f08e2b4de03cd0fe4cad5da
   spriteSheet:
     serializedVersion: 2
     sprites: []

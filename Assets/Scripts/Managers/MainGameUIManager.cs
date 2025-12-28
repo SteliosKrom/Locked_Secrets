@@ -1,15 +1,23 @@
+using System.Collections;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainGameUIManager : MonoBehaviour
 {
+    private float closeNoteMenuDelay = 0.01f;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private NoteInteract noteInteract;
+    #endregion
+
     #region OBJECTS
     [Header("OBJECTS")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject dot;
+    [SerializeField] private GameObject gotRoomKeyPanel;
     #endregion
 
     #region TEXT
@@ -18,6 +26,37 @@ public class MainGameUIManager : MonoBehaviour
     #endregion
 
     public GameObject PauseMenu => pauseMenu;
+    public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
+
+    private void Update()
+    {
+        InputForNoteMenu();
+        InputToCloseRoomKeyPanel();
+    }
+
+    public void InputForNoteMenu()
+    {
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                StartCoroutine(CloseNoteMenuDelay());
+            }
+        }
+    }
+
+    public void InputToCloseRoomKeyPanel()
+    {
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnRoomKeyMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameManager.Instance.CurrentMenuState = MenuState.None;
+                gotRoomKeyPanel.SetActive(false);
+            }
+        }
+    }
+
     public void Resume()
     {
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
@@ -61,5 +100,13 @@ public class MainGameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+    }
+
+    public IEnumerator CloseNoteMenuDelay()
+    {
+        yield return new WaitForSecondsRealtime(closeNoteMenuDelay);
+        noteInteract.Note.SetActive(true);
+        noteInteract.NoteCanvas.SetActive(false);
+        GameManager.Instance.CurrentMenuState = MenuState.None;
     }
 }
