@@ -25,7 +25,8 @@ public enum MenuState
 public enum ItemState
 {
     None,
-    Key
+    Key,
+    Axe
 }
 
 public enum DoorState
@@ -41,7 +42,7 @@ public enum PlayerState
 {
     OnIdle,
     OnWalking,
-    OnCrouching
+    OnCrouchWalking
 }
 
 public class GameManager : MonoBehaviour

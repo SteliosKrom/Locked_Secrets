@@ -7,6 +7,7 @@ public class Interactor : MonoBehaviour
     #region LAYERS
     [Header("LAYERS")]
     [SerializeField] private LayerMask interactable;
+    [SerializeField] private LayerMask obstacle;
     #endregion
 
     #region PLAYER
@@ -23,11 +24,14 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        DetectInteractable();
+        Debug.DrawRay(interactionSource.position, interactionSource.forward * interactionRange, Color.red);
+        DetectAndInteract();
     }
 
-    public void DetectInteractable()
+    public void DetectAndInteract()
     {
+        LayerMask combinedMask = interactable | obstacle;
+
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying)
         {
             interactHUD.SetActive(false);
@@ -35,17 +39,29 @@ public class Interactor : MonoBehaviour
             return;
         }
 
-        if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, interactable))
+        if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, combinedMask))
         {
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
-            detected = true;
-            interactHUD.SetActive(true);
-            dot.SetActive(false);
-
-            if (Input.GetKeyDown(KeyCode.E) && detected)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
             {
-                interactable.Interact();
+                detected = false;
+                interactHUD.SetActive(false);
+                dot.SetActive(true);
+                return;
+            }
+
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            {
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+                detected = true;
+                interactHUD.SetActive(true);
+                dot.SetActive(false);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    interactable.Interact();
+                }
+                return;
             }
         }
         else
@@ -53,7 +69,6 @@ public class Interactor : MonoBehaviour
             detected = false;
             interactHUD.SetActive(false);
             dot.SetActive(true);
-            return;
         }
     }
 }
