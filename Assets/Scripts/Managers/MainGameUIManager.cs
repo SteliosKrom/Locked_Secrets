@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainGameUIManager : MonoBehaviour
 {
+    public static MainGameUIManager Instance;
+
     private float closeNoteMenuDelay = 0.01f;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
-    [SerializeField] private NoteInteract noteInteract;
+    [SerializeField] private NoteInteract currentNote;
     #endregion
 
     #region OBJECTS
@@ -28,10 +30,27 @@ public class MainGameUIManager : MonoBehaviour
     public GameObject PauseMenu => pauseMenu;
     public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Update()
     {
         InputForNoteMenu();
         InputToCloseRoomKeyPanel();
+    }
+
+    public void SetCurrentNote(NoteInteract note)
+    {
+        currentNote = note;
     }
 
     public void InputForNoteMenu()
@@ -105,8 +124,8 @@ public class MainGameUIManager : MonoBehaviour
     public IEnumerator CloseNoteMenuDelay()
     {
         yield return new WaitForSecondsRealtime(closeNoteMenuDelay);
-        noteInteract.Note.SetActive(true);
-        noteInteract.NoteCanvas.SetActive(false);
+        currentNote.NoteModel.SetActive(true);
+        currentNote.NoteCanvas.SetActive(false);
         GameManager.Instance.CurrentMenuState = MenuState.None;
     }
 }
