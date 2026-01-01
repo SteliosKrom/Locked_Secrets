@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
     {
         currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * heightSmoothSpeed);
 
-        float delta = currentHeight - characterController.height;
+        float deltaHeight = currentHeight - characterController.height;
 
         characterController.height = currentHeight;
-        characterController.center += new Vector3(0, delta / 2, 0);
+        characterController.center += new Vector3(0, deltaHeight / 2, 0);
 
         Vector3 camPos = playerCamera.localPosition;
         camPos.y = currentHeight;
