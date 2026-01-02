@@ -42,7 +42,6 @@ public enum PlayerState
 {
     OnIdle,
     OnWalking,
-    OnCrouchWalking
 }
 
 public class GameManager : MonoBehaviour

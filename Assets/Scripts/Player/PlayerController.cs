@@ -18,25 +18,34 @@ public class PlayerController : MonoBehaviour
     private float groundedVelocity = -1f;
 
     [Header("CROUCH")]
-    private float standingHeight = 2f;
-    private float crouchHeight = 1f;
+    private float standingCapsuleHeight = 2f;
+    private float crouchCapsuleHeight = 1f;
+
+    private float standingCameraHeight = 0.8f;
+    private float crouchCameraHeight = -0.1f;
 
     private float walkSpeed = 2f;
     private float crouchWalkSpeed = 1f;
 
-    private float targetHeight;
-    private float currentHeight;
-    [SerializeField] private float heightSmoothSpeed = 5f;
+    private bool isCrouching;
 
-    [SerializeField] private bool isCrouching;
+    [Header("SMOOTH CROUCHING")]
+    private float targetCapsuleHeight;
+    private float currentCapsuleHeight;
+
+    private float targetCameraHeight;
+    private float currentCameraHeight;
+
+    [SerializeField] private float heightSmoothSpeed;
     #endregion
 
     private void Start()
     {
-        currentHeight = standingHeight;
-        targetHeight = standingHeight;
-        characterController.height = currentHeight;
-        characterController.center = new Vector3(0, currentHeight / 2f, 0);
+        currentCapsuleHeight = standingCapsuleHeight;
+        targetCapsuleHeight = standingCapsuleHeight;
+
+        currentCameraHeight = standingCameraHeight;
+        targetCameraHeight = standingCameraHeight;
     }
 
     private void Update()
@@ -65,22 +74,28 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl))
             {
                 isCrouching = !isCrouching;
-                targetHeight = isCrouching ? crouchHeight : standingHeight;
+                targetCapsuleHeight = isCrouching ? crouchCapsuleHeight : standingCapsuleHeight;
+                targetCameraHeight = isCrouching ? crouchCameraHeight : standingCameraHeight;
             }
         }
     }
 
     public void SmoothCrouch()
     {
-        currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * heightSmoothSpeed);
+        float lastHeight = characterController.height;
 
-        float deltaHeight = currentHeight - characterController.height;
+        // Interpolating between two values of character controller & camera to represent crouching & standing states
+        currentCapsuleHeight = Mathf.Lerp(currentCapsuleHeight, targetCapsuleHeight, Time.deltaTime * heightSmoothSpeed);
+        currentCameraHeight = Mathf.Lerp(currentCameraHeight, targetCameraHeight, Time.deltaTime * heightSmoothSpeed);
 
-        characterController.height = currentHeight;
-        characterController.center += new Vector3(0, deltaHeight / 2, 0);
+        // Updating the character controller
+        float heightDifference = currentCapsuleHeight - lastHeight;
+        characterController.height = currentCapsuleHeight;
+        characterController.center += new Vector3(0f, heightDifference / 2f, 0f);
 
+        // Updating the camera
         Vector3 camPos = playerCamera.localPosition;
-        camPos.y = currentHeight;
+        camPos.y = currentCameraHeight;
         playerCamera.localPosition = camPos;
     }
 
