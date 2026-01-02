@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
@@ -41,18 +42,11 @@ public class Interactor : MonoBehaviour
 
         if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, combinedMask))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
-            {
-                detected = false;
-                interactHUD.SetActive(false);
-                dot.SetActive(true);
-                return;
-            }
+            int layer = hit.collider.gameObject.layer;
 
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            if (layer == LayerMask.NameToLayer("Interactable"))
             {
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
                 detected = true;
                 interactHUD.SetActive(true);
                 dot.SetActive(false);
@@ -61,7 +55,12 @@ public class Interactor : MonoBehaviour
                 {
                     interactable.Interact();
                 }
-                return;
+            }
+            else if (layer == LayerMask.NameToLayer("Obstacle"))
+            {
+                detected = false;
+                interactHUD.SetActive(false);
+                dot.SetActive(true);
             }
         }
         else
@@ -70,5 +69,6 @@ public class Interactor : MonoBehaviour
             interactHUD.SetActive(false);
             dot.SetActive(true);
         }
+        return;
     }
 }
