@@ -11,15 +11,17 @@ public class AxeInteract : MonoBehaviour, IInteractable
 
     #region ANIMATORS
     [Header("ANIMATIONS")]
-    [SerializeField] private Animator baseEquipItemAnimator;
+    [SerializeField] private Animator baseAxeAnimator;
     #endregion
 
+    public GameObject PlayerAxe { get { return playerAxe; } }
+    public Animator BaseAxeAnimator { get { return  baseAxeAnimator; } }
     public void Interact()
     {
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
         axeIcon.SetActive(true);
-        baseEquipItemAnimator.SetTrigger("Equip");
+        baseAxeAnimator.SetTrigger("Equip");
         GameManager.Instance.CurrentItemState = ItemState.Axe;
     }
 }
