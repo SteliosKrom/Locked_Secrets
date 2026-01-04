@@ -21,11 +21,13 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
     #region COLLIDERS
     [Header("COLLIDERS")]
     private Collider mainDoorCollider;
+    private Collider woodPlankCollider;
     #endregion
 
     private void Start()
     {
         mainDoorCollider = GameObject.Find("MainDoorWall").GetComponent<Collider>();
+        woodPlankCollider = GetComponent<Collider>();
     }
 
     public void Interact()
@@ -33,6 +35,7 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
         if (GameManager.Instance.CurrentItemState == ItemState.Axe)
         {
             woodPlank.enabled = false;
+            woodPlankCollider.enabled = false;
             planksLeft--;
             Debug.Log("Planks left: " + planksLeft);
 

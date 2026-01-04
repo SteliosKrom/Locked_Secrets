@@ -25,7 +25,7 @@ public class NoteInteract : MonoBehaviour, IInteractable
 
         if (!interacted)
         {
-            PuzzleManager.Instance.EnablePuzzleItemColliders();
+            PuzzleManager.Instance.EnableFirstPuzzleItemColliders();
             interacted = true;
         }
 

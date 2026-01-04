@@ -56,10 +56,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ItemState currentItemState;
     #endregion
 
-    public GameState CurrentGameState { get { return currentGameState; } set { currentGameState = value; } }
-    public MenuState CurrentMenuState { get { return currentMenuState; } set { currentMenuState = value; } }
-    public PlayerState CurrentPlayerState { get { return currentPlayerState; } set { currentPlayerState = value; } }
-    public ItemState CurrentItemState { get { return currentItemState; } set { currentItemState = value; } }
+    public GameState CurrentGameState { get => currentGameState; set => currentGameState = value; }
+    public MenuState CurrentMenuState { get => currentMenuState; set => currentMenuState = value; }
+    public PlayerState CurrentPlayerState { get => currentPlayerState; set => currentPlayerState = value; }
+    public ItemState CurrentItemState { get => currentItemState; set => currentItemState = value; }
 
     private void Awake()
     {

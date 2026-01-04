@@ -14,8 +14,9 @@ public class AxeInteract : MonoBehaviour, IInteractable
     [SerializeField] private Animator baseAxeAnimator;
     #endregion
 
-    public GameObject PlayerAxe { get { return playerAxe; } }
-    public Animator BaseAxeAnimator { get { return  baseAxeAnimator; } }
+    public GameObject PlayerAxe => playerAxe;
+    public Animator BaseAxeAnimator => baseAxeAnimator;
+
     public void Interact()
     {
         worldAxe.SetActive(false);

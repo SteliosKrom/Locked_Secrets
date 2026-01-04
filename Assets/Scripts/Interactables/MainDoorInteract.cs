@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class MainDoorInteract : MonoBehaviour
+public class MainDoorInteract : MonoBehaviour, IInteractable
 {
-    private DoorState currentDoorState = DoorState.Locked;
+    [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
     private float doorAnimationDelay = 1f;
 
@@ -16,6 +16,8 @@ public class MainDoorInteract : MonoBehaviour
     [Header("COLLIDERS")]
     [SerializeField] private Collider[] doorColliders;
     #endregion
+
+    public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 
     public void Interact()
     {
