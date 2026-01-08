@@ -11,7 +11,8 @@ public class MainGameUIManager : MonoBehaviour
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
-    [SerializeField] private NoteInteract currentNote;
+    private NoteInteract currentNote;
+    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
     #endregion
 
     #region OBJECTS

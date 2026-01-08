@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Shapes2D;
+using UnityEngine;
 using UnityEngine.Rendering.UI;
 
 public class PlayerController : MonoBehaviour
@@ -58,11 +59,15 @@ public class PlayerController : MonoBehaviour
     public void HandlePlayerMovement()
     {
         if (GameManager.Instance.CanInteract()) return;
+        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
 
-        if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
-        {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        if (horizontalInput != 0 || verticalInput != 0)
             Walk();
-        }
+        else
+            GameManager.Instance.CurrentPlayerState = PlayerState.OnIdle;
     }
 
     public void HandleCrouch()
@@ -84,16 +89,13 @@ public class PlayerController : MonoBehaviour
     {
         float lastHeight = characterController.height;
 
-        // Interpolating between two values of character controller & camera to represent crouching & standing states
         currentCapsuleHeight = Mathf.Lerp(currentCapsuleHeight, targetCapsuleHeight, Time.deltaTime * heightSmoothSpeed);
         currentCameraHeight = Mathf.Lerp(currentCameraHeight, targetCameraHeight, Time.deltaTime * heightSmoothSpeed);
 
-        // Updating the character controller
         float heightDifference = currentCapsuleHeight - lastHeight;
         characterController.height = currentCapsuleHeight;
         characterController.center += new Vector3(0f, heightDifference / 2f, 0f);
 
-        // Updating the camera
         Vector3 camPos = playerCamera.localPosition;
         camPos.y = currentCameraHeight;
         playerCamera.localPosition = camPos;
@@ -104,23 +106,17 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.CurrentPlayerState = PlayerState.OnWalking;
         bool isGrounded = characterController.isGrounded;
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         if (isGrounded)
             velocity.y = groundedVelocity;
         else
             velocity.y += gravity * Time.deltaTime;
 
-        Vector3 moveDirection = (transform.forward * verticalInput + -transform.right * horizontalInput).normalized;
-
+        Vector3 moveDirection = (transform.forward * verticalInput + (-transform.right) * horizontalInput).normalized;
         float currentSpeed = isCrouching ? crouchWalkSpeed : walkSpeed;
+
         Vector3 finalMovement = moveDirection * currentSpeed;
-
-        smoothMoveVelocity = Vector3.Lerp(smoothMoveVelocity, finalMovement, 0.15f);
-
-        finalMovement = smoothMoveVelocity;
         finalMovement.y = velocity.y;
+
         characterController.Move(finalMovement * Time.deltaTime);
     }
 }

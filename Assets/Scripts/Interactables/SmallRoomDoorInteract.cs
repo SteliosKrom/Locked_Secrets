@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
@@ -6,6 +7,9 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
     private float doorAnimationDelay = 1f;
+    private float itsLockedTextDelay = 2f;
+
+    [SerializeField] private bool canInteract = true;
 
     #region ANIMATIONS
     [Header("ANIMATOR")]
@@ -17,8 +21,14 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private Collider[] doorColliders;
     #endregion
 
+    #region UI
+    [Header("TEXT")]
+    [SerializeField] private TextMeshProUGUI itsLockedText;
+    #endregion
+
     public void Interact()
     {
+        ItsLockedMessage();
         if (GameManager.Instance.CurrentItemState == ItemState.Key)
         {
             currentDoorState = DoorState.Idle;
@@ -36,6 +46,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
                 StartCoroutine(CloseDoor());
                 break;
         }
+    }
+
+    public void ItsLockedMessage()
+    {
+        StartCoroutine(ItsLockedDelay());
     }
 
     private IEnumerator OpenDoor()
@@ -72,5 +87,14 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     {
         foreach (var col in doorColliders)
             col.enabled = true;
+    }
+
+    public IEnumerator ItsLockedDelay()
+    {
+        itsLockedText.enabled = true;
+        //canInteract = false;
+        yield return new WaitForSeconds(itsLockedTextDelay);
+        itsLockedText.enabled = false;
+        //canInteract = true;
     }
 }
