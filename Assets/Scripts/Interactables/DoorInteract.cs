@@ -8,6 +8,11 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private float doorAnimationDelay = 1f;
 
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
+    #endregion
+
     #region ANIMATIONS
     [Header("ANIMATOR")]
     [SerializeField] private Animator baseDoorAnimator;
@@ -38,7 +43,9 @@ public class DoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
+        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.OpenDoorAudioSource, smallRoomDoorInteract.OpenDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Opening;
@@ -50,7 +57,9 @@ public class DoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
+        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.CloseDoorAudioSource, smallRoomDoorInteract.CloseDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Idle;

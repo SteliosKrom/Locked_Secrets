@@ -13,6 +13,7 @@ public class MainGameUIManager : MonoBehaviour
     [Header("SCRIPT REFERENCES")]
     private NoteInteract currentNote;
     [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
+    [SerializeField] private DoorInteract doorInteract;
     #endregion
 
     #region OBJECTS
@@ -83,6 +84,11 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
         AudioManager.Instance.UnpauseMainGameMusic();
+
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.LockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.OpenDoorAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.CloseDoorAudioSource);
 
         pauseMenu.SetActive(false);
         dot.SetActive(true);

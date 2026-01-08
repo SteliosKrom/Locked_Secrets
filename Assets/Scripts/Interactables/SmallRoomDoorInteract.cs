@@ -9,7 +9,12 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     private float doorAnimationDelay = 1f;
     private float itsLockedTextDelay = 2f;
 
-    [SerializeField] private bool canInteract = true;
+    private bool canInteract = true;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private DoorInteract doorInteract;
+    #endregion
 
     #region ANIMATIONS
     [Header("ANIMATOR")]
@@ -22,17 +27,55 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     #endregion
 
     #region UI
-    [Header("TEXT")]
-    [SerializeField] private TextMeshProUGUI itsLockedText;
+    [Header("OBJECTS")]
+    [SerializeField] private GameObject itsLockedText;
     #endregion
+
+    #region AUDIO
+    [Header("AUDIO SOURCES")]
+    [SerializeField] private AudioSource lockedAudioSource;
+    [SerializeField] private AudioSource unlockedAudioSource;
+    [SerializeField] private AudioSource openDoorAudioSource;
+    [SerializeField] private AudioSource closeDoorAudioSource;
+
+    [Header("AUDIO CLIPS")]
+    [SerializeField] private AudioClip lockedAudioClip;
+    [SerializeField] private AudioClip unlockedAudioClip;
+    [SerializeField] private AudioClip openDoorAudioClip;
+    [SerializeField] private AudioClip closeDoorAudioClip;
+    #endregion
+
+    public GameObject ItsLockedText => itsLockedText;
+    public AudioSource LockedAudioSource => lockedAudioSource;
+    public AudioSource UnlockedAudioSource => unlockedAudioSource;
+    public AudioSource OpenDoorAudioSource => openDoorAudioSource;
+    public AudioSource CloseDoorAudioSource => closeDoorAudioSource;
+    public AudioClip LockedAudioClip => lockedAudioClip;
+    public AudioClip UnlockedAudioClip => unlockedAudioClip;
+    public AudioClip OpenDoorAudioClip => openDoorAudioClip;
+    public AudioClip CloseDoorAudioClip => closeDoorAudioClip;
 
     public void Interact()
     {
-        ItsLockedMessage();
         if (GameManager.Instance.CurrentItemState == ItemState.Key)
         {
-            currentDoorState = DoorState.Idle;
+            currentDoorState = DoorState.Unlocked;
             GameManager.Instance.CurrentItemState = ItemState.None;
+            AudioManager.Instance.PlaySFX(unlockedAudioSource, unlockedAudioClip);
+            return;
+        }
+
+        if (currentDoorState == DoorState.Unlocked)
+        {
+            currentDoorState = DoorState.Idle;
+        }
+
+        if (currentDoorState == DoorState.Locked)
+        {
+            if (canInteract)
+            {
+                ItsLockedMessage();
+            }
         }
 
         switch (currentDoorState)
@@ -58,7 +101,9 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
+        AudioManager.Instance.PlaySFX(openDoorAudioSource, openDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Opening;
@@ -70,7 +115,9 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
+        AudioManager.Instance.PlaySFX(closeDoorAudioSource, closeDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Idle;
@@ -91,10 +138,14 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ItsLockedDelay()
     {
-        itsLockedText.enabled = true;
-        //canInteract = false;
+        itsLockedText.SetActive(true);
+        canInteract = false;
+
+        AudioManager.Instance.PlaySFX(lockedAudioSource, lockedAudioClip);
+
         yield return new WaitForSeconds(itsLockedTextDelay);
-        itsLockedText.enabled = false;
-        //canInteract = true;
+
+        itsLockedText.SetActive(false);
+        canInteract = true;
     }
 }

@@ -6,6 +6,14 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
     private float doorAnimationDelay = 1f;
+    private float itsLockedTextDelay = 2f;
+
+    private bool canInteract = true;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
+    #endregion
 
     #region ANIMATIONS
     [Header("ANIMATOR")]
@@ -21,6 +29,14 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (currentDoorState == DoorState.Locked)
+        {
+            if (canInteract)
+            {
+                ItsLocked();
+            }
+        }
+
         switch (currentDoorState)
         {
             case DoorState.Idle:
@@ -34,12 +50,19 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         }
     }
 
+    public void ItsLocked()
+    {
+        StartCoroutine(ItsLockedDelay());
+    }
+
     private IEnumerator OpenDoor()
     {
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
+        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.OpenDoorAudioSource, smallRoomDoorInteract.OpenDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Opening;
@@ -51,7 +74,9 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
+        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.CloseDoorAudioSource, smallRoomDoorInteract.CloseDoorAudioClip);
         DisableAllDoorColliders();
+
         yield return new WaitForSeconds(doorAnimationDelay);
 
         currentDoorState = DoorState.Idle;
@@ -68,5 +93,18 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     {
         foreach (var col in doorColliders)
             col.enabled = true;
+    }
+
+    public IEnumerator ItsLockedDelay()
+    {
+        smallRoomDoorInteract.ItsLockedText.SetActive(true);
+        canInteract = false;
+
+        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.LockedAudioSource, smallRoomDoorInteract.LockedAudioClip);
+
+        yield return new WaitForSeconds(itsLockedTextDelay);
+
+        smallRoomDoorInteract.ItsLockedText.SetActive(false);
+        canInteract = true;
     }
 }

@@ -11,6 +11,9 @@ public class PauseManager : MonoBehaviour
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private MainGameUIManager mainGameUImanager;
+    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
+    [SerializeField] private MainDoorInteract mainDoorInteract;
+    [SerializeField] private DoorInteract doorInteract;
     #endregion
 
     #region OBJECTS
@@ -74,9 +77,16 @@ public class PauseManager : MonoBehaviour
         GameManager.Instance.CurrentMenuState = MenuState.OnPausedMenu;
 
         mainGameUImanager.PauseMenu.SetActive(true);
+        smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
 
         AudioManager.Instance.PauseMainGameMusic();
+
+        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.LockedAudioSource);
+        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.OpenDoorAudioSource);
+        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.CloseDoorAudioSource);
+
         Time.timeScale = 0;
 
         Cursor.visible = true;
@@ -90,9 +100,16 @@ public class PauseManager : MonoBehaviour
 
         mainGameUImanager.PauseMenu.SetActive(false);
         dot.SetActive(true);
+
         mainGameUImanager.DisableRedColorOnButtonText();
 
         AudioManager.Instance.UnpauseMainGameMusic();
+
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.LockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.OpenDoorAudioSource);
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.CloseDoorAudioSource);
+
         Time.timeScale = 1;
 
         Cursor.visible = false;

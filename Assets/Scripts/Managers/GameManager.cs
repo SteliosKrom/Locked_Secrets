@@ -35,7 +35,8 @@ public enum DoorState
     Idle,
     Opening,
     Closing,
-    Locked
+    Locked,
+    Unlocked
 }
 
 public enum PlayerState
