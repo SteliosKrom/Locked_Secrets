@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NoteInteract : MonoBehaviour, IInteractable
@@ -20,8 +21,12 @@ public class NoteInteract : MonoBehaviour, IInteractable
 
     public void OnNoteInteracted(NoteInteract item)
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         noteModel.SetActive(false);
         noteCanvas.SetActive(true);
+
+        audioManager.PlaySFX(audioManager.LetterAudioSource, audioManager.LetterAudioClip);
 
         if (!interacted)
         {

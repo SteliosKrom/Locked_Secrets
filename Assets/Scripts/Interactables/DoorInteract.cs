@@ -40,10 +40,12 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
-        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.OpenDoorAudioSource, smallRoomDoorInteract.OpenDoorAudioClip);
+        audioManager.PlaySFX(audioManager.OpenDoorAudioSource, audioManager.OpenDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -54,10 +56,12 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator CloseDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
-        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.CloseDoorAudioSource, smallRoomDoorInteract.CloseDoorAudioClip);
+        audioManager.PlaySFX(audioManager.CloseDoorAudioSource, audioManager.CloseDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);

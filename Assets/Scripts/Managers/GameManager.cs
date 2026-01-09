@@ -43,6 +43,7 @@ public enum PlayerState
 {
     OnIdle,
     OnWalking,
+    OnChopping
 }
 
 public class GameManager : MonoBehaviour

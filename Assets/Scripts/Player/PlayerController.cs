@@ -6,6 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera;
 
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private AxeInteract axeInteract;
+    #endregion
+
     #region PLAYER
     [Header("WALK")]
     [SerializeField] private CharacterController characterController;
@@ -60,8 +65,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.CanInteract()) return;
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (axeInteract.IsCoroutineRunning) return;
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
         if (horizontalInput != 0 || verticalInput != 0)
@@ -73,6 +79,7 @@ public class PlayerController : MonoBehaviour
     public void HandleCrouch()
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (axeInteract.IsCoroutineRunning) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

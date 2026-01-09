@@ -7,7 +7,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
     private float doorAnimationDelay = 1f;
-    private float itsLockedTextDelay = 2f;
+    private float itsLockedTextDelay = 1f;
 
     private bool canInteract = true;
 
@@ -33,27 +33,15 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     #region AUDIO
     [Header("AUDIO SOURCES")]
-    [SerializeField] private AudioSource lockedAudioSource;
     [SerializeField] private AudioSource unlockedAudioSource;
-    [SerializeField] private AudioSource openDoorAudioSource;
-    [SerializeField] private AudioSource closeDoorAudioSource;
 
     [Header("AUDIO CLIPS")]
-    [SerializeField] private AudioClip lockedAudioClip;
     [SerializeField] private AudioClip unlockedAudioClip;
-    [SerializeField] private AudioClip openDoorAudioClip;
-    [SerializeField] private AudioClip closeDoorAudioClip;
     #endregion
 
     public GameObject ItsLockedText => itsLockedText;
-    public AudioSource LockedAudioSource => lockedAudioSource;
     public AudioSource UnlockedAudioSource => unlockedAudioSource;
-    public AudioSource OpenDoorAudioSource => openDoorAudioSource;
-    public AudioSource CloseDoorAudioSource => closeDoorAudioSource;
-    public AudioClip LockedAudioClip => lockedAudioClip;
     public AudioClip UnlockedAudioClip => unlockedAudioClip;
-    public AudioClip OpenDoorAudioClip => openDoorAudioClip;
-    public AudioClip CloseDoorAudioClip => closeDoorAudioClip;
 
     public void Interact()
     {
@@ -98,10 +86,12 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
-        AudioManager.Instance.PlaySFX(openDoorAudioSource, openDoorAudioClip);
+        audioManager.PlaySFX(audioManager.OpenDoorAudioSource, audioManager.OpenDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -112,10 +102,12 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator CloseDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
-        AudioManager.Instance.PlaySFX(closeDoorAudioSource, closeDoorAudioClip);
+        audioManager.PlaySFX(audioManager.CloseDoorAudioSource, audioManager.CloseDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -138,10 +130,12 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ItsLockedDelay()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         itsLockedText.SetActive(true);
         canInteract = false;
 
-        AudioManager.Instance.PlaySFX(lockedAudioSource, lockedAudioClip);
+        audioManager.PlaySFX(audioManager.LockedAudioSource, audioManager.LockedAudioClip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 

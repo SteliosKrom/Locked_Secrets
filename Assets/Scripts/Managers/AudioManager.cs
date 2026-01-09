@@ -8,7 +8,31 @@ public class AudioManager : MonoBehaviour
     [Header("AUDIO")]
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
+
+    [SerializeField] private AudioSource lockedAudioSource;
+    [SerializeField] private AudioSource openDoorAudioSource;
+    [SerializeField] private AudioSource closeDoorAudioSource;
+    [SerializeField] private AudioSource letterAudioSource;
+    [SerializeField] private AudioSource firstPuzzleItemsInteractAudioSource;
+
+    [Header("AUDIO CLIPS")]
+    [SerializeField] private AudioClip lockedAudioClip;
+    [SerializeField] private AudioClip openDoorAudioClip;
+    [SerializeField] private AudioClip closeDoorAudioClip;
+    [SerializeField] private AudioClip letterAudioClip;
+    [SerializeField] private AudioClip firstPuzzleItemsInteractAudioClip;
     #endregion
+
+    public AudioSource LockedAudioSource => lockedAudioSource;
+    public AudioSource OpenDoorAudioSource => openDoorAudioSource;
+    public AudioSource CloseDoorAudioSource => closeDoorAudioSource;
+    public AudioSource LetterAudioSource => letterAudioSource;
+    public AudioSource FirstPuzzleItemsInteractAudioSource => firstPuzzleItemsInteractAudioSource;
+    public AudioClip LockedAudioClip => lockedAudioClip;
+    public AudioClip OpenDoorAudioClip => openDoorAudioClip;
+    public AudioClip CloseDoorAudioClip => closeDoorAudioClip;
+    public AudioClip LetterAudioClip => letterAudioClip;
+    public AudioClip FirstPuzzleItemsInteractAudioClip => firstPuzzleItemsInteractAudioClip;
 
     private void Awake()
     {
@@ -29,11 +53,13 @@ public class AudioManager : MonoBehaviour
         source.PlayOneShot(clip);
     }
 
+    // Pause SFX
     public void PauseSFX(AudioSource source)
     {
         source.Pause();
     }
 
+    // Unpause SFX
     public void UnpauseSFX(AudioSource source)
     {
         source.UnPause();

@@ -7,6 +7,11 @@ public class FirstPersonCamera : MonoBehaviour
 {
     [SerializeField] private Transform player;
 
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private AxeInteract axeInteract;
+    #endregion
+
     #region CAMERA
     [Header("FIRST-PERSON CAMERA")]
     private float xRotation = 0f;
@@ -30,6 +35,7 @@ public class FirstPersonCamera : MonoBehaviour
     public void CameraInput()
     {
         if (GameManager.Instance.CanInteract()) return;
+        if (axeInteract.IsCoroutineRunning) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

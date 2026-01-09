@@ -8,6 +8,9 @@ public class MainGameUIManager : MonoBehaviour
     public static MainGameUIManager Instance;
 
     private float closeNoteMenuDelay = 0.01f;
+    private float noteInteractDelay = 1f;
+
+    private bool canInteractWithNote = true;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -59,10 +62,11 @@ public class MainGameUIManager : MonoBehaviour
     {
         if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && canInteractWithNote)
             {
                 StartCoroutine(CloseNoteMenuDelay());
             }
+            StartCoroutine(NoteInteractDelay());
         }
     }
 
@@ -80,15 +84,20 @@ public class MainGameUIManager : MonoBehaviour
 
     public void Resume()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
-        AudioManager.Instance.UnpauseMainGameMusic();
+        audioManager.UnpauseMainGameMusic();
 
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.LockedAudioSource);
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.OpenDoorAudioSource);
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.CloseDoorAudioSource);
+        audioManager.UnpauseSFX(audioManager.LockedAudioSource);
+        audioManager.UnpauseSFX(audioManager.OpenDoorAudioSource);
+        audioManager.UnpauseSFX(audioManager.CloseDoorAudioSource);
+        audioManager.UnpauseSFX(audioManager.LetterAudioSource);
+        audioManager.UnpauseSFX(audioManager.FirstPuzzleItemsInteractAudioSource);
+
+        audioManager.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
         pauseMenu.SetActive(false);
         dot.SetActive(true);
@@ -126,6 +135,13 @@ public class MainGameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+    }
+
+    public IEnumerator NoteInteractDelay()
+    {
+        canInteractWithNote = false;
+        yield return new WaitForSecondsRealtime(noteInteractDelay);
+        canInteractWithNote = true;
     }
 
     public IEnumerator CloseNoteMenuDelay()

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AxeInteract : MonoBehaviour, IInteractable
 {
+    private bool isCoroutineRunning = false;
+
     #region OBJECTS
     [Header("OBJECTS")]
     [SerializeField] private GameObject worldAxe;
@@ -14,11 +16,14 @@ public class AxeInteract : MonoBehaviour, IInteractable
     [SerializeField] private Animator baseAxeAnimator;
     #endregion
 
+    public bool IsCoroutineRunning { get => isCoroutineRunning; set => isCoroutineRunning = value; }
     public GameObject PlayerAxe => playerAxe;
     public Animator BaseAxeAnimator => baseAxeAnimator;
 
     public void Interact()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
         axeIcon.SetActive(true);

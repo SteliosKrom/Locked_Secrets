@@ -6,7 +6,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
     private float doorAnimationDelay = 1f;
-    private float itsLockedTextDelay = 2f;
+    private float itsLockedTextDelay = 1f;
 
     private bool canInteract = true;
 
@@ -57,10 +57,12 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
-        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.OpenDoorAudioSource, smallRoomDoorInteract.OpenDoorAudioClip);
+        audioManager.PlaySFX(audioManager.OpenDoorAudioSource, audioManager.OpenDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -71,10 +73,12 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator CloseDoor()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
-        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.CloseDoorAudioSource, smallRoomDoorInteract.CloseDoorAudioClip);
+        audioManager.PlaySFX(audioManager.CloseDoorAudioSource, audioManager.CloseDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -97,10 +101,12 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ItsLockedDelay()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
         smallRoomDoorInteract.ItsLockedText.SetActive(true);
         canInteract = false;
 
-        AudioManager.Instance.PlaySFX(smallRoomDoorInteract.LockedAudioSource, smallRoomDoorInteract.LockedAudioClip);
+        audioManager.PlaySFX(audioManager.LockedAudioSource, audioManager.LockedAudioClip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 

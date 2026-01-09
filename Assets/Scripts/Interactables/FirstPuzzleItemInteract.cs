@@ -8,6 +8,10 @@ public class FirstPuzzleItemInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        AudioManager audioManager = AudioManager.Instance;
+
+        audioManager.PlaySFX(audioManager.FirstPuzzleItemsInteractAudioSource, audioManager.FirstPuzzleItemsInteractAudioClip);
+
         PuzzleManager.Instance.OnFirstPuzzleItemInteracted(this);
     }
 }
