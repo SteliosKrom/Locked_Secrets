@@ -73,8 +73,6 @@ public class PauseManager : MonoBehaviour
 
     public void PauseGame()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         GameManager.Instance.CurrentGameState = GameState.OnPaused;
         GameManager.Instance.CurrentMenuState = MenuState.OnPausedMenu;
 
@@ -82,15 +80,14 @@ public class PauseManager : MonoBehaviour
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
 
-        audioManager.PauseMainGameMusic();
+       AudioManager.Instance.PauseMainGameMusic();
 
-        audioManager.PauseSFX(audioManager.LockedAudioSource);
-        audioManager.PauseSFX(audioManager.OpenDoorAudioSource);
-        audioManager.PauseSFX(audioManager.CloseDoorAudioSource);
-        audioManager.PauseSFX(audioManager.LetterAudioSource);
-        audioManager.PauseSFX(audioManager.FirstPuzzleItemsInteractAudioSource);
+       AudioManager.Instance.PauseSFX(AudioManager.Instance.LockedAudioSource);
+       AudioManager.Instance.PauseSFX(AudioManager.Instance.OpenDoorAudioSource);
+       AudioManager.Instance.PauseSFX(AudioManager.Instance.CloseDoorAudioSource);
+       AudioManager.Instance.PauseSFX(AudioManager.Instance.LetterAudioSource);
 
-        audioManager.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+       AudioManager.Instance.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
         Time.timeScale = 0;
 
@@ -100,8 +97,6 @@ public class PauseManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
@@ -110,15 +105,14 @@ public class PauseManager : MonoBehaviour
 
         mainGameUImanager.DisableRedColorOnButtonText();
 
-        audioManager.UnpauseMainGameMusic();
+       AudioManager.Instance.UnpauseMainGameMusic();
 
-        audioManager.UnpauseSFX(audioManager.LockedAudioSource);
-        audioManager.UnpauseSFX(audioManager.OpenDoorAudioSource);
-        audioManager.UnpauseSFX(audioManager.CloseDoorAudioSource);
-        audioManager.UnpauseSFX(audioManager.LetterAudioSource);
-        audioManager.UnpauseSFX(audioManager.FirstPuzzleItemsInteractAudioSource);
-
-        audioManager.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.LockedAudioSource);
+       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.OpenDoorAudioSource);
+       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.CloseDoorAudioSource);
+       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.LetterAudioSource);
+       
+       AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
         Time.timeScale = 1;
 

@@ -22,8 +22,6 @@ public class AxeInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
         axeIcon.SetActive(true);

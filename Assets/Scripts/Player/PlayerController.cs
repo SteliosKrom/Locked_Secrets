@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
         if (axeInteract.IsCoroutineRunning) return;
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu || GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

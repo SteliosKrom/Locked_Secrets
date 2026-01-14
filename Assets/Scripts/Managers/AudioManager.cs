@@ -1,38 +1,58 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    #region AUDIO
-    [Header("AUDIO")]
+    [System.Serializable]
+    public struct AudioItem
+    {
+        public AudioSource source;
+        public AudioClip clip;
+    }
+
+    #region AUDIO MANAGER
+    [Header("OBJECTS")]
+    [SerializeField] private GameObject triggerInteractable3DAudio;
+
+    [Header("MAIN AUDIO SOURCES")]
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
 
-    [SerializeField] private AudioSource lockedAudioSource;
-    [SerializeField] private AudioSource openDoorAudioSource;
-    [SerializeField] private AudioSource closeDoorAudioSource;
-    [SerializeField] private AudioSource letterAudioSource;
-    [SerializeField] private AudioSource firstPuzzleItemsInteractAudioSource;
+    [Header("DOOR SOUNDS")]
+    [SerializeField] private AudioItem openDoor;
+    [SerializeField] private AudioItem closeDoor;
+    [SerializeField] private AudioItem lockedDoor;
 
-    [Header("AUDIO CLIPS")]
-    [SerializeField] private AudioClip lockedAudioClip;
-    [SerializeField] private AudioClip openDoorAudioClip;
-    [SerializeField] private AudioClip closeDoorAudioClip;
-    [SerializeField] private AudioClip letterAudioClip;
-    [SerializeField] private AudioClip firstPuzzleItemsInteractAudioClip;
+    [Header("ITEM SOUNDS")]
+    [SerializeField] private AudioItem letter;
+    [SerializeField] private AudioItem firstPuzzleInteract;
+    [SerializeField] private AudioItem cutWoodPlank;
+    [SerializeField] private AudioItem keypadButton;
     #endregion
 
-    public AudioSource LockedAudioSource => lockedAudioSource;
-    public AudioSource OpenDoorAudioSource => openDoorAudioSource;
-    public AudioSource CloseDoorAudioSource => closeDoorAudioSource;
-    public AudioSource LetterAudioSource => letterAudioSource;
-    public AudioSource FirstPuzzleItemsInteractAudioSource => firstPuzzleItemsInteractAudioSource;
-    public AudioClip LockedAudioClip => lockedAudioClip;
-    public AudioClip OpenDoorAudioClip => openDoorAudioClip;
-    public AudioClip CloseDoorAudioClip => closeDoorAudioClip;
-    public AudioClip LetterAudioClip => letterAudioClip;
-    public AudioClip FirstPuzzleItemsInteractAudioClip => firstPuzzleItemsInteractAudioClip;
+    public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
+
+    public AudioSource KeypadButtonAudioSource => keypadButton.source;
+    public AudioClip KeypadButtonAudioClip => keypadButton.clip;
+
+    public AudioSource OpenDoorAudioSource => openDoor.source;
+    public AudioClip OpenDoorAudioClip => openDoor.clip;
+
+    public AudioSource CloseDoorAudioSource => closeDoor.source;
+    public AudioClip CloseDoorAudioClip => closeDoor.clip;
+
+    public AudioSource LockedAudioSource => lockedDoor.source;
+    public AudioClip LockedAudioClip => lockedDoor.clip;
+
+    public AudioSource LetterAudioSource => letter.source;
+    public AudioClip LetterAudioClip => letter.clip;
+
+    public AudioSource FirstPuzzleInteractAudioSource => firstPuzzleInteract.source;
+    public AudioClip FirstPuzzleItemsInteractAudioClip => firstPuzzleInteract.clip;
+
+    public AudioSource CutWoodPlankAudioSource => cutWoodPlank.source;
+    public AudioClip CutWoodPlankAudioClip => cutWoodPlank.clip;
 
     private void Awake()
     {

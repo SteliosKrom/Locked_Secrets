@@ -21,12 +21,11 @@ public class NoteInteract : MonoBehaviour, IInteractable
 
     public void OnNoteInteracted(NoteInteract item)
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         noteModel.SetActive(false);
         noteCanvas.SetActive(true);
 
-        audioManager.PlaySFX(audioManager.LetterAudioSource, audioManager.LetterAudioClip);
+        AudioManager.Instance.LetterAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LetterAudioSource, AudioManager.Instance.LetterAudioClip);
 
         if (!interacted)
         {

@@ -40,6 +40,8 @@ public class Interactor : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
+
         if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, combinedMask))
         {
             int layer = hit.collider.gameObject.layer;

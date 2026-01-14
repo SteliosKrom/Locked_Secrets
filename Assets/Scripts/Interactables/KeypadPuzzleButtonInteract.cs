@@ -9,5 +9,6 @@ public class KeypadPuzzleButtonInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         PuzzleManager.Instance.OnKeypadPuzzleButtonInteracted(this);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadButtonAudioSource, AudioManager.Instance.KeypadButtonAudioClip);
     }
 }

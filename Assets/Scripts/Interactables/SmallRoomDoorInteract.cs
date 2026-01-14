@@ -49,6 +49,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         {
             currentDoorState = DoorState.Unlocked;
             GameManager.Instance.CurrentItemState = ItemState.None;
+            unlockedAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
             AudioManager.Instance.PlaySFX(unlockedAudioSource, unlockedAudioClip);
             return;
         }
@@ -86,12 +87,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
-        audioManager.PlaySFX(audioManager.OpenDoorAudioSource, audioManager.OpenDoorAudioClip);
+        AudioManager.Instance.OpenDoorAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoorAudioSource, AudioManager.Instance.OpenDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -102,12 +102,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator CloseDoor()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
-        audioManager.PlaySFX(audioManager.CloseDoorAudioSource, audioManager.CloseDoorAudioClip);
+        AudioManager.Instance.CloseDoorAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoorAudioSource, AudioManager.Instance.CloseDoorAudioClip);
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -130,12 +129,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ItsLockedDelay()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         itsLockedText.SetActive(true);
         canInteract = false;
 
-        audioManager.PlaySFX(audioManager.LockedAudioSource, audioManager.LockedAudioClip);
+        AudioManager.Instance.LockedAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedAudioSource, AudioManager.Instance.LockedAudioClip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 

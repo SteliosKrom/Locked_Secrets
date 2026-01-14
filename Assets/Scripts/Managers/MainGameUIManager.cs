@@ -95,7 +95,6 @@ public class MainGameUIManager : MonoBehaviour
         audioManager.UnpauseSFX(audioManager.OpenDoorAudioSource);
         audioManager.UnpauseSFX(audioManager.CloseDoorAudioSource);
         audioManager.UnpauseSFX(audioManager.LetterAudioSource);
-        audioManager.UnpauseSFX(audioManager.FirstPuzzleItemsInteractAudioSource);
 
         audioManager.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
