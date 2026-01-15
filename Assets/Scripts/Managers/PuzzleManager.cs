@@ -167,7 +167,6 @@ public class PuzzleManager : MonoBehaviour
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
         DisableKeypadButtonColliders();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadSucceed.source, AudioManager.Instance.KeypadSucceed.clip);
     }
 
     public void KeypadPuzzleFailed()

@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour
     private float standingCameraHeight = 0.8f;
     private float crouchCameraHeight = -0.1f;
 
-    private float walkSpeed = 2f;
+    private float walkSpeed = 1.5f;
     private float crouchWalkSpeed = 1f;
 
-    private bool isCrouching;
+    [SerializeField] private bool isCrouching;
 
     [Header("SMOOTH CROUCHING")]
     private float targetCapsuleHeight;
@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float heightSmoothSpeed;
     #endregion
+
+    public bool IsCrouching => isCrouching;
+    public float HorizontaInput => horizontalInput;
+    public float VerticalInput => verticalInput;    
 
     private void Start()
     {

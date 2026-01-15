@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [System.Serializable]
-    public struct AudioItem 
+    public struct AudioItem
     {
         public AudioSource source;
         public AudioClip clip;
@@ -30,15 +30,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
-    [SerializeField] private AudioItem keypadSucceed;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
 
-    public AudioItem[] AllSFX => allSFX; 
+    public AudioItem[] AllSFX => allSFX;
     public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed;
-    public AudioItem KeypadSucceed => keypadSucceed; public AudioItem OpenDoor => openDoor;
-    public AudioItem CloseDoor => closeDoor; public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
+    public AudioItem OpenDoor => openDoor; public AudioItem CloseDoor => closeDoor;
+    public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
     public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
 
     private void Awake()
@@ -83,7 +82,7 @@ public class AudioManager : MonoBehaviour
     // Pause/Unpause Menu Music
     public void PauseMenuMusic() { mainMenuAudioSource.Pause(); }
     public void UnpauseMenuMusic() { mainMenuAudioSource.UnPause(); }
-    
+
     // Pause/Unpause Main Game Music
     public void PauseMainGameMusic() { mainGameAudioSource.Pause(); }
     public void UnpauseMainGameMusic() { mainGameAudioSource.UnPause(); }
