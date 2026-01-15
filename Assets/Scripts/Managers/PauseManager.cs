@@ -80,14 +80,10 @@ public class PauseManager : MonoBehaviour
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
 
-       AudioManager.Instance.PauseMainGameMusic();
+        AudioManager.Instance.PauseMainGameMusic();
+        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
-       AudioManager.Instance.PauseSFX(AudioManager.Instance.LockedAudioSource);
-       AudioManager.Instance.PauseSFX(AudioManager.Instance.OpenDoorAudioSource);
-       AudioManager.Instance.PauseSFX(AudioManager.Instance.CloseDoorAudioSource);
-       AudioManager.Instance.PauseSFX(AudioManager.Instance.LetterAudioSource);
-
-       AudioManager.Instance.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        PauseAllSFX();
 
         Time.timeScale = 0;
 
@@ -105,19 +101,31 @@ public class PauseManager : MonoBehaviour
 
         mainGameUImanager.DisableRedColorOnButtonText();
 
-       AudioManager.Instance.UnpauseMainGameMusic();
+        AudioManager.Instance.UnpauseMainGameMusic();
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
-       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.LockedAudioSource);
-       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.OpenDoorAudioSource);
-       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.CloseDoorAudioSource);
-       AudioManager.Instance.UnpauseSFX(AudioManager.Instance.LetterAudioSource);
-       
-       AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        UnPauseAllSFX();
 
         Time.timeScale = 1;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void PauseAllSFX()
+    {
+        foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
+        {
+            AudioManager.Instance.PauseSFX(audioItem.source);
+        }
+    }
+
+    public void UnPauseAllSFX()
+    {
+        foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
+        {
+            AudioManager.Instance.UnpauseSFX(audioItem.source);
+        }
     }
 
     public IEnumerator PauseDelay()

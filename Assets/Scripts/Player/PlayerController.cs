@@ -4,7 +4,10 @@ using UnityEngine.Rendering.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region TRANSFORM
+    [Header("TRANSFORM")]
     [SerializeField] private Transform playerCamera;
+    #endregion
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -67,7 +70,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
         if (axeInteract.IsCoroutineRunning) return;
 
-            horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
         if (horizontalInput != 0 || verticalInput != 0)
@@ -80,7 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
         if (axeInteract.IsCoroutineRunning) return;
-        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu || GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu ||
+            GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

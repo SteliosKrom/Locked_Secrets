@@ -24,8 +24,8 @@ public class NoteInteract : MonoBehaviour, IInteractable
         noteModel.SetActive(false);
         noteCanvas.SetActive(true);
 
-        AudioManager.Instance.LetterAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.LetterAudioSource, AudioManager.Instance.LetterAudioClip);
+        AudioManager.Instance.Letter.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.Letter.source, AudioManager.Instance.Letter.clip);
 
         if (!interacted)
         {

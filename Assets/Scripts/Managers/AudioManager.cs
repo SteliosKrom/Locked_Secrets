@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [System.Serializable]
-    public struct AudioItem
+    public struct AudioItem 
     {
         public AudioSource source;
         public AudioClip clip;
@@ -19,40 +19,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
 
-    [Header("DOOR SOUNDS")]
+    [Header("SOUNDS")]
+    [SerializeField] private AudioItem[] allSFX;
     [SerializeField] private AudioItem openDoor;
     [SerializeField] private AudioItem closeDoor;
     [SerializeField] private AudioItem lockedDoor;
 
-    [Header("ITEM SOUNDS")]
     [SerializeField] private AudioItem letter;
     [SerializeField] private AudioItem firstPuzzleInteract;
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
+    [SerializeField] private AudioItem keypadFailed;
+    [SerializeField] private AudioItem keypadSucceed;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
 
-    public AudioSource KeypadButtonAudioSource => keypadButton.source;
-    public AudioClip KeypadButtonAudioClip => keypadButton.clip;
-
-    public AudioSource OpenDoorAudioSource => openDoor.source;
-    public AudioClip OpenDoorAudioClip => openDoor.clip;
-
-    public AudioSource CloseDoorAudioSource => closeDoor.source;
-    public AudioClip CloseDoorAudioClip => closeDoor.clip;
-
-    public AudioSource LockedAudioSource => lockedDoor.source;
-    public AudioClip LockedAudioClip => lockedDoor.clip;
-
-    public AudioSource LetterAudioSource => letter.source;
-    public AudioClip LetterAudioClip => letter.clip;
-
-    public AudioSource FirstPuzzleInteractAudioSource => firstPuzzleInteract.source;
-    public AudioClip FirstPuzzleItemsInteractAudioClip => firstPuzzleInteract.clip;
-
-    public AudioSource CutWoodPlankAudioSource => cutWoodPlank.source;
-    public AudioClip CutWoodPlankAudioClip => cutWoodPlank.clip;
+    public AudioItem[] AllSFX => allSFX; 
+    public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed;
+    public AudioItem KeypadSucceed => keypadSucceed; public AudioItem OpenDoor => openDoor;
+    public AudioItem CloseDoor => closeDoor; public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
+    public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
 
     private void Awake()
     {

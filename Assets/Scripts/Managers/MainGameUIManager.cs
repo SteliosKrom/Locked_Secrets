@@ -84,19 +84,13 @@ public class MainGameUIManager : MonoBehaviour
 
     public void Resume()
     {
-        AudioManager audioManager = AudioManager.Instance;
-
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
-        audioManager.UnpauseMainGameMusic();
+        AudioManager.Instance.UnpauseMainGameMusic();
+        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
 
-        audioManager.UnpauseSFX(audioManager.LockedAudioSource);
-        audioManager.UnpauseSFX(audioManager.OpenDoorAudioSource);
-        audioManager.UnpauseSFX(audioManager.CloseDoorAudioSource);
-        audioManager.UnpauseSFX(audioManager.LetterAudioSource);
-
-        audioManager.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        UnPauseAllSFX();
 
         pauseMenu.SetActive(false);
         dot.SetActive(true);
@@ -134,6 +128,14 @@ public class MainGameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+    }
+
+    public void UnPauseAllSFX()
+    {
+        foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
+        {
+            AudioManager.Instance.UnpauseSFX(audioItem.source);
+        }
     }
 
     public IEnumerator NoteInteractDelay()

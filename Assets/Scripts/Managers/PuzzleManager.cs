@@ -56,6 +56,7 @@ public class PuzzleManager : MonoBehaviour
     #region OBJECTS
     [Header("OBJECTS")]
     [SerializeField] private GameObject keyIcon;
+    [SerializeField] private GameObject keypadNumbers;
     #endregion
 
     #region COLLIDERS
@@ -150,6 +151,7 @@ public class PuzzleManager : MonoBehaviour
         GameManager.Instance.CurrentItemState = ItemState.Key;
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
         keyIcon.SetActive(true);
+        keypadNumbers.SetActive(true);
         ResetSequencePuzzle();
     }
 
@@ -165,12 +167,14 @@ public class PuzzleManager : MonoBehaviour
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
         DisableKeypadButtonColliders();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadSucceed.source, AudioManager.Instance.KeypadSucceed.clip);
     }
 
     public void KeypadPuzzleFailed()
     {
         Debug.Log($"Correct step finished with {currentPuzzleStep}. You failed the puzzle!");
         StartCoroutine(KeypadPuzzleRepeatDelay());
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed.source, AudioManager.Instance.KeypadFailed.clip);
     }
 
     public void EraseKeypadDisplayText()
