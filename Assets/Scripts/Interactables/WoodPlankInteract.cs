@@ -39,6 +39,7 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CurrentPlayerState == PlayerState.OnChopping) return;
 
         if (GameManager.Instance.CurrentItemState == ItemState.Axe)
         {

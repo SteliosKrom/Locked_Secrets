@@ -25,8 +25,9 @@ public class FootstepsSystem : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanMenuInteract()) return;
-
         if (GameManager.Instance.CanItemMenuInteract()) return;
 
         string groundType = IsGrounded();

@@ -28,6 +28,7 @@ public class PauseManager : MonoBehaviour
 
     public void HandlePauseInput()
     {
+        if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
 

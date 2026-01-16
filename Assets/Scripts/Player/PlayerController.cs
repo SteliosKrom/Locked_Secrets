@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     #region PLAYER
     [Header("WALK")]
     [SerializeField] private CharacterController characterController;
-    private Vector3 smoothMoveVelocity;
     private Vector3 velocity;
 
     private float horizontalInput;
@@ -71,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public void HandlePlayerMovement()
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
 

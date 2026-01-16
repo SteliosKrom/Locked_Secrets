@@ -5,7 +5,8 @@ public enum GameState
     None,
     OnPlaying,
     OnPaused,
-    OnLoading
+    OnLoading,
+    OnEnding
 }
 
 public enum MenuState
