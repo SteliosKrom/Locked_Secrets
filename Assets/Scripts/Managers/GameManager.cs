@@ -12,7 +12,6 @@ public enum MenuState
 {
     None,
     OnPausedMenu,
-    OnRoomKeyMenu,
     OnInventoryMenu,
     OnNoteMenu,
     OnTitleMenu,
@@ -20,6 +19,14 @@ public enum MenuState
     OnMenuSettings,
     OnGameSettings,
     OnCategorySettings
+}
+
+public enum ItemMenuState
+{
+    None,
+    OnRoomKeyMenu,
+    OnLanternMenu,
+    OnAxeMenu
 }
 
 public enum ItemState
@@ -54,12 +61,14 @@ public class GameManager : MonoBehaviour
     [Header("STATES")]
     [SerializeField] private GameState currentGameState;
     [SerializeField] private MenuState currentMenuState;
+    [SerializeField] private ItemMenuState currentItemMenuState;
     [SerializeField] private PlayerState currentPlayerState;
     [SerializeField] private ItemState currentItemState;
     #endregion
 
     public GameState CurrentGameState { get => currentGameState; set => currentGameState = value; }
     public MenuState CurrentMenuState { get => currentMenuState; set => currentMenuState = value; }
+    public ItemMenuState CurrentItemMenuState { get => currentItemMenuState; set => currentItemMenuState = value; }
     public PlayerState CurrentPlayerState { get => currentPlayerState; set => currentPlayerState = value; }
     public ItemState CurrentItemState { get => currentItemState; set => currentItemState = value; }
 
@@ -83,10 +92,16 @@ public class GameManager : MonoBehaviour
         currentItemState = ItemState.None;
     }
 
-    public bool CanInteract()
+    public bool CanMenuInteract()
     {
         return currentMenuState == MenuState.OnInventoryMenu
-            || currentMenuState == MenuState.OnNoteMenu
-            || currentMenuState == MenuState.OnRoomKeyMenu;
+            || currentMenuState == MenuState.OnNoteMenu;
+    }
+
+    public bool CanItemMenuInteract()
+    {
+        return currentItemMenuState == ItemMenuState.OnRoomKeyMenu
+            || currentItemMenuState == ItemMenuState.OnLanternMenu
+            || currentItemMenuState == ItemMenuState.OnAxeMenu;
     }
 }

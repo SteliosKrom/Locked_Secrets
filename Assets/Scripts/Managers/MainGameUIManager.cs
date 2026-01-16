@@ -17,6 +17,7 @@ public class MainGameUIManager : MonoBehaviour
     private NoteInteract currentNote;
     [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
     [SerializeField] private DoorInteract doorInteract;
+    [SerializeField] private NoteInteract noteInteract;
     #endregion
 
     #region OBJECTS
@@ -25,6 +26,8 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject dot;
     [SerializeField] private GameObject gotRoomKeyPanel;
+    [SerializeField] private GameObject gotLanternPanel;
+    [SerializeField] private GameObject gotAxePanel;
     #endregion
 
     #region TEXT
@@ -34,6 +37,8 @@ public class MainGameUIManager : MonoBehaviour
 
     public GameObject PauseMenu => pauseMenu;
     public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
+    public GameObject GotLanternPanel => gotLanternPanel;
+    public GameObject GotAxePanel => gotAxePanel;
 
     private void Awake()
     {
@@ -50,7 +55,7 @@ public class MainGameUIManager : MonoBehaviour
     private void Update()
     {
         InputForNoteMenu();
-        InputToCloseRoomKeyPanel();
+        InputToCloseItemPanel();
     }
 
     public void SetCurrentNote(NoteInteract note)
@@ -70,15 +75,23 @@ public class MainGameUIManager : MonoBehaviour
         }
     }
 
-    public void InputToCloseRoomKeyPanel()
+    public void InputToCloseItemPanel()
     {
-        if (GameManager.Instance.CurrentMenuState == MenuState.OnRoomKeyMenu)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            switch (GameManager.Instance.CurrentItemMenuState)
             {
-                GameManager.Instance.CurrentMenuState = MenuState.None;
-                gotRoomKeyPanel.SetActive(false);
+                case ItemMenuState.OnRoomKeyMenu:
+                    gotRoomKeyPanel.SetActive(false);
+                    break;
+                case ItemMenuState.OnLanternMenu:
+                    gotLanternPanel.SetActive(false);
+                    break;
+                case ItemMenuState.OnAxeMenu:
+                    gotAxePanel.SetActive(false);
+                    break;
             }
+            GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
         }
     }
 
@@ -88,7 +101,7 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
         AudioManager.Instance.UnpauseMainGameMusic();
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
         UnPauseAllSFX();
 
@@ -150,6 +163,14 @@ public class MainGameUIManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(closeNoteMenuDelay);
         currentNote.NoteModel.SetActive(true);
         currentNote.NoteCanvas.SetActive(false);
+
+        if (!noteInteract.IsInteracted)
+        {
+            PuzzleManager.Instance.EnableFirstPuzzleItemColliders();
+            OutlineEffect.Instance.EnableFirstPuzzleItemsOutlineEffect();
+            noteInteract.IsInteracted = true;
+        }
+
         GameManager.Instance.CurrentMenuState = MenuState.None;
     }
 }

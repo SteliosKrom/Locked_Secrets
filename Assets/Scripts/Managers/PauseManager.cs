@@ -28,7 +28,8 @@ public class PauseManager : MonoBehaviour
 
     public void HandlePauseInput()
     {
-        if (GameManager.Instance.CanInteract()) return;
+        if (GameManager.Instance.CanMenuInteract()) return;
+        if (GameManager.Instance.CanItemMenuInteract()) return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
@@ -81,7 +82,7 @@ public class PauseManager : MonoBehaviour
         dot.SetActive(false);
 
         AudioManager.Instance.PauseMainGameMusic();
-        AudioManager.Instance.PauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
         PauseAllSFX();
 
@@ -102,7 +103,7 @@ public class PauseManager : MonoBehaviour
         mainGameUImanager.DisableRedColorOnButtonText();
 
         AudioManager.Instance.UnpauseMainGameMusic();
-        AudioManager.Instance.UnpauseSFX(smallRoomDoorInteract.UnlockedAudioSource);
+        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
         UnPauseAllSFX();
 

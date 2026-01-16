@@ -15,7 +15,6 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private int currentPuzzleStep = 0;
 
     [SerializeField] private bool hasMistake = false;
-    [SerializeField] private bool hasReached = false;
 
     private float firstPuzzleRepeatDelay = 3f;
     private float keypadPuzzleRepeatDelay = 3f;
@@ -57,6 +56,7 @@ public class PuzzleManager : MonoBehaviour
     [Header("OBJECTS")]
     [SerializeField] private GameObject keyIcon;
     [SerializeField] private GameObject keypadNumbers;
+    [SerializeField] private GameObject mainDoorHandle;
     #endregion
 
     #region COLLIDERS
@@ -91,6 +91,7 @@ public class PuzzleManager : MonoBehaviour
         }
 
         item.GetComponent<Collider>().enabled = false;
+        item.GetComponent<Outline>().enabled = false;
         currentPuzzleStep++;
 
         if (currentPuzzleStep >= correctItemSequence.Length)
@@ -105,9 +106,7 @@ public class PuzzleManager : MonoBehaviour
     public void OnKeypadPuzzleButtonInteracted(KeypadPuzzleButtonInteract button)
     {
         if (currentPuzzleStep >= correctButtonSequence.Length && button.KeypadPuzzleButtonRoles != KeypadButtonRoles.Enter)
-        {
             return;
-        }
 
         if (button.KeypadPuzzleButtonRoles != KeypadButtonRoles.Enter)
         {
@@ -143,11 +142,16 @@ public class PuzzleManager : MonoBehaviour
                 KeypadPuzzleSolved();
             }
         }
+
+        if (button.KeypadPuzzleButtonRoles == KeypadButtonRoles.Enter && currentPuzzleStep > 0 && currentPuzzleStep <= 3)
+        {
+            KeypadPuzzleFailed();
+        }
     }
 
     public void FirstPuzzleSolved()
     {
-        GameManager.Instance.CurrentMenuState = MenuState.OnRoomKeyMenu;
+        GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnRoomKeyMenu;
         GameManager.Instance.CurrentItemState = ItemState.Key;
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
         keyIcon.SetActive(true);
@@ -167,6 +171,8 @@ public class PuzzleManager : MonoBehaviour
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
         DisableKeypadButtonColliders();
+        AudioManager.Instance.UnlockedDoor.source.transform.position = mainDoorHandle.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
     }
 
     public void KeypadPuzzleFailed()
@@ -216,6 +222,7 @@ public class PuzzleManager : MonoBehaviour
         yield return new WaitForSeconds(firstPuzzleRepeatDelay);
         ResetSequencePuzzle();
         EnableFirstPuzzleItemColliders();
+        OutlineEffect.Instance.EnableFirstPuzzleItemsOutlineEffect();
     }
 
     public IEnumerator KeypadPuzzleRepeatDelay()

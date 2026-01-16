@@ -25,6 +25,10 @@ public class FootstepsSystem : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CanMenuInteract()) return;
+
+        if (GameManager.Instance.CanItemMenuInteract()) return;
+
         string groundType = IsGrounded();
         Vector2 moveInput = new Vector2(playerController.HorizontaInput, playerController.VerticalInput);
 

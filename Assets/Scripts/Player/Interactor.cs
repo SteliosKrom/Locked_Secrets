@@ -49,9 +49,13 @@ public class Interactor : MonoBehaviour
             if (layer == LayerMask.NameToLayer("Interactable"))
             {
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                detected = true;
-                interactHUD.SetActive(true);
-                dot.SetActive(false);
+
+                if (!detected)
+                {
+                    detected = true;
+                    interactHUD.SetActive(true);
+                    dot.SetActive(false);
+                }
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -60,9 +64,12 @@ public class Interactor : MonoBehaviour
             }
             else if (layer == LayerMask.NameToLayer("Obstacle"))
             {
-                detected = false;
-                interactHUD.SetActive(false);
-                dot.SetActive(true);
+                if (detected)
+                {
+                    detected = false;
+                    interactHUD.SetActive(false);
+                    dot.SetActive(true);
+                }
             }
         }
         else

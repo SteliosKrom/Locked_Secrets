@@ -13,6 +13,7 @@ public class NoteInteract : MonoBehaviour, IInteractable
 
     public GameObject NoteModel => noteModel;
     public GameObject NoteCanvas => noteCanvas;
+    public bool IsInteracted { get => interacted; set => interacted = value; }
 
     public void Interact()
     {
@@ -26,12 +27,6 @@ public class NoteInteract : MonoBehaviour, IInteractable
 
         AudioManager.Instance.Letter.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.Letter.source, AudioManager.Instance.Letter.clip);
-
-        if (!interacted)
-        {
-            PuzzleManager.Instance.EnableFirstPuzzleItemColliders();
-            interacted = true;
-        }
 
         MainGameUIManager.Instance.SetCurrentNote(this);
         GameManager.Instance.CurrentMenuState = MenuState.OnNoteMenu;

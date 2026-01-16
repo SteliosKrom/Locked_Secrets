@@ -20,8 +20,9 @@ public class InventoryManager : MonoBehaviour
 
     public void InventoryInput()
     {
-        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu 
-            || GameManager.Instance.CurrentMenuState == MenuState.OnRoomKeyMenu) return;
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu) return;
+
+        if (GameManager.Instance.CanItemMenuInteract()) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

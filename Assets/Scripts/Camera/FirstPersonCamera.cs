@@ -34,7 +34,9 @@ public class FirstPersonCamera : MonoBehaviour
 
     public void CameraInput()
     {
-        if (GameManager.Instance.CanInteract()) return;
+        if (GameManager.Instance.CanMenuInteract()) return;
+        if (GameManager.Instance.CanItemMenuInteract()) return;
+
         if (axeInteract.IsCoroutineRunning) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)

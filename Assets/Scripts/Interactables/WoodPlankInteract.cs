@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Data.Common;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class WoodPlankInteract : MonoBehaviour, IInteractable
 {
+    private bool canInteract = true;
+
     private float unequipDelay = 2f;
     private float chopDelay = 2f;
+    private float planksInformTextDelay = 3f;
 
     private static int planksLeft = 3;
 
@@ -39,6 +43,13 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
         if (GameManager.Instance.CurrentItemState == ItemState.Axe)
         {
             StartCoroutine(AxeChopDelay());
+        }
+        else
+        {
+            if (canInteract)
+            {
+                StartCoroutine(ShowPlanksInformTextDelay());
+            }
         }
     }
 
@@ -75,5 +86,14 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
         axeInteract.BaseAxeAnimator.SetTrigger("Unequip");
         yield return new WaitForSeconds(unequipDelay);
         axeInteract.PlayerAxe.SetActive(false);
+    }
+
+    public IEnumerator ShowPlanksInformTextDelay()
+    {
+        canInteract = false;
+        axeInteract.PlanksInformText.SetActive(true);
+        yield return new WaitForSeconds(planksInformTextDelay);
+        axeInteract.PlanksInformText.SetActive(false);
+        canInteract = true;
     }
 }

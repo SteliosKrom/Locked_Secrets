@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed = 1.5f;
     private float crouchWalkSpeed = 1f;
 
-    [SerializeField] private bool isCrouching;
+    private bool isCrouching;
 
     [Header("SMOOTH CROUCHING")]
     private float targetCapsuleHeight;
@@ -70,8 +70,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandlePlayerMovement()
     {
-        if (GameManager.Instance.CanInteract()) return;
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CanMenuInteract()) return;
+        if (GameManager.Instance.CanItemMenuInteract()) return;
+
         if (axeInteract.IsCoroutineRunning) return;
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -86,9 +88,10 @@ public class PlayerController : MonoBehaviour
     public void HandleCrouch()
     {
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CanMenuInteract()) return;
+        if (GameManager.Instance.CanItemMenuInteract()) return;
+
         if (axeInteract.IsCoroutineRunning) return;
-        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu ||
-            GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

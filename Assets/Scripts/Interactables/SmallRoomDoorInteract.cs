@@ -31,17 +31,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     [SerializeField] private GameObject itsLockedText;
     #endregion
 
-    #region AUDIO
-    [Header("AUDIO SOURCES")]
-    [SerializeField] private AudioSource unlockedAudioSource;
-
-    [Header("AUDIO CLIPS")]
-    [SerializeField] private AudioClip unlockedAudioClip;
-    #endregion
-
     public GameObject ItsLockedText => itsLockedText;
-    public AudioSource UnlockedAudioSource => unlockedAudioSource;
-    public AudioClip UnlockedAudioClip => unlockedAudioClip;
 
     public void Interact()
     {
@@ -49,8 +39,8 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         {
             currentDoorState = DoorState.Unlocked;
             GameManager.Instance.CurrentItemState = ItemState.None;
-            unlockedAudioSource.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-            AudioManager.Instance.PlaySFX(unlockedAudioSource, unlockedAudioClip);
+            AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
             return;
         }
 
