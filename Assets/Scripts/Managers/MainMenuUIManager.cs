@@ -6,6 +6,7 @@ using UnityEngine;
 public class MainMenuUIManager : MonoBehaviour
 {
     private float loadingDelay = 1; // Add random values later
+    private float tutorialDelay = 4;
 
     #region OBJECTS
     [Header("OBJECTS")]
@@ -15,6 +16,12 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private GameObject loadingMenu;
 
     [SerializeField] private GameObject dot;
+    [SerializeField] private GameObject[] tutorialsText;
+    [SerializeField] private GameObject pressWASD;
+    [SerializeField] private GameObject pressESC;
+    [SerializeField] private GameObject pressC;
+    [SerializeField] private GameObject pressE;
+    [SerializeField] private GameObject pressI;
     #endregion
 
     #region CAMERAS
@@ -24,9 +31,21 @@ public class MainMenuUIManager : MonoBehaviour
     #endregion
 
     public GameObject MainMenu => mainMenu;
+
+    private void Update()
+    {
+        if (GameManager.Instance.CurrentGameState == GameState.OnPaused)
+        {
+            foreach (GameObject tutorialText in tutorialsText)
+            {
+                tutorialText.SetActive(false);
+            }
+        }
+    }
+
     public void Play()
     {
-        StartCoroutine(LoadingDelay());       
+        StartCoroutine(LoadingDelay());
     }
 
     public IEnumerator LoadingDelay()
@@ -49,13 +68,24 @@ public class MainMenuUIManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        yield return new WaitForSeconds(2);
+        pressWASD.SetActive(true);
+        yield return new WaitForSeconds(tutorialDelay);
+        pressESC.SetActive(true);
+        yield return new WaitForSeconds(tutorialDelay);
+        pressC.SetActive(true);
+        yield return new WaitForSeconds(tutorialDelay);
+        pressE.SetActive(true);
+        yield return new WaitForSeconds(tutorialDelay);
+        pressI.SetActive(true);
     }
 
     public void Settings()
     {
         GameManager.Instance.CurrentMenuState = MenuState.OnMenuSettings;
         SettingsUIManager.Instance.GetBackToMenu.SetActive(true);
-        mainMenu.SetActive(false);  
+        mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
