@@ -193,7 +193,7 @@ public class PuzzleManager : MonoBehaviour
         hasMistake = false;
     }
 
-    public void EnableFirstPuzzleItemColliders()
+    public void EnableFirstPuzzleObjectColliders()
     {
         foreach (BoxCollider collider in firstPuzzleItemColliders)
         {
@@ -221,8 +221,7 @@ public class PuzzleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(firstPuzzleRepeatDelay);
         ResetSequencePuzzle();
-        EnableFirstPuzzleItemColliders();
-        OutlineEffect.Instance.EnableFirstPuzzleItemsOutlineEffect();
+        EnableFirstPuzzleObjectColliders();
     }
 
     public IEnumerator KeypadPuzzleRepeatDelay()

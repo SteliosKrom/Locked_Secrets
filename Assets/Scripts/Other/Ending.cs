@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    private float returnToMainMenuDelay = 7f;
+    private float returnToMainMenuDelay = 14f;
     private float radius = 0.2f;
 
     [SerializeField] private LayerMask groundLayer;
@@ -39,5 +38,9 @@ public class Ending : MonoBehaviour
     {
         yield return new WaitForSeconds(returnToMainMenuDelay);
         SceneManager.LoadScene("Main");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        GameManager.Instance.CurrentGameState = GameState.None;
+        GameManager.Instance.CurrentMenuState = MenuState.OnTitleMenu;
     }
 }

@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4528,6 +4528,21 @@ MonoBehaviour:
   - {fileID: 1945144337}
   - {fileID: 65820029946201991}
   - {fileID: 13385339862432701}
+  - {fileID: 4540577635256614531}
+  - {fileID: 5925703157912237767}
+  - {fileID: 1713282892}
+  - {fileID: 1716606407}
+  - {fileID: 9036548060470407290}
+  - {fileID: 8132748050228599593}
+  - {fileID: 7678290001314000311}
+  - {fileID: 6825286148303882613}
+  - {fileID: 8094679322634546997}
+  - {fileID: 8146525651954902361}
+  - {fileID: 8657748154823220945}
+  - {fileID: 8313788514651027749}
+  - {fileID: 7807759009091994025}
+  - {fileID: 8127368592083981571}
+  - {fileID: 8780472331426329403}
 --- !u!1 &266758167
 GameObject:
   m_ObjectHideFlags: 0
@@ -12104,6 +12119,7 @@ MonoBehaviour:
   smallRoomDoorInteract: {fileID: 1376314488}
   doorInteract: {fileID: 1567794296}
   noteInteract: {fileID: 474708628}
+  interactor: {fileID: 188068800}
   pauseMenu: {fileID: 556893942}
   settingsMenu: {fileID: 1447873938}
   dot: {fileID: 2037551635}
@@ -28994,6 +29010,7 @@ MonoBehaviour:
   smallRoomDoorInteract: {fileID: 1376314488}
   mainDoorInteract: {fileID: 394158952}
   doorInteract: {fileID: 1567794296}
+  interactor: {fileID: 188068800}
   dot: {fileID: 2037551635}
 --- !u!1 &1392358004
 GameObject:
@@ -32065,7 +32082,7 @@ GameObject:
   - component: {fileID: 1609753685}
   m_Layer: 7
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 21
@@ -32203,7 +32220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -32242,7 +32259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -233, y: -205}
+  m_AnchoredPosition: {x: -233, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1619606690
@@ -33586,9 +33603,10 @@ GameObject:
   - component: {fileID: 1713282889}
   - component: {fileID: 1713282888}
   - component: {fileID: 1713282891}
+  - component: {fileID: 1713282892}
   m_Layer: 7
   m_Name: SecondPlank
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33697,6 +33715,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axeInteract: {fileID: 4540577635256614530}
   woodPlank: {fileID: 1713282889}
+--- !u!114 &1713282892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713282885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1716606400
 GameObject:
   m_ObjectHideFlags: 0
@@ -33710,9 +33746,10 @@ GameObject:
   - component: {fileID: 1716606404}
   - component: {fileID: 1716606403}
   - component: {fileID: 1716606406}
+  - component: {fileID: 1716606407}
   m_Layer: 7
   m_Name: ThirdPlank
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33821,6 +33858,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axeInteract: {fileID: 4540577635256614530}
   woodPlank: {fileID: 1716606404}
+--- !u!114 &1716606407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716606400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1729241849
 GameObject:
   m_ObjectHideFlags: 0
@@ -41949,7 +42004,7 @@ GameObject:
   - component: {fileID: 1945144337}
   m_Layer: 7
   m_Name: Lamp
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 21
@@ -42249,7 +42304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -46025,7 +46080,7 @@ GameObject:
   - component: {fileID: 65820029946201991}
   m_Layer: 7
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 21
@@ -47707,7 +47762,7 @@ GameObject:
   - component: {fileID: 13385339862432701}
   m_Layer: 7
   m_Name: Radio
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 21
@@ -47852,7 +47907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -50839,7 +50894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -52398,9 +52453,10 @@ GameObject:
   - component: {fileID: 8237836706528793231}
   - component: {fileID: 8294434389260926990}
   - component: {fileID: 9036548060470407289}
+  - component: {fileID: 9036548060470407290}
   m_Layer: 7
   m_Name: bttn0
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52802,9 +52858,10 @@ GameObject:
   - component: {fileID: 8146525651954902359}
   - component: {fileID: 8146525651954902358}
   - component: {fileID: 8146525651954902360}
+  - component: {fileID: 8146525651954902361}
   m_Layer: 7
   m_Name: bttn5
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52897,9 +52954,10 @@ GameObject:
   - component: {fileID: 3361062902831988348}
   - component: {fileID: 845778600256140088}
   - component: {fileID: 5925703157912237766}
+  - component: {fileID: 5925703157912237767}
   m_Layer: 7
   m_Name: FirstPlank
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53800,9 +53858,10 @@ GameObject:
   - component: {fileID: 7949712660233703523}
   - component: {fileID: 8127368592083981568}
   - component: {fileID: 8127368592083981570}
+  - component: {fileID: 8127368592083981571}
   m_Layer: 7
   m_Name: bttn9
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54381,9 +54440,10 @@ GameObject:
   - component: {fileID: 267101691337864146}
   - component: {fileID: 8313788514651027747}
   - component: {fileID: 8313788514651027748}
+  - component: {fileID: 8313788514651027749}
   m_Layer: 7
   m_Name: bttn7
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54409,9 +54469,10 @@ GameObject:
   - component: {fileID: 7807759009091994023}
   - component: {fileID: 7807759009091994022}
   - component: {fileID: 7807759009091994024}
+  - component: {fileID: 7807759009091994025}
   m_Layer: 7
   m_Name: bttn8
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54507,9 +54568,10 @@ GameObject:
   - component: {fileID: 3407100188145370607}
   - component: {fileID: 4540577635256614529}
   - component: {fileID: 4540577635256614530}
+  - component: {fileID: 4540577635256614531}
   m_Layer: 7
   m_Name: AxeWorld
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 21
@@ -55163,6 +55225,24 @@ MonoBehaviour:
   axeIcon: {fileID: 1005124067}
   planksInformText: {fileID: 1790890049}
   baseAxeAnimator: {fileID: 1036057604}
+--- !u!114 &4540577635256614531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767419289024193594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4551274471886717698
 GameObject:
   m_ObjectHideFlags: 0
@@ -55215,9 +55295,10 @@ GameObject:
   - component: {fileID: 7671263443137000734}
   - component: {fileID: 7678290001314000309}
   - component: {fileID: 7678290001314000310}
+  - component: {fileID: 7678290001314000311}
   m_Layer: 7
   m_Name: bttn2
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58036,6 +58117,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axeInteract: {fileID: 4540577635256614530}
   woodPlank: {fileID: 3361062902831988348}
+--- !u!114 &5925703157912237767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510118760740178846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.078431375}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &5938917170979698214
 Transform:
   m_ObjectHideFlags: 0
@@ -59024,9 +59123,10 @@ GameObject:
   - component: {fileID: 317397649503329567}
   - component: {fileID: 6825286148303882611}
   - component: {fileID: 6825286148303882612}
+  - component: {fileID: 6825286148303882613}
   m_Layer: 7
   m_Name: bttn3
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59065,6 +59165,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 4
+--- !u!114 &6825286148303882613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825286148303882608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!222 &6850855362379779316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59106,9 +59224,10 @@ GameObject:
   - component: {fileID: 7950571231979661060}
   - component: {fileID: 8780472331426329400}
   - component: {fileID: 8780472331426329402}
+  - component: {fileID: 8780472331426329403}
   m_Layer: 7
   m_Name: bttnEnter
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59545,6 +59664,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 3
+--- !u!114 &7678290001314000311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597053222723096964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7747550942956321308
 GameObject:
   m_ObjectHideFlags: 0
@@ -59690,6 +59827,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 9
+--- !u!114 &7807759009091994025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572528294353326681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &7837428157634425258
 Transform:
   m_ObjectHideFlags: 0
@@ -59882,9 +60037,10 @@ GameObject:
   - component: {fileID: 3206326431014575020}
   - component: {fileID: 8094679322634546995}
   - component: {fileID: 8094679322634546996}
+  - component: {fileID: 8094679322634546997}
   m_Layer: 7
   m_Name: bttn4
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59923,6 +60079,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 5
+--- !u!114 &8094679322634546997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094679322634546992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &8127368592083981568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59972,6 +60146,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 10
+--- !u!114 &8127368592083981571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024260917973096881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &8132748050228599590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60006,9 +60198,10 @@ GameObject:
   - component: {fileID: 3705557223477887788}
   - component: {fileID: 8132748050228599590}
   - component: {fileID: 8132748050228599592}
+  - component: {fileID: 8132748050228599593}
   m_Layer: 7
   m_Name: bttn1
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60026,6 +60219,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 2
+--- !u!114 &8132748050228599593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132748050228599591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &8146525651954902358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60105,6 +60316,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 6
+--- !u!114 &8146525651954902361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270306334240208639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8184057094940892145
 GameObject:
   m_ObjectHideFlags: 0
@@ -60247,6 +60476,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 8
+--- !u!114 &8313788514651027749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557388248311288138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &8351436704982409565
 Transform:
   m_ObjectHideFlags: 0
@@ -60669,9 +60916,10 @@ GameObject:
   - component: {fileID: 3808618153407162243}
   - component: {fileID: 8657748154823220943}
   - component: {fileID: 8657748154823220944}
+  - component: {fileID: 8657748154823220945}
   m_Layer: 7
   m_Name: bttn6
-  m_TagString: Untagged
+  m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60710,6 +60958,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 7
+--- !u!114 &8657748154823220945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657748154823220940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &8780472331426329400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60759,6 +61025,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 11
+--- !u!114 &8780472331426329403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903153998369908383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &8825448909908941546
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61000,6 +61284,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keypadButtonRoles: 1
+--- !u!114 &9036548060470407290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769201932923561793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.15686275}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &9038950607561904529
 GameObject:
   m_ObjectHideFlags: 0

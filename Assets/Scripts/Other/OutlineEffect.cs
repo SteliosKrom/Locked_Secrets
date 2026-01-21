@@ -22,10 +22,10 @@ public class OutlineEffect : MonoBehaviour
 
     private void Start()
     {
-        DisableFirstPuzzleObjectsOutlineEffect();
+        DisableObjectsOutlineEffect();
     }
 
-    public void EnableFirstPuzzleItemsOutlineEffect()
+    public void EnableFirstPuzzleObjectsOutlineEffect()
     {
         foreach (Outline outline in OutlineEffects)
         {
@@ -33,7 +33,7 @@ public class OutlineEffect : MonoBehaviour
         }
     }
 
-    public void DisableFirstPuzzleObjectsOutlineEffect()
+    public void DisableObjectsOutlineEffect()
     {
         foreach (Outline outline in outlineEffects)
         {

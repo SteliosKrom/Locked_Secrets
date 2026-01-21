@@ -18,6 +18,7 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
     [SerializeField] private DoorInteract doorInteract;
     [SerializeField] private NoteInteract noteInteract;
+    [SerializeField] private Interactor interactor;
     #endregion
 
     #region OBJECTS
@@ -100,6 +101,8 @@ public class MainGameUIManager : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
+        interactor.Detected = false;
+
         AudioManager.Instance.UnpauseMainGameMusic();
         AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
@@ -166,8 +169,7 @@ public class MainGameUIManager : MonoBehaviour
 
         if (!noteInteract.IsInteracted)
         {
-            PuzzleManager.Instance.EnableFirstPuzzleItemColliders();
-            OutlineEffect.Instance.EnableFirstPuzzleItemsOutlineEffect();
+            PuzzleManager.Instance.EnableFirstPuzzleObjectColliders();
             noteInteract.IsInteracted = true;
         }
 

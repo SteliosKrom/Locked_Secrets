@@ -14,6 +14,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
     [SerializeField] private MainDoorInteract mainDoorInteract;
     [SerializeField] private DoorInteract doorInteract;
+    [SerializeField] private Interactor interactor;
     #endregion
 
     #region OBJECTS
@@ -78,9 +79,13 @@ public class PauseManager : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameState.OnPaused;
         GameManager.Instance.CurrentMenuState = MenuState.OnPausedMenu;
 
+        interactor.Detected = false;
+
         mainGameUImanager.PauseMenu.SetActive(true);
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
+
+        OutlineEffect.Instance.DisableObjectsOutlineEffect();
 
         AudioManager.Instance.PauseMainGameMusic();
         AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockedDoor.source);

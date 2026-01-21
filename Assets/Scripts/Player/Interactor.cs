@@ -23,6 +23,8 @@ public class Interactor : MonoBehaviour
     [SerializeField] private GameObject dot;
     #endregion
 
+    public bool Detected { get => detected; set => detected = value; }
+
     private void Update()
     {
         Debug.DrawRay(interactionSource.position, interactionSource.forward * interactionRange, Color.red);
@@ -45,10 +47,15 @@ public class Interactor : MonoBehaviour
         if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, combinedMask))
         {
             int layer = hit.collider.gameObject.layer;
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
             if (layer == LayerMask.NameToLayer("Interactable"))
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                if (hit.collider.CompareTag("OutlineInteractable"))
+                {
+                    Outline outline = hit.collider.GetComponent<Outline>();
+                    outline.enabled = true;
+                }
 
                 if (!detected)
                 {
@@ -58,9 +65,7 @@ public class Interactor : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown(KeyCode.E))
-                {
                     interactable.Interact();
-                }
             }
             else if (layer == LayerMask.NameToLayer("Obstacle"))
             {
@@ -69,6 +74,7 @@ public class Interactor : MonoBehaviour
                     detected = false;
                     interactHUD.SetActive(false);
                     dot.SetActive(true);
+                    OutlineEffect.Instance.DisableObjectsOutlineEffect();
                 }
             }
         }
@@ -77,6 +83,7 @@ public class Interactor : MonoBehaviour
             detected = false;
             interactHUD.SetActive(false);
             dot.SetActive(true);
+            OutlineEffect.Instance.DisableObjectsOutlineEffect();
         }
         return;
     }
