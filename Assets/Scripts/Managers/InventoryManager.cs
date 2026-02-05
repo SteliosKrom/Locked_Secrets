@@ -13,6 +13,16 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject inventory;
     #endregion
 
+    #region AUDIO 
+    [Header("SOURCES")]
+    [SerializeField] private AudioSource openInventoryAudioSource;
+    [SerializeField] private AudioSource closeInventoryAudioSource;
+
+    [Header("CLIPS")]
+    [SerializeField] private AudioClip openInventoryAudioClip;
+    [SerializeField] private AudioClip closeInventoryAudioClip;
+    #endregion
+
     private void Update()
     {
         InventoryInput();
@@ -32,12 +42,14 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventory.SetActive(false);
                     isInventoryOpen = false;
+                    AudioManager.Instance.PlaySFX(closeInventoryAudioSource, closeInventoryAudioClip);
                     GameManager.Instance.CurrentMenuState = MenuState.None;
                 }
                 else
                 {
                     inventory.SetActive(true);
                     isInventoryOpen = true;
+                    AudioManager.Instance.PlaySFX(openInventoryAudioSource, openInventoryAudioClip);
                     GameManager.Instance.CurrentMenuState = MenuState.OnInventoryMenu;
                 }
                 StartCoroutine(InventoryInputDelay());
