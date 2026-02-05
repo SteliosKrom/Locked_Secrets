@@ -144,6 +144,7 @@ public class MainGameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+        noteInteract.IsInteracted = false;
     }
 
     public void UnPauseAllSFX()
