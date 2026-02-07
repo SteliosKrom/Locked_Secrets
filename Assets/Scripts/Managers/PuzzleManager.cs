@@ -65,6 +65,12 @@ public class PuzzleManager : MonoBehaviour
     private BoxCollider[] keypadButtonColliders;
     #endregion
 
+    #region ANIMATIONS
+    [Header("ANIMATORS")]
+    [SerializeField] private Animator tableLanternAnimator;
+    [SerializeField] private Animator playerLanternAnimator;
+    #endregion
+
     public TextMeshProUGUI KeypadDisplayText { get => keypadDisplayText; set => keypadDisplayText = value; }
     public bool HasMistake { get => hasMistake; set => hasMistake = value; }
 
@@ -219,6 +225,9 @@ public class PuzzleManager : MonoBehaviour
 
     public IEnumerator FirstPuzzleRepeatDelay()
     {
+        playerLanternAnimator.SetTrigger("Flicker");
+        tableLanternAnimator.SetTrigger("Flicker");
+
         yield return new WaitForSeconds(firstPuzzleRepeatDelay);
         ResetSequencePuzzle();
         EnableFirstPuzzleObjectColliders();

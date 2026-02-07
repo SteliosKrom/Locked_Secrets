@@ -5261,6 +5261,7 @@ GameObject:
   - component: {fileID: 278939992}
   - component: {fileID: 278939991}
   - component: {fileID: 278939993}
+  - component: {fileID: 278939995}
   m_Layer: 7
   m_Name: LanternFireEffect
   m_TagString: Untagged
@@ -10171,6 +10172,28 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!95 &278939995
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278939989}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18baa66317f37794ca1850c9cb5a3365, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &285141744
 GameObject:
   m_ObjectHideFlags: 0
@@ -17731,7 +17754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 0
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -17917,7 +17940,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &913201307
@@ -19259,6 +19282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 965350551}
   - component: {fileID: 965350553}
+  - component: {fileID: 965350556}
   - component: {fileID: 965350552}
   - component: {fileID: 965350555}
   - component: {fileID: 965350554}
@@ -24098,7 +24122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 1
+  m_AdditionalLightsShadowResolutionTier: 0
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -24172,6 +24196,28 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!95 &965350556
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965350550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35244cc8e8f64214cb1bc263f24a8efa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &967569437
 GameObject:
   m_ObjectHideFlags: 0
@@ -32093,7 +32139,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 330650943}
   m_HandleRect: {fileID: 535198442}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 2
   m_WholeNumbers: 0
   m_Value: 1
@@ -41973,7 +42019,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833512583}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -43029,6 +43075,8 @@ MonoBehaviour:
   keyIcon: {fileID: 302131331}
   keypadNumbers: {fileID: 155129920}
   mainDoorHandle: {fileID: 394158948}
+  tableLanternAnimator: {fileID: 965350556}
+  playerLanternAnimator: {fileID: 278939995}
 --- !u!1 &1901432489
 GameObject:
   m_ObjectHideFlags: 0
@@ -52345,8 +52393,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012918405, y: 0.0002829957, z: 0.006459036}
-  m_Center: {x: -0.000012482405, y: 0.0064086616, z: -0.0004017633}
+  m_Size: {x: 0.012918405, y: 0.0010395312, z: 0.006459036}
+  m_Center: {x: -0.000012482405, y: 0.006786922, z: -0.0004017633}
 --- !u!65 &65929210917290810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56443,8 +56491,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.49999973, y: 0.53516716, z: 0.39999977}
-  m_Center: {x: 0.0000007003545, y: 0.26758346, z: -0.00000014156106}
+  m_Size: {x: 0.49999973, y: 0.8775412, z: 0.39999977}
+  m_Center: {x: 0.0000007003546, y: 0.43877047, z: -0.00000014901161}
 --- !u!205 &4263223759373528897
 LODGroup:
   m_ObjectHideFlags: 0
