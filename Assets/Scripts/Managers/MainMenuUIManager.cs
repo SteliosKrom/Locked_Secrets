@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MainMenuUIManager : MonoBehaviour
 {
-    private float loadingDelay = Random.Range(5, 10);
+    private float loadingDelay;
     private float tutorialDelay = 4;
 
     #region OBJECTS
@@ -31,6 +31,11 @@ public class MainMenuUIManager : MonoBehaviour
     #endregion
 
     public GameObject MainMenu => mainMenu;
+
+    private void Start()
+    {
+        loadingDelay = Random.Range(5, 10);
+    }
 
     private void Update()
     {
