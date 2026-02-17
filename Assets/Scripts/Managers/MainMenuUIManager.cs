@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MainMenuUIManager : MonoBehaviour
 {
-    private float loadingDelay = 1; // Add random values later
+    private float loadingDelay = Random.Range(5, 10);
     private float tutorialDelay = 4;
 
     #region OBJECTS
