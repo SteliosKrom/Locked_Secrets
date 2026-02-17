@@ -22,6 +22,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject dot;
     #endregion
 
+    [SerializeField] private AudioSource jumpscareAudioSource;
+
     private void Update()
     {
         HandlePauseInput();
@@ -89,6 +91,7 @@ public class PauseManager : MonoBehaviour
 
         AudioManager.Instance.PauseMainGameMusic();
         AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockedDoor.source);
+        jumpscareAudioSource.Pause();
 
         PauseAllSFX();
 
@@ -110,6 +113,7 @@ public class PauseManager : MonoBehaviour
 
         AudioManager.Instance.UnpauseMainGameMusic();
         AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
+        jumpscareAudioSource.UnPause();
 
         UnPauseAllSFX();
 
