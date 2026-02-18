@@ -31,6 +31,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
+    [SerializeField] private AudioItem horrorSound;
+    [SerializeField] private AudioItem breathingSound;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
@@ -40,7 +42,8 @@ public class AudioManager : MonoBehaviour
     public AudioItem OpenDoor => openDoor; public AudioItem CloseDoor => closeDoor;
     public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
     public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
-    public AudioItem UnlockedDoor => unlockedDoor;
+    public AudioItem UnlockedDoor => unlockedDoor; public AudioItem HorrorSound => horrorSound;
+    public AudioItem BreathingSound => breathingSound;
 
     private void Awake()
     {
