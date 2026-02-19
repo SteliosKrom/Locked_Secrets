@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 08e091500e68ded43b4abfb1b3f718d0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3356
+  packageName: Mobile Books
+  packageVersion: 2.1
+  assetPath: Assets/Books/3dobjects/books.fbx
+  uploadId: 749883
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -117,10 +124,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 3356
-  packageName: Mobile Books
-  packageVersion: 2.1
-  assetPath: Assets/Books/3dobjects/books.fbx
-  uploadId: 749883
