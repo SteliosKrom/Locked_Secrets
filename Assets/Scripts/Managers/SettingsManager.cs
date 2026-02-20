@@ -73,7 +73,7 @@ public class SettingsManager : MonoBehaviour
         bool savedDisplayMode = PlayerPrefs.GetInt("DisplayMode", 1) != 0;
 
         //Graphics saved values
-        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 2);
+        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 1);
         int savedQualityDropdown = PlayerPrefs.GetInt("QualityDropdown", 1);
 
         // Audio
