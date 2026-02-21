@@ -6,7 +6,12 @@ using UnityEngine;
 public class MainMenuUIManager : MonoBehaviour
 {
     private float loadingDelay;
-    private float tutorialDelay = 4;
+    private float controlsTutorialPanelDelay = 1f;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private MainGameUIManager mainGameUIManager;
+    #endregion
 
     #region OBJECTS
     [Header("OBJECTS")]
@@ -16,12 +21,6 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private GameObject loadingMenu;
 
     [SerializeField] private GameObject dot;
-    [SerializeField] private GameObject[] tutorialsText;
-    [SerializeField] private GameObject pressWASD;
-    [SerializeField] private GameObject pressESC;
-    [SerializeField] private GameObject pressC;
-    [SerializeField] private GameObject pressE;
-    [SerializeField] private GameObject pressI;
     #endregion
 
     #region CAMERAS
@@ -34,18 +33,8 @@ public class MainMenuUIManager : MonoBehaviour
 
     private void Start()
     {
-        loadingDelay = Random.Range(5, 10);
-    }
-
-    private void Update()
-    {
-        if (GameManager.Instance.CurrentGameState == GameState.OnPaused)
-        {
-            foreach (GameObject tutorialText in tutorialsText)
-            {
-                tutorialText.SetActive(false);
-            }
-        }
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
+        loadingDelay = Random.Range(1, 2); // 5, 10
     }
 
     public void Play()
@@ -71,19 +60,16 @@ public class MainMenuUIManager : MonoBehaviour
         secondaryCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
 
+        mainGameUIManager.IsControlsTutorialPanelOpen = false;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        yield return new WaitForSeconds(2);
-        pressWASD.SetActive(true);
-        yield return new WaitForSeconds(tutorialDelay);
-        pressESC.SetActive(true);
-        yield return new WaitForSeconds(tutorialDelay);
-        pressC.SetActive(true);
-        yield return new WaitForSeconds(tutorialDelay);
-        pressE.SetActive(true);
-        yield return new WaitForSeconds(tutorialDelay);
-        pressI.SetActive(true);
+        yield return new WaitForSeconds(controlsTutorialPanelDelay);
+
+        mainGameUIManager.ControlsTutorialPanel.SetActive(true);
+        mainGameUIManager.ControlsPanelAnimator.SetTrigger("Open");
+        mainGameUIManager.IsControlsTutorialPanelOpen = true;
     }
 
     public void Settings()
