@@ -84,6 +84,7 @@ public class PauseManager : MonoBehaviour
         mainGameUImanager.PauseMenu.SetActive(true);
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
+        mainGameUImanager.ControlsTutorialPanel.SetActive(false);
 
         OutlineEffect.Instance.DisableObjectsOutlineEffect();
 
@@ -105,6 +106,9 @@ public class PauseManager : MonoBehaviour
 
         mainGameUImanager.PauseMenu.SetActive(false);
         dot.SetActive(true);
+
+        mainGameUImanager.ControlsTutorialPanel.SetActive(true);
+        mainGameUImanager.IsControlsTutorialPanelOpen = false;
 
         mainGameUImanager.DisableRedColorOnButtonText();
 

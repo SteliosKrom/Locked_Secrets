@@ -8,8 +8,12 @@ public class Ending : MonoBehaviour
     private float radius = 0.2f;
 
     [SerializeField] private LayerMask groundLayer;
-
     [SerializeField] private GameObject endingOutro;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private MainGameUIManager mainGameUIManager;
+    #endregion
 
     private void Update()
     {
@@ -26,6 +30,8 @@ public class Ending : MonoBehaviour
     {
         GameManager.Instance.CurrentGameState = GameState.OnEnding;
         endingOutro.SetActive(true);
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
+        mainGameUIManager.IsControlsTutorialPanelOpen = false;
         StartCoroutine(ReturnToMainMenuDelay());
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +10,11 @@ public class MainGameUIManager : MonoBehaviour
 
     private float closeNoteMenuDelay = 0.01f;
     private float noteInteractDelay = 1f;
+    private float canPressTabDelay = 0.5f;
 
     private bool canInteractWithNote = true;
+    [SerializeField] private bool canPressTab = true;
+    [SerializeField] private bool isControlsTutorialPanelOpen = false;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -23,6 +27,7 @@ public class MainGameUIManager : MonoBehaviour
 
     #region OBJECTS
     [Header("OBJECTS")]
+    [SerializeField] private GameObject controlsTutorialPanel;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject dot;
@@ -36,10 +41,19 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] allButtonTexts;
     #endregion
 
+    #region ANIMATIONS
+    [Header("ANIMATIONS")]
+    [SerializeField] private Animator controlsPanelAnimator;
+    #endregion
+
+    public GameObject ControlsTutorialPanel { get => controlsTutorialPanel; set => controlsTutorialPanel = value; }
     public GameObject PauseMenu => pauseMenu;
     public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
     public GameObject GotLanternPanel => gotLanternPanel;
     public GameObject GotAxePanel => gotAxePanel;
+    public Animator ControlsPanelAnimator => controlsPanelAnimator;
+    public bool IsControlsTutorialPanelOpen { get => isControlsTutorialPanelOpen; set => isControlsTutorialPanelOpen = value; }
+    public bool CanPressTab { get => canPressTab; set => canPressTab = value; }
 
     private void Awake()
     {
@@ -57,11 +71,31 @@ public class MainGameUIManager : MonoBehaviour
     {
         InputForNoteMenu();
         InputToCloseItemPanel();
+        InputForControlsTutorialPanel();
     }
 
     public void SetCurrentNote(NoteInteract note)
     {
         currentNote = note;
+    }
+
+    public void InputForControlsTutorialPanel()
+    {
+        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu) return;
+
+
+        if (Input.GetKeyDown(KeyCode.Tab) && canPressTab)
+        {
+            isControlsTutorialPanelOpen = !isControlsTutorialPanelOpen;
+
+            if (isControlsTutorialPanelOpen)
+                controlsPanelAnimator.SetTrigger("Open");
+            else
+                controlsPanelAnimator.SetTrigger("Close");
+
+            StartCoroutine(PreventSpamControlsTutorialPanelDelay());
+        }
     }
 
     public void InputForNoteMenu()
@@ -110,6 +144,8 @@ public class MainGameUIManager : MonoBehaviour
 
         pauseMenu.SetActive(false);
         dot.SetActive(true);
+        controlsTutorialPanel.SetActive(true);
+        isControlsTutorialPanelOpen = false;
 
         Time.timeScale = 1;
 
@@ -168,6 +204,9 @@ public class MainGameUIManager : MonoBehaviour
         currentNote.NoteModel.SetActive(true);
         currentNote.NoteCanvas.SetActive(false);
 
+        controlsTutorialPanel.SetActive(true);
+        isControlsTutorialPanelOpen = false;
+
         if (!noteInteract.IsInteracted)
         {
             PuzzleManager.Instance.EnableFirstPuzzleObjectColliders();
@@ -175,5 +214,12 @@ public class MainGameUIManager : MonoBehaviour
         }
 
         GameManager.Instance.CurrentMenuState = MenuState.None;
+    }
+
+    public IEnumerator PreventSpamControlsTutorialPanelDelay()
+    {
+        canPressTab = false;
+        yield return new WaitForSecondsRealtime(canPressTabDelay);
+        canPressTab = true;
     }
 }

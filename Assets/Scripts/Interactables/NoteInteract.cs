@@ -5,6 +5,11 @@ public class NoteInteract : MonoBehaviour, IInteractable
 {
     private static bool interacted = false;
 
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private MainGameUIManager mainGameUIManager;
+    #endregion
+
     #region OBJECTS
     [Header("OBJECTS")]
     [SerializeField] private GameObject noteModel;
@@ -24,6 +29,9 @@ public class NoteInteract : MonoBehaviour, IInteractable
     {
         noteModel.SetActive(false);
         noteCanvas.SetActive(true);
+
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
+        mainGameUIManager.IsControlsTutorialPanelOpen = false;
 
         AudioManager.Instance.Letter.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.Letter.source, AudioManager.Instance.Letter.clip);
