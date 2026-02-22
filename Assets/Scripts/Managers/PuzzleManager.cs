@@ -17,7 +17,7 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private bool hasMistake = false;
 
     private float firstPuzzleRepeatDelay = 3f;
-    private float keypadPuzzleRepeatDelay = 3f;
+    private float keypadPuzzleRepeatDelay = 0.75f;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -27,7 +27,6 @@ public class PuzzleManager : MonoBehaviour
 
     #region PUZZLE ITEMS
     [Header("PUZZLE ITEMS")]
-    private FirstPuzzleItemInteract[] firstPuzzleItems;
     [SerializeField] private KeypadPuzzleButtonInteract[] keypadPuzzleButtons;
 
     private KeypadButtonRoles[] correctButtonSequence = new KeypadButtonRoles[]
@@ -86,7 +85,6 @@ public class PuzzleManager : MonoBehaviour
         }
         keypadButtonColliders = GameObject.Find("Buttons").GetComponentsInChildren<BoxCollider>();
         firstPuzzleItemColliders = GameObject.Find("Items").GetComponentsInChildren<BoxCollider>();
-        firstPuzzleItems = GameObject.Find("Items").GetComponentsInChildren<FirstPuzzleItemInteract>();
     }
 
     public void OnFirstPuzzleItemInteracted(FirstPuzzleItemInteract item)
