@@ -8,6 +8,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     private float doorAnimationDelay = 1f;
     private float itsLockedTextDelay = 1f;
+    private float doorHandleColliderEnableDelay = 1f;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -40,6 +41,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
             GameManager.Instance.CurrentItemState = ItemState.None;
             AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
             AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
+            StartCoroutine(EnableDoorHandleColliderDelay());
             return;
         }
 
@@ -69,6 +71,13 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     public void ItsLockedMessage()
     {
         StartCoroutine(ItsLockedDelay());
+    }
+
+    private IEnumerator EnableDoorHandleColliderDelay()
+    {
+        doorHandleCollider.enabled = false;
+        yield return new WaitForSeconds(doorHandleColliderEnableDelay);
+        doorHandleCollider.enabled = true;
     }
 
     private IEnumerator OpenDoor()
@@ -101,16 +110,16 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         EnableAllDoorColliders();
     }
 
-    private void DisableAllDoorColliders()
-    {
-        foreach (var col in doorColliders)
-            col.enabled = false;
-    }
-
     private void EnableAllDoorColliders()
     {
         foreach (var col in doorColliders)
             col.enabled = true;
+    }
+
+    private void DisableAllDoorColliders()
+    {
+        foreach (var col in doorColliders)
+            col.enabled = false;
     }
 
     public IEnumerator ItsLockedDelay()

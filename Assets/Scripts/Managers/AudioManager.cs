@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem closeDoor;
     [SerializeField] private AudioItem lockedDoor;
     [SerializeField] private AudioItem unlockedDoor;
+    [SerializeField] private AudioItem lockedCrateDoor;
+    [SerializeField] private AudioItem unlockCrateDoor;
 
     [SerializeField] private AudioItem letter;
     [SerializeField] private AudioItem firstPuzzleInteract;
@@ -43,7 +45,8 @@ public class AudioManager : MonoBehaviour
     public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
     public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
     public AudioItem UnlockedDoor => unlockedDoor; public AudioItem HorrorSound => horrorSound;
-    public AudioItem BreathingSound => breathingSound;
+    public AudioItem BreathingSound => breathingSound; public AudioItem LockedCrateDoor => lockedCrateDoor;
+    public AudioItem UnlockCrateDoor => unlockCrateDoor;
 
     private void Awake()
     {
