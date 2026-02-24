@@ -8,8 +8,6 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     private float doorAnimationDelay = 1f;
     private float itsLockedTextDelay = 1f;
 
-    private bool canInteract = true;
-
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
@@ -23,6 +21,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     #region COLLIDERS
     [Header("COLLIDERS")]
     [SerializeField] private Collider[] doorColliders;
+    [SerializeField] private Collider doorHandleCollider;
     #endregion
 
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
@@ -31,10 +30,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     {
         if (currentDoorState == DoorState.Locked)
         {
-            if (canInteract)
-            {
-                ItsLocked();
-            }
+            ItsLocked();
         }
 
         switch (currentDoorState)
@@ -99,8 +95,8 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ItsLockedDelay()
     {
+        doorHandleCollider.enabled = false;
         smallRoomDoorInteract.ItsLockedText.SetActive(true);
-        canInteract = false;
 
         AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
@@ -108,6 +104,6 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(itsLockedTextDelay);
 
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
-        canInteract = true;
+        doorHandleCollider.enabled = true;
     }
 }

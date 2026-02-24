@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private MainDoorInteract mainDoorInteract;
     [SerializeField] private DoorInteract doorInteract;
     [SerializeField] private Interactor interactor;
+    [SerializeField] private AxeInteract axeInteract;
     #endregion
 
     #region OBJECTS
@@ -85,6 +86,7 @@ public class PauseManager : MonoBehaviour
         smallRoomDoorInteract.ItsLockedText.SetActive(false);
         dot.SetActive(false);
         mainGameUImanager.ControlsTutorialPanel.SetActive(false);
+        axeInteract.PlanksInformText.SetActive(false);
 
         OutlineEffect.Instance.DisableObjectsOutlineEffect();
 

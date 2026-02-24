@@ -1,16 +1,14 @@
 using System.Collections;
-using System.Data.Common;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WoodPlankInteract : MonoBehaviour, IInteractable
 {
-    private bool canInteract = true;
+    private static List<Collider> woodPlankColliders = new List<Collider>();
 
     private float unequipDelay = 2f;
     private float chopDelay = 2f;
-    private float planksInformTextDelay = 3f;
+    private float planksInformTextDelay = 1f;
 
     private static int planksLeft = 3;
 
@@ -30,10 +28,20 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
     private Collider woodPlankCollider;
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         mainDoorCollider = GameObject.Find("MainDoorWall").GetComponent<Collider>();
         woodPlankCollider = GetComponent<Collider>();
+
+        if (!woodPlankColliders.Contains(woodPlankCollider))
+        {
+            woodPlankColliders.Add(woodPlankCollider);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        woodPlankColliders.Remove(woodPlankCollider);
     }
 
     public void Interact()
@@ -47,10 +55,7 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
         }
         else
         {
-            if (canInteract)
-            {
-                StartCoroutine(ShowPlanksInformTextDelay());
-            }
+            StartCoroutine(ShowPlanksInformTextDelay());
         }
     }
 
@@ -91,10 +96,13 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
 
     public IEnumerator ShowPlanksInformTextDelay()
     {
-        canInteract = false;
+        foreach (Collider collider in woodPlankColliders) collider.enabled = false;
+
         axeInteract.PlanksInformText.SetActive(true);
         yield return new WaitForSeconds(planksInformTextDelay);
         axeInteract.PlanksInformText.SetActive(false);
-        canInteract = true;
+        woodPlankCollider.enabled = true;
+
+        foreach (Collider collider in woodPlankColliders) collider.enabled = true;
     }
 }
