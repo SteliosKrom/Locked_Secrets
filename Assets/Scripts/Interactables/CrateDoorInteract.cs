@@ -3,32 +3,35 @@ using UnityEngine;
 
 public class CrateDoorInteract : MonoBehaviour, IInteractable
 {
-    private float interactDelay = 1f;
+    private float interactDelay = 2f;
 
-    private bool canInteract = true;
-
+    #region OBJECTS
+    [Header("OBJECTS")]
     [SerializeField] private GameObject crateInformText;
+    #endregion
+
+    #region COLLIDERS
+    [Header("COLLIDERS")]
+    [SerializeField] private BoxCollider crateCollider;
+    #endregion
+
+    public GameObject CrateInformText { get => crateInformText; set => crateInformText = value; } 
 
     public void Interact()
     {
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {
-            if (canInteract)
-            {
-                crateInformText.SetActive(true);
-            }
-            else
-            {
-                crateInformText.SetActive(false);
-            }
             StartCoroutine(InteractWithCrateDelay());
         }
     }
 
     public IEnumerator InteractWithCrateDelay()
     {
-        canInteract = false;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedCrateDoor.source, AudioManager.Instance.LockedCrateDoor.clip);
+        crateCollider.enabled = false;
+        crateInformText.SetActive(true);
         yield return new WaitForSeconds(interactDelay);
-        canInteract = true;
+        crateInformText.SetActive(false);
+        crateCollider.enabled = true;
     }
 }

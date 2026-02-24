@@ -8,7 +8,7 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
 
     private float unequipDelay = 2f;
     private float chopDelay = 2f;
-    private float planksInformTextDelay = 1f;
+    private float planksInformTextDelay = 2f;
 
     private static int planksLeft = 3;
 

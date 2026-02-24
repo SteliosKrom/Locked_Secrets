@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
@@ -16,6 +14,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private DoorInteract doorInteract;
     [SerializeField] private Interactor interactor;
     [SerializeField] private AxeInteract axeInteract;
+    [SerializeField] private CrateDoorInteract crateDoorInteract;
+    [SerializeField] private SkeletonHandInteract skeletonHandInteract;
     #endregion
 
     #region OBJECTS
@@ -87,6 +87,8 @@ public class PauseManager : MonoBehaviour
         dot.SetActive(false);
         mainGameUImanager.ControlsTutorialPanel.SetActive(false);
         axeInteract.PlanksInformText.SetActive(false);
+        crateDoorInteract.CrateInformText.SetActive(false);
+        skeletonHandInteract.SkeletonHandInformText.SetActive(false);
 
         OutlineEffect.Instance.DisableObjectsOutlineEffect();
 

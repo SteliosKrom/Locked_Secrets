@@ -27,14 +27,16 @@ public enum ItemMenuState
     None,
     OnRoomKeyMenu,
     OnLanternMenu,
-    OnAxeMenu
+    OnAxeMenu,
+    OnCrucifixMenu
 }
 
 public enum ItemState
 {
     None,
     Key,
-    Axe
+    Axe,
+    Cross
 }
 
 public enum DoorState
