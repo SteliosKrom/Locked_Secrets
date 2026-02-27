@@ -24,6 +24,7 @@ public class LanternInteract : MonoBehaviour, IInteractable
         worldLantern.SetActive(false);
         playerLantern.SetActive(true);
         lanternIcon.SetActive(true);
+        AudioManager.Instance.LanternLightFlicker.source.Play();
         baseEquipItemAnimator.SetTrigger("Equip");
         mainGameUIManager.GotLanternPanel.SetActive(true);
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnLanternMenu;
