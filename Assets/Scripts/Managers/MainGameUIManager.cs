@@ -34,6 +34,7 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private GameObject gotRoomKeyPanel;
     [SerializeField] private GameObject gotLanternPanel;
     [SerializeField] private GameObject gotAxePanel;
+    [SerializeField] private GameObject gotCrucifixPanel;
     #endregion
 
     #region TEXT
@@ -124,6 +125,9 @@ public class MainGameUIManager : MonoBehaviour
                     break;
                 case ItemMenuState.OnAxeMenu:
                     gotAxePanel.SetActive(false);
+                    break;
+                case ItemMenuState.OnCrucifixMenu:
+                    gotCrucifixPanel.SetActive(false);
                     break;
             }
             GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;

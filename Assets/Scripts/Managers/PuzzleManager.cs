@@ -19,6 +19,13 @@ public class PuzzleManager : MonoBehaviour
     private float firstPuzzleRepeatDelay = 3f;
     private float keypadPuzzleRepeatDelay = 0.75f;
 
+    private float flickerDuration = 3f;
+    private float minPlayerLanternIntensity = 0f;
+    private float maxPlayerLanternIntensity = 2f;
+
+    private float minTableLanternIntensity = 0f;
+    private float maxTableLanternIntensity = 0.5f;
+
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private MainGameUIManager mainGameUIManager;
@@ -64,10 +71,10 @@ public class PuzzleManager : MonoBehaviour
     private BoxCollider[] keypadButtonColliders;
     #endregion
 
-    #region ANIMATIONS
-    [Header("ANIMATORS")]
-    [SerializeField] private Animator tableLanternAnimator;
-    [SerializeField] private Animator playerLanternAnimator;
+    #region LIGHTING
+    [Header("LIGHTING")]
+    [SerializeField] private Light playerLanternLight;
+    [SerializeField] private Light tableLanternLight;
     #endregion
 
     public TextMeshProUGUI KeypadDisplayText { get => keypadDisplayText; set => keypadDisplayText = value; }
@@ -223,8 +230,18 @@ public class PuzzleManager : MonoBehaviour
 
     public IEnumerator FirstPuzzleRepeatDelay()
     {
-        playerLanternAnimator.SetTrigger("Flicker");
-        tableLanternAnimator.SetTrigger("Flicker");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < flickerDuration)
+        {
+            playerLanternLight.intensity = Random.Range(minPlayerLanternIntensity, maxPlayerLanternIntensity);
+            tableLanternLight.intensity = Random.Range(minTableLanternIntensity, maxTableLanternIntensity);
+            elapsedTime += 0.05f;
+
+            yield return new WaitForSeconds(0.05f);
+        }
+        playerLanternLight.intensity = 2f;
+        tableLanternLight.intensity = 0.5f;
 
         yield return new WaitForSeconds(firstPuzzleRepeatDelay);
         ResetSequencePuzzle();

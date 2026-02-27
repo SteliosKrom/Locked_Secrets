@@ -19,8 +19,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
 
-    [Header("SOUNDS")]
+    [Header("ALL SOUNDS")]
     [SerializeField] private AudioItem[] allSFX;
+
+    [Header("DOOR SOUNDS")]
     [SerializeField] private AudioItem openDoor;
     [SerializeField] private AudioItem closeDoor;
     [SerializeField] private AudioItem lockedDoor;
@@ -28,16 +30,25 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem lockedCrateDoor;
     [SerializeField] private AudioItem unlockCrateDoor;
 
+    [Header("TRIGGER/HORROR SOUNDS")]
+    [SerializeField] private AudioItem horrorSound;
+    [SerializeField] private AudioItem breathingSound;
+    [SerializeField] private AudioItem lanternLightFlicker;
+    [SerializeField] private AudioItem footsteps;
+    [SerializeField] private AudioItem doorKnock;
+    [SerializeField] private AudioItem instantJumpscare;
+    [SerializeField] private AudioItem scream;
+
+    [Header("ITEM/PUZZLE SOUNDS")]
     [SerializeField] private AudioItem letter;
     [SerializeField] private AudioItem firstPuzzleInteract;
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
-    [SerializeField] private AudioItem horrorSound;
-    [SerializeField] private AudioItem breathingSound;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
+    public AudioSource MainGameAudioSource => mainGameAudioSource;
 
     public AudioItem[] AllSFX => allSFX;
     public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed;
@@ -46,7 +57,9 @@ public class AudioManager : MonoBehaviour
     public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
     public AudioItem UnlockedDoor => unlockedDoor; public AudioItem HorrorSound => horrorSound;
     public AudioItem BreathingSound => breathingSound; public AudioItem LockedCrateDoor => lockedCrateDoor;
-    public AudioItem UnlockCrateDoor => unlockCrateDoor;
+    public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker;
+    public AudioItem FootSteps => footsteps; public AudioItem InstantJumpscare => instantJumpscare;
+    public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream;
 
     private void Awake()
     {

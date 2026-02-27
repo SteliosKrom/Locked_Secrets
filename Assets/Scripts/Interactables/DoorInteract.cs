@@ -8,10 +8,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private float doorAnimationDelay = 1f;
 
-    #region SCRIPT REFERENCES
-    [Header("SCRIPT REFERENCES")]
-    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
-    #endregion
+    [SerializeField] private bool isSpecialDoor;
 
     #region ANIMATIONS
     [Header("ANIMATOR")]
@@ -21,18 +18,22 @@ public class DoorInteract : MonoBehaviour, IInteractable
     #region COLLIDERS
     [Header("COLLIDERS")]
     [SerializeField] private Collider[] doorColliders;
+    private BoxCollider otherDoorHandleCollider;
     #endregion
+
+    private void Awake()
+    {
+        otherDoorHandleCollider = GameObject.Find("OtherDoorHandle").GetComponent<BoxCollider>();
+    }
 
     public void Interact()
     {
         switch (currentDoorState)
         {
             case DoorState.Idle:
-                baseDoorAnimator.SetTrigger("Open");
                 StartCoroutine(OpenDoor());
                 break;
             case DoorState.Opening:
-                baseDoorAnimator.SetTrigger("Close");
                 StartCoroutine(CloseDoor());
                 break;
         }
@@ -40,8 +41,8 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor()
     {
-        baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
+        baseDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
@@ -51,6 +52,12 @@ public class DoorInteract : MonoBehaviour, IInteractable
 
         currentDoorState = DoorState.Opening;
         EnableAllDoorColliders();
+
+        if (isSpecialDoor)
+        {
+            otherDoorHandleCollider.enabled = false;
+            isSpecialDoor = false;
+        }
     }
 
     private IEnumerator CloseDoor()
