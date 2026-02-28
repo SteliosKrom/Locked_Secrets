@@ -21,6 +21,9 @@ public class DoorInteract : MonoBehaviour, IInteractable
     private BoxCollider otherDoorHandleCollider;
     #endregion
 
+    public BoxCollider OtherDoorHandleCollider { get => otherDoorHandleCollider; }
+    public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
+
     private void Awake()
     {
         otherDoorHandleCollider = GameObject.Find("OtherDoorHandle").GetComponent<BoxCollider>();
