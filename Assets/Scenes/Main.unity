@@ -13708,7 +13708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &453363506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18426,8 +18426,8 @@ MonoBehaviour:
     source: {fileID: 8194061423877075338}
     clip: {fileID: 8300000, guid: 6ed0f8509e9e44272a85f74fdc61879b, type: 3}
   unlockCrateDoor:
-    source: {fileID: 0}
-    clip: {fileID: 0}
+    source: {fileID: 8194061423877075338}
+    clip: {fileID: 8300000, guid: 73ca0c7ee75cce046b19fd10651696e1, type: 3}
   horrorSound:
     source: {fileID: 1941947689}
     clip: {fileID: 8300000, guid: ce11ecb29bc278d4cbfcc4540ce706b7, type: 3}
@@ -19195,7 +19195,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861998491}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -35470,7 +35470,7 @@ Transform:
   m_GameObject: {fileID: 1522663183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.697, y: 0.946, z: -2.427506}
+  m_LocalPosition: {x: 2.577, y: 0.787, z: -2.427506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35495,8 +35495,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5208633, y: 0.8460672, z: 2.2818265}
-  m_Center: {x: -0.23956835, y: 0.076966405, z: 0.2060864}
+  m_Size: {x: 0.21085775, y: 1.4909378, z: 2.5929866}
+  m_Center: {x: -0.5238121, y: 0.39940172, z: 0.14457583}
 --- !u!114 &1522663186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35509,6 +35509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5559bf48e169eb45ae46433694b76d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorInteract: {fileID: 1567794296}
   lanternLightParticle: {fileID: 278939989}
   lanternLight: {fileID: 278939994}
   otherDoorAnimator: {fileID: 6237512266036868224}
@@ -50310,7 +50311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2022239431
 Transform:
   m_ObjectHideFlags: 0
@@ -68377,6 +68378,7 @@ MonoBehaviour:
   crossInHand: {fileID: 690020089}
   axeWorld: {fileID: 3767419289024193594}
   skeletonHandCollider: {fileID: 3817668935351482826}
+  crateAnimator: {fileID: 8194061423877075339}
 --- !u!1 &3823166073816461152
 GameObject:
   m_ObjectHideFlags: 0
@@ -71522,7 +71524,7 @@ Transform:
   m_GameObject: {fileID: 8194061423877075335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.22899696, y: 0.26758674, z: 0.00000095094356}
+  m_LocalPosition: {x: 0.22899696, y: 0.2675867, z: 0.0000009509436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -83172,11 +83174,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2061150301263699924, guid: 656ab27dfc6465e46971f69831d03eb5, type: 3}
 --- !u!114 &6533032020627019314
@@ -83192,6 +83194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bathroomDoorInteract: {fileID: 1764065917}
+  doorInteract: {fileID: 1567794296}
   playerCross: {fileID: 2022239430}
   bathroomCross: {fileID: 5031133495432966794}
   crucifixPanel: {fileID: 406282746}
@@ -87111,6 +87114,7 @@ GameObject:
   - component: {fileID: 8194061423877075336}
   - component: {fileID: 8194061423877075338}
   - component: {fileID: 8194061423877075337}
+  - component: {fileID: 8194061423877075339}
   m_Layer: 7
   m_Name: SM_woodenbox02.001
   m_TagString: Untagged
@@ -87250,6 +87254,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &8194061423877075339
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194061423877075335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9147662c3fc2c3488c199c39a69e3e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8208384590262183964
 Transform:
   m_ObjectHideFlags: 0

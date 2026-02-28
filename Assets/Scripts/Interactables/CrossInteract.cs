@@ -5,6 +5,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private BathroomDoorInteract bathroomDoorInteract;
+    [SerializeField] private DoorInteract doorInteract;
     #endregion
 
     #region OBJECTS
@@ -12,6 +13,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
     [SerializeField] private GameObject playerCross;
     [SerializeField] private GameObject bathroomCross;
     [SerializeField] private GameObject crucifixPanel;
+    [SerializeField] private GameObject inventoryCrucifix;
     #endregion
 
     #region ANIMATIONS
@@ -24,12 +26,16 @@ public class CrossInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentItemState = ItemState.Cross;
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnCrucifixMenu;
 
+        doorInteract.OtherDoorHandleCollider.enabled = true;
+
         bathroomCross.SetActive(false);
         playerCross.SetActive(true);
         crucifixPanel.SetActive(true);
+        inventoryCrucifix.SetActive(true);
+
         crucifixAnimator.SetTrigger("Equip");
 
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Unlocked;
+        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.OpenIdle;
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.position = bathroomDoorInteract.BathroomDoorAnimator.transform.position;

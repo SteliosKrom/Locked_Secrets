@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LanternLightFlickering : MonoBehaviour
 {
-    private float flickerDuration = 2f;
+    private float flickerDuration = 1f;
 
     private float minFlickerIntensity = 0f;
     private float maxFlickerIntensity = 2f;
@@ -15,6 +15,11 @@ public class LanternLightFlickering : MonoBehaviour
     private float maxLanternLightVolume = 0.3f;
 
     private bool isFlickering = false;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private DoorInteract doorInteract;
+    #endregion
 
     #region OBJECTS
     [Header("OBJECTS")]
@@ -91,6 +96,8 @@ public class LanternLightFlickering : MonoBehaviour
 
         otherDoorHandleCollider.enabled = false;
         otherDoorAnimator.SetTrigger("Close");
+        doorInteract.CurrentDoorState = DoorState.Idle;
+
         AudioManager.Instance.CloseDoor.source.transform.position = otherDoorAnimator.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
 

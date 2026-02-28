@@ -4,7 +4,6 @@ using UnityEngine;
 public class SkeletonHandInteract : MonoBehaviour, IInteractable
 {
     private float skeletonHandInteractDelay = 2f;  
-    private float openCrateDoorSoundDelay = 2f;
 
     #region OBJECTS
     [Header("OBJECTS")]
@@ -17,6 +16,11 @@ public class SkeletonHandInteract : MonoBehaviour, IInteractable
     #region COLLIDERS
     [Header("COLLIDERS")]
     [SerializeField] private BoxCollider skeletonHandCollider;
+    #endregion
+
+    #region ANIMATIONS
+    [Header("ANIMATIONS")]
+    [SerializeField] private Animator crateAnimator;
     #endregion
 
     public GameObject SkeletonHandInformText { get => skeletonHandInformText; set => skeletonHandInformText = value; }
@@ -32,18 +36,14 @@ public class SkeletonHandInteract : MonoBehaviour, IInteractable
             else if (GameManager.Instance.CurrentItemState == ItemState.Cross)
             {
                 GameManager.Instance.CurrentItemState = ItemState.None;
+                skeletonHandCollider.enabled = false;
                 crossInHand.SetActive(true);
                 playerCross.SetActive(false);
-                StartCoroutine(PlayOpenCrateDoorSoundDelay());
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockCrateDoor.source, AudioManager.Instance.UnlockCrateDoor.clip);
+                crateAnimator.SetTrigger("Open");
                 axeWorld.SetActive(true);
             }
         }
-    }
-
-    public IEnumerator PlayOpenCrateDoorSoundDelay()
-    {
-        yield return new WaitForSeconds(openCrateDoorSoundDelay);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockCrateDoor.source, AudioManager.Instance.UnlockCrateDoor.clip);
     }
 
     public IEnumerator InteractWithHandDelay()

@@ -100,6 +100,7 @@ public class BookInteract : MonoBehaviour, IInteractable
         while (elapsedTime < openLanternLightDuration)
         {
             AudioManager.Instance.LanternLightFlicker.source.volume = Random.Range(lanternLightFlickering.MinLanternLightVolume, lanternLightFlickering.MaxLanternLightVolume);
+            AudioManager.Instance.MainGameAudioSource.volume = Mathf.Lerp(AudioManager.Instance.MainGameAudioSource.volume, 1f, 0.5f * Time.deltaTime);
             lanternLightFlickering.LanternLight.intensity = Random.Range(lanternLightFlickering.MinFlickerIntensity, lanternLightFlickering.MaxFlickerIntensity);
             emission.rateOverTime = Random.Range(lanternLightFlickering.MinLanternEmissionRate, lanternLightFlickering.MaxLanternEmissionRate);
 
@@ -112,7 +113,6 @@ public class BookInteract : MonoBehaviour, IInteractable
         lanternLightFlickering.LanternLight.intensity = 2f;
         AudioManager.Instance.LanternLightFlicker.source.volume = 0.3f;
         emission.rateOverTime = 50f;
-
         crossCollider.enabled = true;
     }
 }
