@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LanternInteract : MonoBehaviour, IInteractable
 {
+    private bool hasLantern = false;
+
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private MainGameUIManager mainGameUIManager;
@@ -19,13 +21,19 @@ public class LanternInteract : MonoBehaviour, IInteractable
     [SerializeField] private Animator baseEquipItemAnimator;
     #endregion
 
+    public bool HasLantern { get => hasLantern; set => hasLantern = value; }
+
     public void Interact()
     {
+        hasLantern = true;
+
         worldLantern.SetActive(false);
         playerLantern.SetActive(true);
         lanternIcon.SetActive(true);
+
         AudioManager.Instance.LanternLightFlicker.source.Play();
         baseEquipItemAnimator.SetTrigger("Equip");
+
         mainGameUIManager.GotLanternPanel.SetActive(true);
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnLanternMenu;
     }

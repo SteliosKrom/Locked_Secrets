@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrateDoorOverride
+  m_Controller: {fileID: 9100000, guid: b9147662c3fc2c3488c199c39a69e3e0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 31ce25f71250e4747a80ef0c1a403f9c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 16df4bea515b05d4f974ba00c8bb32d9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3c0aafd27866a9746a53587c4df904ca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d07dac3df4eeae9428b080b32b2eb593, type: 2}

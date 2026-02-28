@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem unlockedDoor;
     [SerializeField] private AudioItem lockedCrateDoor;
     [SerializeField] private AudioItem unlockCrateDoor;
+    [SerializeField] private AudioItem unlockSmallCrateDoor;
 
     [Header("TRIGGER/HORROR SOUNDS")]
     [SerializeField] private AudioItem horrorSound;
@@ -45,6 +46,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
+    [SerializeField] private AudioItem equipItem;
+    [SerializeField] private AudioItem placeItem;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
@@ -60,6 +63,8 @@ public class AudioManager : MonoBehaviour
     public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker;
     public AudioItem FootSteps => footsteps; public AudioItem InstantJumpscare => instantJumpscare;
     public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream;
+    public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem EquipItem => equipItem;
+    public AudioItem PlaceItem => placeItem;
 
     private void Awake()
     {

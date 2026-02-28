@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum PuzzleRole { Chair, Lamp, Book, Radio }
 public enum KeypadButtonRoles { None, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Enter }
@@ -16,7 +17,7 @@ public class PuzzleManager : MonoBehaviour
 
     [SerializeField] private bool hasMistake = false;
 
-    private float firstPuzzleRepeatDelay = 3f;
+    private float firstPuzzleRepeatDelay = 1f;
     private float keypadPuzzleRepeatDelay = 0.75f;
 
     private float flickerDuration = 3f;
@@ -28,7 +29,6 @@ public class PuzzleManager : MonoBehaviour
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
-    [SerializeField] private MainGameUIManager mainGameUIManager;
     [SerializeField] private MainDoorInteract mainDoorInteract;
     #endregion
 
@@ -60,8 +60,8 @@ public class PuzzleManager : MonoBehaviour
 
     #region OBJECTS
     [Header("OBJECTS")]
-    [SerializeField] private GameObject keyIcon;
     [SerializeField] private GameObject keypadNumbers;
+    [SerializeField] private GameObject key;
     [SerializeField] private GameObject mainDoorHandle;
     #endregion
 
@@ -77,6 +77,12 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private Light tableLanternLight;
     #endregion
 
+    #region ANIMATIONS
+    [Header("ANIMATIONS")]
+    [SerializeField] private Animator smallCrateDoorAnimator;
+    #endregion
+
+    public GameObject Key => key;
     public TextMeshProUGUI KeypadDisplayText { get => keypadDisplayText; set => keypadDisplayText = value; }
     public bool HasMistake { get => hasMistake; set => hasMistake = value; }
 
@@ -162,11 +168,12 @@ public class PuzzleManager : MonoBehaviour
 
     public void FirstPuzzleSolved()
     {
-        GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnRoomKeyMenu;
-        GameManager.Instance.CurrentItemState = ItemState.Key;
-        mainGameUIManager.GotRoomKeyPanel.SetActive(true);
-        keyIcon.SetActive(true);
+        smallCrateDoorAnimator.SetTrigger("Open");
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockSmallCrateDoor.source, AudioManager.Instance.UnlockSmallCrateDoor.clip);
+
+        key.SetActive(true);
         keypadNumbers.SetActive(true);
+
         ResetSequencePuzzle();
     }
 

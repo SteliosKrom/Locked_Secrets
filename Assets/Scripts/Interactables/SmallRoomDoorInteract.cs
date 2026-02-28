@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private DoorInteract doorInteract;
+    [SerializeField] private LanternInteract lanternInteract;
     #endregion
 
     #region ANIMATIONS
@@ -29,49 +30,74 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     #region UI
     [Header("OBJECTS")]
     [SerializeField] private GameObject itsLockedText;
+    [SerializeField] private GameObject needLanternText;
     #endregion
 
     public GameObject ItsLockedText => itsLockedText;
 
     public void Interact()
     {
-        if (GameManager.Instance.CurrentItemState == ItemState.Key)
-        {
-            currentDoorState = DoorState.Unlocked;
-            GameManager.Instance.CurrentItemState = ItemState.None;
-            AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
-            StartCoroutine(EnableDoorHandleColliderDelay());
-            return;
-        }
-
-        if (currentDoorState == DoorState.Unlocked)
-        {
-            currentDoorState = DoorState.Idle;
-        }
-
-        if (currentDoorState == DoorState.Locked)
-        {
-            ItsLockedMessage();
-        }
-
         switch (currentDoorState)
         {
+            case DoorState.Locked:
+                TryInlock();
+                break;
             case DoorState.Idle:
-                baseDoorAnimator.SetTrigger("Open");
                 StartCoroutine(OpenDoor());
                 break;
             case DoorState.Opening:
-                baseDoorAnimator.SetTrigger("Close");
                 StartCoroutine(CloseDoor());
                 break;
         }
+    }
+
+    public void TryInlock()
+    {
+        if (GameManager.Instance.CurrentItemState != ItemState.Key)
+        {
+            ItsLockedMessage();
+            return;
+        }
+        if (!lanternInteract.HasLantern)
+        {
+            ShowNeedLanternText();
+            return;
+        }
+        UnlockDoor();
+    }
+
+    public void UnlockDoor()
+    {
+        currentDoorState = DoorState.Idle;
+        GameManager.Instance.CurrentItemState = ItemState.None;
+        AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
+        StartCoroutine(EnableDoorHandleColliderDelay());
+        return;
+    }
+
+    public void ShowNeedLanternText()
+    {
+        StartCoroutine(NeedLanternDelay());
     }
 
     public void ItsLockedMessage()
     {
         StartCoroutine(ItsLockedDelay());
     }
+
+    private void EnableAllDoorColliders()
+    {
+        foreach (var col in doorColliders)
+            col.enabled = true;
+    }
+
+    private void DisableAllDoorColliders()
+    {
+        foreach (var col in doorColliders)
+            col.enabled = false;
+    }
+
 
     private IEnumerator EnableDoorHandleColliderDelay()
     {
@@ -110,18 +136,6 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         EnableAllDoorColliders();
     }
 
-    private void EnableAllDoorColliders()
-    {
-        foreach (var col in doorColliders)
-            col.enabled = true;
-    }
-
-    private void DisableAllDoorColliders()
-    {
-        foreach (var col in doorColliders)
-            col.enabled = false;
-    }
-
     public IEnumerator ItsLockedDelay()
     {
         doorHandleCollider.enabled = false;
@@ -133,6 +147,20 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(itsLockedTextDelay);
 
         itsLockedText.SetActive(false);
+        doorHandleCollider.enabled = true;
+    }
+
+    public IEnumerator NeedLanternDelay()
+    {
+        doorHandleCollider.enabled = false;
+        needLanternText.SetActive(true);
+
+        AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
+
+        yield return new WaitForSeconds(itsLockedTextDelay);
+
+        needLanternText.SetActive(false);
         doorHandleCollider.enabled = true;
     }
 }
