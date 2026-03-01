@@ -30,6 +30,10 @@ public class KeypadPuzzleButtonInteract : MonoBehaviour, IInteractable
     {
         PuzzleManager.Instance.DisableKeypadButtonColliders();
         yield return new WaitForSeconds(buttonPressDelay);
-        PuzzleManager.Instance.EnableKeypadPuzzleButtonColliders();
+
+        if (PuzzleManager.Instance.KeypadPuzzleActive)
+        {
+            PuzzleManager.Instance.EnableKeypadPuzzleButtonColliders();
+        }
     }
 }

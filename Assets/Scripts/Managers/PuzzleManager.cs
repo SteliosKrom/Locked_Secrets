@@ -16,6 +16,7 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private int currentPuzzleStep = 0;
 
     [SerializeField] private bool hasMistake = false;
+    [SerializeField] private bool keypadPuzzleActive;
 
     private float firstPuzzleRepeatDelay = 1f;
     private float keypadPuzzleRepeatDelay = 0.75f;
@@ -85,6 +86,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject Key => key;
     public TextMeshProUGUI KeypadDisplayText { get => keypadDisplayText; set => keypadDisplayText = value; }
     public bool HasMistake { get => hasMistake; set => hasMistake = value; }
+    public bool KeypadPuzzleActive { get => keypadPuzzleActive; set => keypadPuzzleActive = value; }
 
     private void Awake()
     {
@@ -98,6 +100,11 @@ public class PuzzleManager : MonoBehaviour
         }
         keypadButtonColliders = GameObject.Find("Buttons").GetComponentsInChildren<BoxCollider>();
         firstPuzzleItemColliders = GameObject.Find("Items").GetComponentsInChildren<BoxCollider>();
+    }
+
+    private void Start()
+    {
+        keypadPuzzleActive = true;
     }
 
     public void OnFirstPuzzleItemInteracted(FirstPuzzleItemInteract item)
@@ -185,6 +192,7 @@ public class PuzzleManager : MonoBehaviour
     public void KeypadPuzzleSolved()
     {
         Debug.Log($"Correct step finished with {currentPuzzleStep}. You solved the puzzle! Try again!");
+        keypadPuzzleActive = false;
         mainDoorInteract.CurrentDoorState = DoorState.Idle;
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
@@ -196,8 +204,8 @@ public class PuzzleManager : MonoBehaviour
     public void KeypadPuzzleFailed()
     {
         Debug.Log($"Correct step finished with {currentPuzzleStep}. You failed the puzzle!");
+        keypadPuzzleActive = true;
         StartCoroutine(KeypadPuzzleRepeatDelay());
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed.source, AudioManager.Instance.KeypadFailed.clip);
     }
 
     public void EraseKeypadDisplayText()
@@ -261,6 +269,8 @@ public class PuzzleManager : MonoBehaviour
         EraseKeypadDisplayText();
 
         yield return new WaitForSeconds(keypadPuzzleRepeatDelay);
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed.source, AudioManager.Instance.KeypadFailed.clip);
 
         ResetSequencePuzzle();
         EnableKeypadPuzzleButtonColliders();
