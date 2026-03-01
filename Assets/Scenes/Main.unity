@@ -2892,8 +2892,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.01, y: 8.4}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -1.3, y: 8.4}
+  m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127891494
 MonoBehaviour:
@@ -2915,7 +2915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f624db2cf46b3e4fb80c833796d8803, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a6f64fe634d2c643abca063e82215d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11175,7 +11175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 98}
+  m_AnchoredPosition: {x: -3.9, y: 98}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302131333
@@ -11198,7 +11198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d5b9b2eccaf66964fac75a29063c5278, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13c925c9c6716194f9fe832914b37154, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18381,8 +18381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -279, y: -219}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -280, y: -219.9}
+  m_SizeDelta: {x: 288.13, y: 152.3549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815580750
 MonoBehaviour:
@@ -18404,7 +18404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 435d2d8f4eec4ec42ad42c235c768dd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f8384dd5d290264eb78b630086d61a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27136,15 +27136,15 @@ RectTransform:
   m_GameObject: {fileID: 1005124067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1638267886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 294, y: 102}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 302.69275, y: 80.79468}
+  m_SizeDelta: {x: 363.9247, y: 200.7499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1005124069
 MonoBehaviour:
@@ -27166,7 +27166,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f624db2cf46b3e4fb80c833796d8803, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a6f64fe634d2c643abca063e82215d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30924,7 +30924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d5b9b2eccaf66964fac75a29063c5278, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13c925c9c6716194f9fe832914b37154, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32533,15 +32533,15 @@ RectTransform:
   m_GameObject: {fileID: 1346096262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
+  m_LocalScale: {x: 1.1813025, y: 1.71661, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1638267886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280, y: 106}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -272.1, y: 100}
+  m_SizeDelta: {x: 199.017, y: 136.3548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346096264
 MonoBehaviour:
@@ -32563,7 +32563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0bf38ce31d766b048930b4f01355ed21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20e38de0fb9fd8741a73874af32f3d91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -46101,7 +46101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: 411.4058}
+  m_AnchoredPosition: {x: -5, y: 411.4058}
   m_SizeDelta: {x: 123.2236, y: 33.7295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787433686
@@ -46157,7 +46157,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -46189,7 +46189,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -23.95728, w: 0}
+  m_margin: {x: 0, y: 0, z: -2.8778954, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -46692,7 +46692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0bf38ce31d766b048930b4f01355ed21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20e38de0fb9fd8741a73874af32f3d91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -51168,7 +51168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Follow The Shapes
+  m_text: Read Carefully
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8ed56f3e123473468b9a5365e70f7c0, type: 2}
   m_sharedMaterial: {fileID: -922957679494612830, guid: f8ed56f3e123473468b9a5365e70f7c0, type: 2}
@@ -51789,7 +51789,12 @@ MonoBehaviour:
     wooden planks on the main door\u2014they cannot be removed by hand.\r\n\r\nAlso,
     there is a keypad that requires a sequence of numbers in the correct order for
     the main door to finally open.\r\n\r\nIf I remember correctly, the sequence is:\r\n\r\nCircle
-    -> Triangle -> Square -> ?\r\n\r\n\n\u2014 A Stranger"
+    -> Triangle -> Square -> ?\r\n\r\nThink beyond what you see. Think of what completes
+    them.\n\nSome things in this place are not decoration.\nFaith is not decoration
+    either.\n\nThe dead still wait for what was denied to them.\nGive the sinner
+    what he begs for, and he may offer you something in return.\n\nDo not trust the
+    silence.\nDo not trust your memories.\n\nAnd whatever you do\u2026\nDo not look
+    into the mirror for too long.\n\n\u2014 A Stranger"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8ed56f3e123473468b9a5365e70f7c0, type: 2}
   m_sharedMaterial: {fileID: -922957679494612830, guid: f8ed56f3e123473468b9a5365e70f7c0, type: 2}
@@ -51816,8 +51821,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -51854,7 +51859,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -226.39917, y: 11.069824, z: -247.89868, w: -685.51337}
+  m_margin: {x: -226.39917, y: 11.069824, z: -247.89868, w: -752.4189}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -52041,8 +52046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.23, y: 8.4}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.64, y: 8.4}
+  m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097866632
 MonoBehaviour:
@@ -52064,7 +52069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 435d2d8f4eec4ec42ad42c235c768dd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f8384dd5d290264eb78b630086d61a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
