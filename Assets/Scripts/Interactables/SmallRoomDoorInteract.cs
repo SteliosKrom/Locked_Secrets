@@ -14,6 +14,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private DoorInteract doorInteract;
     [SerializeField] private LanternInteract lanternInteract;
+    [SerializeField] private KeyInteract keyInteract;
     #endregion
 
     #region ANIMATIONS
@@ -72,6 +73,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentItemState = ItemState.None;
         AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
+        keyInteract.PlayerKey.SetActive(false);
         StartCoroutine(EnableDoorHandleColliderDelay());
         return;
     }
