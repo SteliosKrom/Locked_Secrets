@@ -36,6 +36,7 @@ public class SettingsManager : MonoBehaviour
 
     [Header("TOGGLE")]
     [SerializeField] private Toggle displayModeToggle;
+    [SerializeField] private Toggle vSyncToggle;
 
     [Header("DROPDOWN")]
     [SerializeField] private TMP_Dropdown qualityDropdown;
@@ -71,6 +72,7 @@ public class SettingsManager : MonoBehaviour
         float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 1f);
 
         bool savedDisplayMode = PlayerPrefs.GetInt("DisplayMode", 1) != 0;
+        bool savedVSyncToggleValue = PlayerPrefs.GetInt("VSyncToggleValue", 0) == 1;
 
         //Graphics saved values
         int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 1);
@@ -91,6 +93,8 @@ public class SettingsManager : MonoBehaviour
         Screen.SetResolution(savedResolutionWidth, savedResolutionHeight, savedDisplayMode);
         displayModeToggle.isOn = savedDisplayMode;
         firstPersonCamera.SensitivitySlider.value = savedSensitivity;
+        vSyncToggle.isOn = savedVSyncToggleValue;
+        QualitySettings.vSyncCount = savedVSyncToggleValue ? 1 : 0;
 
         // Graphics
         QualitySettings.SetQualityLevel(savedQualityLevel);
@@ -213,6 +217,13 @@ public class SettingsManager : MonoBehaviour
         {
             SetWindowedMode();
         }
+        PlayerPrefs.Save();
+    }
+
+    public void SetVSync()
+    {
+        QualitySettings.vSyncCount = vSyncToggle.isOn ? 1 : 0;
+        PlayerPrefs.SetInt("VSyncToggleValue", vSyncToggle.isOn ? 1 : 0);
         PlayerPrefs.Save();
     }
 

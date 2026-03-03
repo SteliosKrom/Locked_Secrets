@@ -53,7 +53,9 @@ public class MainMenuUIManager : MonoBehaviour
 
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
+
         AudioManager.Instance.PlayMainGameMusic();
+        AudioManager.Instance.PlayRainAudio();
 
         loadingMenu.SetActive(false);
         dot.SetActive(true);

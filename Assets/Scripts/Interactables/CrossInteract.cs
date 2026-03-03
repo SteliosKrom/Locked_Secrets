@@ -36,6 +36,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
         crucifixAnimator.SetTrigger("Equip");
 
         GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.OpenIdle;
+
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.position = bathroomDoorInteract.BathroomDoorAnimator.transform.position;

@@ -37,9 +37,14 @@ public class SkeletonHandInteract : MonoBehaviour, IInteractable
             {
                 GameManager.Instance.CurrentItemState = ItemState.None;
                 skeletonHandCollider.enabled = false;
+
                 crossInHand.SetActive(true);
                 playerCross.SetActive(false);
+
+                AudioManager.Instance.PlaceItem.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.PlaceItem.source, AudioManager.Instance.PlaceItem.clip);
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockCrateDoor.source, AudioManager.Instance.UnlockCrateDoor.clip);
+
                 crateAnimator.SetTrigger("Open");
                 axeWorld.SetActive(true);
             }

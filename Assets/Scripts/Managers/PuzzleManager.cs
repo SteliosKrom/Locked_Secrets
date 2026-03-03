@@ -268,9 +268,9 @@ public class PuzzleManager : MonoBehaviour
         DisableKeypadButtonColliders();
         EraseKeypadDisplayText();
 
-        yield return new WaitForSeconds(keypadPuzzleRepeatDelay);
-
         AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed.source, AudioManager.Instance.KeypadFailed.clip);
+
+        yield return new WaitForSeconds(keypadPuzzleRepeatDelay);
 
         ResetSequencePuzzle();
         EnableKeypadPuzzleButtonColliders();

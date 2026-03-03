@@ -93,6 +93,7 @@ public class PauseManager : MonoBehaviour
         OutlineEffect.Instance.DisableObjectsOutlineEffect();
 
         AudioManager.Instance.PauseMainGameMusic();
+        AudioManager.Instance.PauseRainAudioSound();
         AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
         PauseAllSFX();
@@ -117,6 +118,7 @@ public class PauseManager : MonoBehaviour
         mainGameUImanager.DisableRedColorOnButtonText();
 
         AudioManager.Instance.UnpauseMainGameMusic();
+        AudioManager.Instance.UnpauseRainAudioSound();
         AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
 
         UnPauseAllSFX();

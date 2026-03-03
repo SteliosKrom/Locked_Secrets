@@ -31,6 +31,7 @@ public class TitleMenuUIManager : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlayMenuMusic();
+        AudioManager.Instance.PlayRainAudio();
     }
 
     private void Update()

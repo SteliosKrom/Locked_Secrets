@@ -26,11 +26,13 @@ public class KeyInteract : MonoBehaviour, IInteractable
     {
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnRoomKeyMenu;
         GameManager.Instance.CurrentItemState = ItemState.Key;
+
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
         puzzleManager.Key.SetActive(false);
         keyInventoryItem.SetActive(true);
         playerKey.SetActive(true);
         keyIcon.SetActive(true);
+
         keyAnimator.SetTrigger("Equip");
     }
 }

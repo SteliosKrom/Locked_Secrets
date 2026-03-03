@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     [Header("MAIN AUDIO SOURCES")]
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
+    [SerializeField] private AudioSource rainAudioSource;
 
     [Header("ALL SOUNDS")]
     [SerializeField] private AudioItem[] allSFX;
@@ -53,7 +54,7 @@ public class AudioManager : MonoBehaviour
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
     public AudioSource MainGameAudioSource => mainGameAudioSource;
 
-    public AudioItem[] AllSFX => allSFX;
+    public AudioItem[] AllSFX => allSFX; 
     public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed;
     public AudioItem OpenDoor => openDoor; public AudioItem CloseDoor => closeDoor;
     public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
@@ -63,8 +64,7 @@ public class AudioManager : MonoBehaviour
     public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker;
     public AudioItem FootSteps => footsteps; public AudioItem InstantJumpscare => instantJumpscare;
     public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream;
-    public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem EquipItem => equipItem;
-    public AudioItem PlaceItem => placeItem;
+    public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem PlaceItem => placeItem;
 
     private void Awake()
     {
@@ -105,6 +105,10 @@ public class AudioManager : MonoBehaviour
     public void PlayMainGameMusic() { mainGameAudioSource.Play(); }
     public void StopMainGameMusic() { mainGameAudioSource.Stop(); }
 
+    // PLay/Stop Rain Audio
+    public void PlayRainAudio() { rainAudioSource.Play(); }
+    public void StopRainAudio() { rainAudioSource.Stop(); }
+
     // Pause/Unpause Menu Music
     public void PauseMenuMusic() { mainMenuAudioSource.Pause(); }
     public void UnpauseMenuMusic() { mainMenuAudioSource.UnPause(); }
@@ -112,4 +116,8 @@ public class AudioManager : MonoBehaviour
     // Pause/Unpause Main Game Music
     public void PauseMainGameMusic() { mainGameAudioSource.Pause(); }
     public void UnpauseMainGameMusic() { mainGameAudioSource.UnPause(); }
+
+    //Pause/Unpause Rain Audio
+    public void PauseRainAudioSound() { rainAudioSource.Pause(); }
+    public void UnpauseRainAudioSound() { rainAudioSource.UnPause(); }
 }
