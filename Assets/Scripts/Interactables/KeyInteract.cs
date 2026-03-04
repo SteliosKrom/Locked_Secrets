@@ -28,6 +28,8 @@ public class KeyInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentItemState = ItemState.Key;
 
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
+        mainGameUIManager.Dot.SetActive(false);
+
         puzzleManager.Key.SetActive(false);
         keyInventoryItem.SetActive(true);
         playerKey.SetActive(true);

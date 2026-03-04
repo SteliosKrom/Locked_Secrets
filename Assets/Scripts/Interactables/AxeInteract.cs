@@ -32,7 +32,9 @@ public class AxeInteract : MonoBehaviour, IInteractable
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
         axeIcon.SetActive(true);
+
         mainGameUIManager.GotAxePanel.SetActive(true);
+        mainGameUIManager.Dot.SetActive(false);
 
         baseAxeAnimator.SetTrigger("Equip");
 
