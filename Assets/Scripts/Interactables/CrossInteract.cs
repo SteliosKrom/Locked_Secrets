@@ -6,13 +6,13 @@ public class CrossInteract : MonoBehaviour, IInteractable
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private BathroomDoorInteract bathroomDoorInteract;
     [SerializeField] private DoorInteract doorInteract;
+    [SerializeField] private MainGameUIManager mainGameUIManager;
     #endregion
 
     #region OBJECTS
     [Header("OBJECTS")]
     [SerializeField] private GameObject playerCross;
     [SerializeField] private GameObject bathroomCross;
-    [SerializeField] private GameObject crucifixPanel;
     [SerializeField] private GameObject inventoryCrucifix;
     #endregion
 
@@ -30,8 +30,10 @@ public class CrossInteract : MonoBehaviour, IInteractable
 
         bathroomCross.SetActive(false);
         playerCross.SetActive(true);
-        crucifixPanel.SetActive(true);
         inventoryCrucifix.SetActive(true);
+
+        mainGameUIManager.Dot.SetActive(false);
+        mainGameUIManager.GotCrucifixPanel.SetActive(true);
 
         crucifixAnimator.SetTrigger("Equip");
 

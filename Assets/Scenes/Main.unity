@@ -16930,7 +16930,6 @@ Transform:
   - {fileID: 725720413}
   - {fileID: 543450651981515328}
   - {fileID: 5204533209941146273}
-  - {fileID: 2535671204519902162}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &353593346
@@ -18379,6 +18378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2535671204519902162}
   - {fileID: 1607960713}
   - {fileID: 1938981821}
   - {fileID: 4772765782440115}
@@ -111835,7 +111835,7 @@ GameObject:
   - component: {fileID: 2535671204519902164}
   - component: {fileID: 2535671204519902165}
   m_Layer: 7
-  m_Name: SmallKey_Rusty
+  m_Name: RoomKey
   m_TagString: OutlineInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111849,13 +111849,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2535671204519901997}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 8.7768, y: 0.415, z: -6.4819}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 8.7768, y: 0.41499996, z: -6.4818997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2646492584748767136}
-  m_Father: {fileID: 350707499}
+  m_Father: {fileID: 440475987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!65 &2535671204519902163
 BoxCollider:
@@ -134571,9 +134571,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bathroomDoorInteract: {fileID: 1764065917}
   doorInteract: {fileID: 1567794296}
+  mainGameUIManager: {fileID: 436021776}
   playerCross: {fileID: 2022239430}
   bathroomCross: {fileID: 5031133495432966794}
-  crucifixPanel: {fileID: 406282746}
   inventoryCrucifix: {fileID: 815580748}
   crucifixAnimator: {fileID: 2022239435}
 --- !u!114 &6533032020627019315

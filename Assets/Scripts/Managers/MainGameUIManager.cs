@@ -47,11 +47,11 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private Animator controlsPanelAnimator;
     #endregion
 
+    public GameObject Dot => dot;
     public GameObject ControlsTutorialPanel { get => controlsTutorialPanel; set => controlsTutorialPanel = value; }
-    public GameObject PauseMenu => pauseMenu;
-    public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
-    public GameObject GotLanternPanel => gotLanternPanel;
-    public GameObject GotAxePanel => gotAxePanel;
+    public GameObject PauseMenu => pauseMenu; public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
+    public GameObject GotLanternPanel => gotLanternPanel; public GameObject GotAxePanel => gotAxePanel;
+    public GameObject GotCrucifixPanel => gotCrucifixPanel;
     public Animator ControlsPanelAnimator => controlsPanelAnimator;
     public bool IsControlsTutorialPanelOpen { get => isControlsTutorialPanelOpen; set => isControlsTutorialPanelOpen = value; }
     public bool CanPressTab { get => canPressTab; set => canPressTab = value; }
@@ -130,6 +130,7 @@ public class MainGameUIManager : MonoBehaviour
                     gotCrucifixPanel.SetActive(false);
                     break;
             }
+            dot.SetActive(true);
             GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
         }
     }
