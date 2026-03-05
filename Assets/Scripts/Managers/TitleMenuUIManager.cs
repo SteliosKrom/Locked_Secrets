@@ -20,18 +20,18 @@ public class TitleMenuUIManager : MonoBehaviour
     [SerializeField] private Animator pressAnyKeyAnimator;
     #endregion
 
-    #region AUDIO
-    [Header("AUDIO SOURCES")]
-    [SerializeField] private AudioSource pressAnyKeyAudioSource;
-
-    [Header("AUDIO CLIPS")]
-    [SerializeField] private AudioClip pressAnyKeyAudioClip;
+    #region PARTICLES
+    [Header("PARTICLES")]
+    [SerializeField] private ParticleSystem rainEffect;
     #endregion
 
     private void Start()
     {
+        rainEffect.Play();
+
         AudioManager.Instance.PlayMenuMusic();
         AudioManager.Instance.PlayRainAudio();
+        AudioManager.Instance.RainAudioLowPassFilter.cutoffFrequency = 2250f;
     }
 
     private void Update()
@@ -49,7 +49,7 @@ public class TitleMenuUIManager : MonoBehaviour
             GameManager.Instance.CurrentMenuState = MenuState.OnMainMenu;
             titleMenuAnimator.SetBool("Out", true);
             pressAnyKeyAnimator.SetBool("Out", true);
-            AudioManager.Instance.PlaySFX(pressAnyKeyAudioSource, pressAnyKeyAudioClip);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.PressAnyKeyAudioSource.source, AudioManager.Instance.PressAnyKeyAudioSource.clip);
             StartCoroutine(EnterMainMenu());
         }
     }

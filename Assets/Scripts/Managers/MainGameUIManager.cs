@@ -142,6 +142,7 @@ public class MainGameUIManager : MonoBehaviour
 
         interactor.Detected = false;
 
+        AudioManager.Instance.UnpauseRainAudioSound();
         AudioManager.Instance.UnpauseMainGameMusic();
         AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
 

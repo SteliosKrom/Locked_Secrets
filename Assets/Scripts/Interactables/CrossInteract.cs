@@ -32,7 +32,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
         playerCross.SetActive(true);
         inventoryCrucifix.SetActive(true);
 
-        mainGameUIManager.Dot.SetActive(false);
+        //mainGameUIManager.Dot.SetActive(false);
         mainGameUIManager.GotCrucifixPanel.SetActive(true);
 
         crucifixAnimator.SetTrigger("Equip");

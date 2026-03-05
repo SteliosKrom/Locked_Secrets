@@ -45,7 +45,11 @@ public class MainMenuUIManager : MonoBehaviour
     public IEnumerator LoadingDelay()
     {
         GameManager.Instance.CurrentGameState = GameState.OnLoading;
+
+        AudioManager.Instance.StopSFX(AudioManager.Instance.PressAnyKeyAudioSource.source);
         AudioManager.Instance.StopMenuMusic();
+        AudioManager.Instance.StopRainAudio();
+
         mainMenu.SetActive(false);
         loadingMenu.SetActive(true);
 
@@ -54,8 +58,11 @@ public class MainMenuUIManager : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.TableLanternFlicker.source, AudioManager.Instance.TableLanternFlicker.clip);
         AudioManager.Instance.PlayMainGameMusic();
         AudioManager.Instance.PlayRainAudio();
+
+        AudioManager.Instance.RainAudioLowPassFilter.cutoffFrequency = 1000f;
 
         loadingMenu.SetActive(false);
         dot.SetActive(true);

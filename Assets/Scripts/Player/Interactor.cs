@@ -73,7 +73,12 @@ public class Interactor : MonoBehaviour
                 {
                     detected = false;
                     interactHUD.SetActive(false);
-                    dot.SetActive(true);
+
+                    if (GameManager.Instance.CurrentItemMenuState != ItemMenuState.None)
+                        dot.SetActive(false);
+                    else
+                        dot.SetActive(true);
+
                     OutlineEffect.Instance.DisableObjectsOutlineEffect();
                 }
             }
@@ -82,7 +87,12 @@ public class Interactor : MonoBehaviour
         {
             detected = false;
             interactHUD.SetActive(false);
-            dot.SetActive(true);
+
+            if (GameManager.Instance.CurrentItemMenuState != ItemMenuState.None)
+                dot.SetActive(false);
+            else
+                dot.SetActive(true);
+
             OutlineEffect.Instance.DisableObjectsOutlineEffect();
         }
         return;
