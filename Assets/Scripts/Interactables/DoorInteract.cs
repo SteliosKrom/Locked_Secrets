@@ -21,6 +21,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
     private BoxCollider otherDoorHandleCollider;
     #endregion
 
+    public Animator BaseDoorAnimator => baseDoorAnimator;
     public BoxCollider OtherDoorHandleCollider { get => otherDoorHandleCollider; }
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 

@@ -57,9 +57,16 @@ public class FootstepsSystem : MonoBehaviour
     public void PlayWalkFootstepsSound(string groundType)
     {
         if (playerController.IsCrouching)
-            footstepsAudioSource.pitch = Random.Range(0.7f, 0.9f);
+        {
+            footstepsAudioSource.volume = Random.Range(0.45f, 0.6f);
+            footstepsAudioSource.pitch = Random.Range(0.5f, 1f);
+        }
         else
-            footstepsAudioSource.pitch = Random.Range(1f, 1.2f);
+        {
+            footstepsAudioSource.volume = Random.Range(0.6f, 0.75f);
+            footstepsAudioSource.pitch = Random.Range(0.7f, 1.2f);
+        }
+
 
         if (groundType == "WoodGround")
             footstepsAudioSource.PlayOneShot(woodGroundClip);

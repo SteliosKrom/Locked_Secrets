@@ -7,8 +7,6 @@ public class Jumpscare : MonoBehaviour
     [SerializeField] private Transform priestHead;
     [SerializeField] private Transform playerCamera;
 
-    private float jumpscareDelay = 10f;
-
     [SerializeField] private bool jumpscareTriggerExecutedOnce = false;
 
     #region ANIMATIONS
@@ -47,7 +45,7 @@ public class Jumpscare : MonoBehaviour
 
     public IEnumerator Delay()
     {
-        yield return new WaitForSeconds(jumpscareDelay);
+        yield return new WaitForSeconds(AudioManager.Instance.HorrorSound.clip.length);
 
         priestAnimator.applyRootMotion = false;
 
@@ -58,11 +56,11 @@ public class Jumpscare : MonoBehaviour
         while (t < duration)
         {
             t += Time.deltaTime;
-            AudioManager.Instance.MainGameAudioSource.volume = Mathf.Lerp(startVolume, 1f, t / duration);
+            AudioManager.Instance.MainGameAudioSource.volume = Mathf.Lerp(startVolume, 0.25f, t / duration);
             yield return null;
         }
 
-        AudioManager.Instance.MainGameAudioSource.volume = 1f;
+        AudioManager.Instance.MainGameAudioSource.volume = 0.25f;
 
         jumpscareTriggerExecutedOnce = true;
         priestAnimator.gameObject.SetActive(false);

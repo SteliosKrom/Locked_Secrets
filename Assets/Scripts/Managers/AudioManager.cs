@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource mainGameAudioSource;
     [SerializeField] private AudioSource mainMenuAudioSource;
     [SerializeField] private AudioSource rainAudioSource;
+    [SerializeField] private AudioLowPassFilter rainAudioLowPassFilter;
+    [SerializeField] private AudioLowPassFilter doorKnockLowPassFilter;
 
     [Header("ALL SOUNDS")]
     [SerializeField] private AudioItem[] allSFX;
@@ -31,13 +33,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem lockedCrateDoor;
     [SerializeField] private AudioItem unlockCrateDoor;
     [SerializeField] private AudioItem unlockSmallCrateDoor;
+    [SerializeField] private AudioItem creakingDoorOpening;
 
     [Header("TRIGGER/HORROR SOUNDS")]
     [SerializeField] private AudioItem horrorSound;
     [SerializeField] private AudioItem breathingSound;
     [SerializeField] private AudioItem lanternLightFlicker;
+    [SerializeField] private AudioItem tableLanternFlicker;
     [SerializeField] private AudioItem footsteps;
     [SerializeField] private AudioItem doorKnock;
+    [SerializeField] private AudioItem longDoorKnock;
+    [SerializeField] private AudioItem behindYou;
     [SerializeField] private AudioItem instantJumpscare;
     [SerializeField] private AudioItem scream;
 
@@ -47,24 +53,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
-    [SerializeField] private AudioItem equipItem;
     [SerializeField] private AudioItem placeItem;
+
+    [Header("UI SOUNDS")]
+    [SerializeField] private AudioItem pressAnyKeyAudioSource;
     #endregion
 
     public GameObject TriggerInteractable3DAudio => triggerInteractable3DAudio;
     public AudioSource MainGameAudioSource => mainGameAudioSource;
+    public AudioLowPassFilter RainAudioLowPassFilter => rainAudioLowPassFilter;
+    public AudioLowPassFilter DoorKnockLowPassFilter => doorKnockLowPassFilter;
 
     public AudioItem[] AllSFX => allSFX; 
-    public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed;
-    public AudioItem OpenDoor => openDoor; public AudioItem CloseDoor => closeDoor;
-    public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
-    public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank;
-    public AudioItem UnlockedDoor => unlockedDoor; public AudioItem HorrorSound => horrorSound;
-    public AudioItem BreathingSound => breathingSound; public AudioItem LockedCrateDoor => lockedCrateDoor;
-    public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker;
-    public AudioItem FootSteps => footsteps; public AudioItem InstantJumpscare => instantJumpscare;
-    public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream;
-    public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem PlaceItem => placeItem;
+    public AudioItem KeypadButton => keypadButton; public AudioItem KeypadFailed => keypadFailed; public AudioItem OpenDoor => openDoor; 
+    public AudioItem CloseDoor => closeDoor; public AudioItem LockedDoor => lockedDoor; public AudioItem Letter => letter;
+    public AudioItem FirstPuzzleInteract => firstPuzzleInteract; public AudioItem CutWoodPlank => cutWoodPlank; public AudioItem UnlockedDoor => unlockedDoor; 
+    public AudioItem HorrorSound => horrorSound; public AudioItem BreathingSound => breathingSound; public AudioItem LockedCrateDoor => lockedCrateDoor; 
+    public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker; public AudioItem FootSteps => footsteps;
+    public AudioItem InstantJumpscare => instantJumpscare; public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream; 
+    public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem PlaceItem => placeItem; public AudioItem LongDoorKnock => longDoorKnock; 
+    public AudioItem TableLanternFlicker => tableLanternFlicker; public AudioItem PressAnyKeyAudioSource => pressAnyKeyAudioSource; public AudioItem CreakingDoorOpening => creakingDoorOpening;
+    public AudioItem BehindYou => behindYou;
 
     private void Awake()
     {
@@ -83,6 +92,11 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioSource source, AudioClip clip)
     {
         source.PlayOneShot(clip);
+    }
+
+    public void StopSFX(AudioSource source)
+    {
+        source.Stop();
     }
 
     // Pause SFX
