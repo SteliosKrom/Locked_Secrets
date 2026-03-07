@@ -113,8 +113,9 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Open");
         currentDoorState = DoorState.Opening;
 
-        AudioManager.Instance.OpenDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
+
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
@@ -128,8 +129,9 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Close");
         currentDoorState = DoorState.Closing;
 
-        AudioManager.Instance.CloseDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
+
         DisableAllDoorColliders();
 
         yield return new WaitForSeconds(doorAnimationDelay);
