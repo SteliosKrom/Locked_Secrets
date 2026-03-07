@@ -50,7 +50,7 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Opening;
         bathroomDoorAnimator.SetTrigger("Open");
 
-        AudioManager.Instance.OpenDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
 
         DisableAllDoorColliders();
@@ -66,7 +66,7 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Closing;
         bathroomDoorAnimator.SetTrigger("Close");
 
-        AudioManager.Instance.CloseDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
+        AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
 
         DisableAllDoorColliders();
