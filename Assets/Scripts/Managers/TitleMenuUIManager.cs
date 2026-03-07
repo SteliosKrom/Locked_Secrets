@@ -28,7 +28,6 @@ public class TitleMenuUIManager : MonoBehaviour
     private void Start()
     {
         rainEffect.Play();
-
         AudioManager.Instance.PlayMenuMusic();
         AudioManager.Instance.PlayRainAudio();
         AudioManager.Instance.RainAudioLowPassFilter.cutoffFrequency = 2250f;
