@@ -1,9 +1,14 @@
 ﻿using Shapes2D;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private float crouchDelay = 1f;
+
+    [SerializeField] private bool canCrouch;
+
     #region TRANSFORM
     [Header("TRANSFORM")]
     [SerializeField] private Transform playerCamera;
@@ -97,9 +102,13 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl))
             {
-                isCrouching = !isCrouching;
-                targetCapsuleHeight = isCrouching ? crouchCapsuleHeight : standingCapsuleHeight;
-                targetCameraHeight = isCrouching ? crouchCameraHeight : standingCameraHeight;
+                if (canCrouch)
+                {
+                    isCrouching = !isCrouching;
+                    targetCapsuleHeight = isCrouching ? crouchCapsuleHeight : standingCapsuleHeight;
+                    targetCameraHeight = isCrouching ? crouchCameraHeight : standingCameraHeight;
+                }
+                StartCoroutine(CrouchDelay());
             }
         }
     }
@@ -137,5 +146,12 @@ public class PlayerController : MonoBehaviour
         finalMovement.y = velocity.y;
 
         characterController.Move(finalMovement * Time.deltaTime);
+    }
+
+    public IEnumerator CrouchDelay()
+    {
+        canCrouch = false;
+        yield return new WaitForSeconds(crouchDelay);
+        canCrouch = true;
     }
 }
