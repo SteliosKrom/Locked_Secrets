@@ -47,7 +47,6 @@ public class MainMenuUIManager : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameState.OnLoading;
 
         AudioManager.Instance.StopSFX(AudioManager.Instance.PressAnyKeyAudioSource.source);
-        AudioManager.Instance.StopSFX(AudioManager.Instance.MainTableLanternFlicker.source);
         AudioManager.Instance.StopMenuMusic();
         AudioManager.Instance.StopRainAudio();
 
@@ -59,7 +58,6 @@ public class MainMenuUIManager : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameState.OnPlaying;
         GameManager.Instance.CurrentMenuState = MenuState.None;
 
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.TableLanternFlicker.source, AudioManager.Instance.TableLanternFlicker.clip);
         AudioManager.Instance.PlayMainGameMusic();
         AudioManager.Instance.PlayRainAudio();
 

@@ -17,10 +17,7 @@ public class KeyInteract : MonoBehaviour, IInteractable
     [Header("OBJECTS")]
     [SerializeField] private GameObject keyIcon;
     [SerializeField] private GameObject keyInventoryItem;
-    [SerializeField] private GameObject playerKey;
     #endregion
-
-    public GameObject PlayerKey => playerKey;
 
     public void Interact()
     {
@@ -28,13 +25,9 @@ public class KeyInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentItemState = ItemState.Key;
 
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
-        //mainGameUIManager.Dot.SetActive(false);
 
         puzzleManager.Key.SetActive(false);
         keyInventoryItem.SetActive(true);
-        playerKey.SetActive(true);
         keyIcon.SetActive(true);
-
-        keyAnimator.SetTrigger("Equip");
     }
 }

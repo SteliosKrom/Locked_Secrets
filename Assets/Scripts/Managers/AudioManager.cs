@@ -35,10 +35,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem unlockSmallCrateDoor;
     [SerializeField] private AudioItem creakingDoorOpening;
 
-    [Header("ENVIRONMENTAL SOUNDS")]
-    [SerializeField] private AudioItem tableLanternFlicker;
-    [SerializeField] private AudioItem mainTableLanternFlicker;
-
     [Header("TRIGGER/HORROR SOUNDS")]
     [SerializeField] private AudioItem horrorSound;
     [SerializeField] private AudioItem breathingSound;
@@ -75,8 +71,7 @@ public class AudioManager : MonoBehaviour
     public AudioItem UnlockCrateDoor => unlockCrateDoor; public AudioItem LanternLightFlicker => lanternLightFlicker; public AudioItem FootSteps => footsteps;
     public AudioItem InstantJumpscare => instantJumpscare; public AudioItem DoorKnock => doorKnock; public AudioItem Scream => scream; 
     public AudioItem UnlockSmallCrateDoor => unlockSmallCrateDoor; public AudioItem PlaceItem => placeItem; public AudioItem LongDoorKnock => longDoorKnock; 
-    public AudioItem TableLanternFlicker => tableLanternFlicker; public AudioItem PressAnyKeyAudioSource => pressAnyKeyAudioSource; public AudioItem CreakingDoorOpening => creakingDoorOpening;
-    public AudioItem BehindYou => behindYou; public AudioItem MainTableLanternFlicker => mainTableLanternFlicker;
+    public AudioItem PressAnyKeyAudioSource => pressAnyKeyAudioSource; public AudioItem CreakingDoorOpening => creakingDoorOpening; public AudioItem BehindYou => behindYou;
 
     private void Awake()
     {
