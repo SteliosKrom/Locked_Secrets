@@ -21,6 +21,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private GameObject loadingMenu;
 
     [SerializeField] private GameObject dot;
+    [SerializeField] private GameObject inDevelopment;
     #endregion
 
     #region CAMERAS
@@ -34,7 +35,7 @@ public class MainMenuUIManager : MonoBehaviour
     private void Start()
     {
         mainGameUIManager.ControlsTutorialPanel.SetActive(false);
-        loadingDelay = Random.Range(1, 2); // 5, 10
+        loadingDelay = Random.Range(1, 2); // 5-10
     }
 
     public void Play()
@@ -65,6 +66,7 @@ public class MainMenuUIManager : MonoBehaviour
 
         loadingMenu.SetActive(false);
         dot.SetActive(true);
+        inDevelopment.SetActive(true);
         secondaryCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
 
