@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ItemMenuState currentItemMenuState;
     [SerializeField] private PlayerState currentPlayerState;
     [SerializeField] private ItemState currentItemState;
-    [SerializeField] private BathroomDoorState currentBathroomDoorState;
     #endregion
 
     public GameState CurrentGameState { get => currentGameState; set => currentGameState = value; }
@@ -86,7 +85,6 @@ public class GameManager : MonoBehaviour
     public ItemMenuState CurrentItemMenuState { get => currentItemMenuState; set => currentItemMenuState = value; }
     public PlayerState CurrentPlayerState { get => currentPlayerState; set => currentPlayerState = value; }
     public ItemState CurrentItemState { get => currentItemState; set => currentItemState = value; }
-    public BathroomDoorState CurrentBathroomDoorState { get => currentBathroomDoorState; set => currentBathroomDoorState = value; }
 
     private void Awake()
     {
@@ -106,7 +104,6 @@ public class GameManager : MonoBehaviour
         currentMenuState = MenuState.OnTitleMenu;
         currentPlayerState = PlayerState.OnIdle;
         currentItemState = ItemState.None;
-        currentBathroomDoorState = BathroomDoorState.OpenIdle;
     }
 
     public bool CanMenuInteract()

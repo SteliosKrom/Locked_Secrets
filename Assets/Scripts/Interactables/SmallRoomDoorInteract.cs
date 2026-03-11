@@ -35,6 +35,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     #endregion
 
     public GameObject ItsLockedText => itsLockedText;
+    public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 
     public void Interact()
     {

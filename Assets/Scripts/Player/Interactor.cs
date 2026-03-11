@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private bool detected = false;
+
+    #region SCRIPT REFERENCES
+    [Header("SCRIPT REFERENCES")]
+    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
+    [SerializeField] private MainDoorInteract mainDoorInteract;
+    [SerializeField] private BathroomDoorInteract bathroomDoorInteract;
+    #endregion
 
     #region LAYERS
     [Header("LAYERS")]
@@ -21,6 +29,7 @@ public class Interactor : MonoBehaviour
     [Header("OBJECTS")]
     [SerializeField] private GameObject interactHUD;
     [SerializeField] private GameObject dot;
+    [SerializeField] private GameObject lockedIcon;
     #endregion
 
     public bool Detected { get => detected; set => detected = value; }
@@ -35,14 +44,14 @@ public class Interactor : MonoBehaviour
     {
         LayerMask combinedMask = interactable | obstacle;
 
+        if (GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
+
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying)
         {
             interactHUD.SetActive(false);
             dot.SetActive(false);
             return;
         }
-
-        if (GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu) return;
 
         if (Physics.Raycast(interactionSource.position, interactionSource.forward, out RaycastHit hit, interactionRange, combinedMask))
         {
@@ -51,6 +60,22 @@ public class Interactor : MonoBehaviour
 
             if (layer == LayerMask.NameToLayer("Interactable"))
             {
+                bool isLocked = false;
+
+                if (hit.collider.CompareTag("SmallRoomDoor"))
+                    isLocked = (smallRoomDoorInteract.CurrentDoorState == DoorState.Locked);
+                else if (hit.collider.CompareTag("BathroomDoor"))
+                    isLocked = (bathroomDoorInteract.CurrentDoorState == BathroomDoorState.Locked);
+                else if (hit.collider.CompareTag("MainDoor"))
+                    isLocked = (mainDoorInteract.CurrentDoorState == DoorState.Locked);
+
+                if (isLocked)
+                {
+                    lockedIcon.SetActive(true);
+                    interactHUD.SetActive(false);
+                    Debug.Log(hit.collider.tag + " is locked. Display the lock icon!");
+                }
+
                 if (hit.collider.CompareTag("OutlineInteractable"))
                 {
                     Outline outline = hit.collider.GetComponent<Outline>();
@@ -73,6 +98,7 @@ public class Interactor : MonoBehaviour
                 {
                     detected = false;
                     interactHUD.SetActive(false);
+                    lockedIcon.SetActive(false);
 
                     if (GameManager.Instance.CurrentItemMenuState != ItemMenuState.None)
                         dot.SetActive(false);
@@ -87,6 +113,7 @@ public class Interactor : MonoBehaviour
         {
             detected = false;
             interactHUD.SetActive(false);
+            lockedIcon.SetActive(false);
 
             if (GameManager.Instance.CurrentItemMenuState != ItemMenuState.None)
                 dot.SetActive(false);

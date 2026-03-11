@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CrossInteract : MonoBehaviour, IInteractable
 {
@@ -31,14 +32,11 @@ public class CrossInteract : MonoBehaviour, IInteractable
         bathroomCross.SetActive(false);
         playerCross.SetActive(true);
         inventoryCrucifix.SetActive(true);
-
-        //mainGameUIManager.Dot.SetActive(false);
         mainGameUIManager.GotCrucifixPanel.SetActive(true);
 
         crucifixAnimator.SetTrigger("Equip");
 
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.OpenIdle;
-
+        bathroomDoorInteract.CurrentDoorState = BathroomDoorState.OpenIdle;
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.position = bathroomDoorInteract.BathroomDoorAnimator.transform.position;

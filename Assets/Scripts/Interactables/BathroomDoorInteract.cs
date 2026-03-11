@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BathroomDoorInteract : MonoBehaviour, IInteractable
 {
+    [SerializeField] private BathroomDoorState currentDoorState;
+
     private float doorAnimationDelay = 1f;
     private float doorHandleColliderDelay = 1f;
 
@@ -18,15 +20,17 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
     #endregion
 
     public Animator BathroomDoorAnimator { get => bathroomDoorAnimator; }
+    public BathroomDoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 
     private void Start()
     {
         doorHandleCollider.enabled = false;
+        currentDoorState = BathroomDoorState.OpenIdle;
     }
 
     public void Interact()
     {
-        switch (GameManager.Instance.CurrentBathroomDoorState)
+        switch (currentDoorState)
         {
             case BathroomDoorState.OpenIdle:
                 StartCoroutine(CloseDoor());
@@ -47,7 +51,7 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
 
     public IEnumerator OpenDoor()
     {
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Opening;
+        currentDoorState = BathroomDoorState.Opening;
         bathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
@@ -58,12 +62,12 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(doorAnimationDelay);
 
         EnableAllDoorColliders();
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.OpenIdle;
+        currentDoorState = BathroomDoorState.OpenIdle;
     }
 
     public IEnumerator CloseDoor()
     {
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Closing;
+        currentDoorState = BathroomDoorState.Closing;
         bathroomDoorAnimator.SetTrigger("Close");
 
         AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
@@ -74,7 +78,7 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(doorAnimationDelay);
 
         EnableAllDoorColliders();
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.CloseIdle;
+        currentDoorState = BathroomDoorState.CloseIdle;
     }
 
     public void EnableAllDoorColliders()
