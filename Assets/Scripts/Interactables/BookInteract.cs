@@ -63,10 +63,15 @@ public class BookInteract : MonoBehaviour, IInteractable
 
     public IEnumerator DemonDelay()
     {
+        var audioTransform = AudioManager.Instance.CloseDoor.source.transform;
         bathroomDoorInteract.CurrentDoorState = BathroomDoorState.Locked;
 
         bathroomDoorAnimator.SetTrigger("Close");
-        AudioManager.Instance.CloseDoor.source.transform.position = bathroomDoorAnimator.transform.position;
+
+        audioTransform.SetParent(bathroomDoorInteract.gameObject.transform, false);
+        audioTransform.localPosition = Vector3.zero;
+        audioTransform.localRotation = Quaternion.identity;
+        audioTransform.localScale = Vector3.one;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
         yield return new WaitForSeconds(AudioManager.Instance.CloseDoor.clip.length + 5f);
 

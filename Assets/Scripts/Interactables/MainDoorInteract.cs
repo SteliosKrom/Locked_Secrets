@@ -98,14 +98,12 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
     public IEnumerator ItsLockedDelay()
     {
         doorHandleCollider.enabled = false;
-        smallRoomDoorInteract.ItsLockedText.SetActive(true);
 
         AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 
-        smallRoomDoorInteract.ItsLockedText.SetActive(false);
         doorHandleCollider.enabled = true;
     }
 }

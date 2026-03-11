@@ -39,7 +39,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
         bathroomDoorInteract.CurrentDoorState = BathroomDoorState.OpenIdle;
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
-        AudioManager.Instance.OpenDoor.source.transform.position = bathroomDoorInteract.BathroomDoorAnimator.transform.position;
+        AudioManager.Instance.OpenDoor.source.transform.SetParent(bathroomDoorInteract.gameObject.transform, false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
     }
 }

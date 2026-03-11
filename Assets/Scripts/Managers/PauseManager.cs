@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private Interactor interactor;
     [SerializeField] private AxeInteract axeInteract;
     [SerializeField] private CrateDoorInteract crateDoorInteract;
+    [SerializeField] private SmallCrateDoorInteract smallCrateDoorInteract;
     [SerializeField] private SkeletonHandInteract skeletonHandInteract;
     #endregion
 
@@ -83,12 +84,14 @@ public class PauseManager : MonoBehaviour
         interactor.Detected = false;
 
         mainGameUImanager.PauseMenu.SetActive(true);
-        smallRoomDoorInteract.ItsLockedText.SetActive(false);
-        dot.SetActive(false);
         mainGameUImanager.ControlsTutorialPanel.SetActive(false);
+        skeletonHandInteract.SkeletonHandInformText.SetActive(false);
+        interactor.LockedIcon.SetActive(false);
         axeInteract.PlanksInformText.SetActive(false);
         crateDoorInteract.CrateInformText.SetActive(false);
-        skeletonHandInteract.SkeletonHandInformText.SetActive(false);
+        smallCrateDoorInteract.SmallCrateInformText.SetActive(false);
+        smallRoomDoorInteract.NeedLanternText.SetActive(false);
+        dot.SetActive(false);
 
         OutlineEffect.Instance.DisableObjectsOutlineEffect();
 

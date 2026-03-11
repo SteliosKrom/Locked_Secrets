@@ -30,12 +30,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
 
     #region UI
     [Header("OBJECTS")]
-    [SerializeField] private GameObject itsLockedText;
     [SerializeField] private GameObject needLanternText;
     #endregion
 
-    public GameObject ItsLockedText => itsLockedText;
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
+    public GameObject NeedLanternText => needLanternText;
 
     public void Interact()
     {
@@ -143,14 +142,12 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     public IEnumerator ItsLockedDelay()
     {
         doorHandleCollider.enabled = false;
-        itsLockedText.SetActive(true);
 
         AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 
-        itsLockedText.SetActive(false);
         doorHandleCollider.enabled = true;
     }
 
@@ -158,9 +155,6 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     {
         doorHandleCollider.enabled = false;
         needLanternText.SetActive(true);
-
-        AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 

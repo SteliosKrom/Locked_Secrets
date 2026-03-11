@@ -1,21 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class CrateDoorInteract : MonoBehaviour, IInteractable
+public class SmallCrateDoorInteract : MonoBehaviour, IInteractable
 {
     private float interactDelay = 2f;
 
     #region OBJECTS
     [Header("OBJECTS")]
-    [SerializeField] private GameObject crateInformText;
+    [SerializeField] private GameObject smallCrateInformText;
     #endregion
 
     #region COLLIDERS
     [Header("COLLIDERS")]
-    [SerializeField] private BoxCollider crateCollider;
+    [SerializeField] private BoxCollider smallCrateCollider;
     #endregion
 
-    public GameObject CrateInformText { get => crateInformText; set => crateInformText = value; } 
+    public GameObject SmallCrateInformText { get => smallCrateInformText; set => smallCrateInformText = value; }
 
     public void Interact()
     {
@@ -30,12 +30,12 @@ public class CrateDoorInteract : MonoBehaviour, IInteractable
         AudioManager.Instance.LockedCrateDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedCrateDoor.source, AudioManager.Instance.LockedCrateDoor.clip);
 
-        crateCollider.enabled = false;
-        crateInformText.SetActive(true);
+        smallCrateCollider.enabled = false;
+        smallCrateInformText.SetActive(true);
 
         yield return new WaitForSeconds(interactDelay);
 
-        crateInformText.SetActive(false);
-        crateCollider.enabled = true;
+        smallCrateInformText.SetActive(false);
+        smallCrateCollider.enabled = true;
     }
 }

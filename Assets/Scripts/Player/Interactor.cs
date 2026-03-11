@@ -33,6 +33,7 @@ public class Interactor : MonoBehaviour
     #endregion
 
     public bool Detected { get => detected; set => detected = value; }
+    public GameObject LockedIcon => lockedIcon;
 
     private void Update()
     {
