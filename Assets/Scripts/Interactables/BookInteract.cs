@@ -14,6 +14,7 @@ public class BookInteract : MonoBehaviour, IInteractable
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private LanternLightFlickering lanternLightFlickering;
     [SerializeField] private DoorInteract doorInteract;
+    [SerializeField] private BathroomDoorInteract bathroomDoorInteract;
     #endregion
 
     #region LIGHTING
@@ -62,7 +63,7 @@ public class BookInteract : MonoBehaviour, IInteractable
 
     public IEnumerator DemonDelay()
     {
-        GameManager.Instance.CurrentBathroomDoorState = BathroomDoorState.Locked;
+        bathroomDoorInteract.CurrentDoorState = BathroomDoorState.Locked;
 
         bathroomDoorAnimator.SetTrigger("Close");
         AudioManager.Instance.CloseDoor.source.transform.position = bathroomDoorAnimator.transform.position;
