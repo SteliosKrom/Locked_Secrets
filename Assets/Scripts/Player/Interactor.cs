@@ -68,7 +68,7 @@ public class Interactor : MonoBehaviour
                 else if (hit.collider.CompareTag("BathroomDoor"))
                     isLocked = (bathroomDoorInteract.CurrentDoorState == BathroomDoorState.Locked);
                 else if (hit.collider.CompareTag("MainDoor"))
-                    isLocked = (mainDoorInteract.CurrentDoorState == DoorState.Locked);
+                    isLocked = (bathroomDoorInteract.CurrentDoorState == BathroomDoorState.Locked);
 
                 if (isLocked)
                 {

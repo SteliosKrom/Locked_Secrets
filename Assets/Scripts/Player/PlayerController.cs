@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
-
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
         if (axeInteract.IsCoroutineRunning) return;
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
 
         if (axeInteract.IsCoroutineRunning) return;
 

@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ItemMenuState currentItemMenuState;
     [SerializeField] private PlayerState currentPlayerState;
     [SerializeField] private ItemState currentItemState;
+
+    private bool isDoorUnlocking = false;
     #endregion
 
     public GameState CurrentGameState { get => currentGameState; set => currentGameState = value; }
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     public ItemMenuState CurrentItemMenuState { get => currentItemMenuState; set => currentItemMenuState = value; }
     public PlayerState CurrentPlayerState { get => currentPlayerState; set => currentPlayerState = value; }
     public ItemState CurrentItemState { get => currentItemState; set => currentItemState = value; }
+    public bool IsDoorUnlocking { get => isDoorUnlocking; set => isDoorUnlocking = value; }
 
     private void Awake()
     {
