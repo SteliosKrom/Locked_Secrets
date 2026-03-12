@@ -9,6 +9,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     private float doorAnimationDelay = 1f;
     private float itsLockedTextDelay = 1f;
     private float doorHandleColliderEnableDelay = 1f;
+    private float unlockDoorDelay = 1.5f;
 
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
@@ -31,6 +32,7 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     #region UI
     [Header("OBJECTS")]
     [SerializeField] private GameObject needLanternText;
+    [SerializeField] private GameObject keyDoor;
     #endregion
 
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
@@ -71,8 +73,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     {
         currentDoorState = DoorState.Idle;
         GameManager.Instance.CurrentItemState = ItemState.None;
-        AudioManager.Instance.UnlockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
+        GameManager.Instance.IsDoorUnlocking = true;
+
+        keyDoor.SetActive(true);
+        StartCoroutine(UnlockDoorDelay());
+
         StartCoroutine(EnableDoorHandleColliderDelay());
         return;
     }
@@ -149,6 +154,13 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(itsLockedTextDelay);
 
         doorHandleCollider.enabled = true;
+    }
+
+    public IEnumerator UnlockDoorDelay()
+    {
+        yield return new WaitForSeconds(unlockDoorDelay);
+        keyDoor.SetActive(false);
+        GameManager.Instance.IsDoorUnlocking = false;
     }
 
     public IEnumerator NeedLanternDelay()

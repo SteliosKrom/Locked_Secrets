@@ -36,6 +36,7 @@ public class FirstPersonCamera : MonoBehaviour
     {
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
 
         if (axeInteract.IsCoroutineRunning) return;
 

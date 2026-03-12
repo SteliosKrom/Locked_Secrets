@@ -33,6 +33,7 @@ public class InventoryManager : MonoBehaviour
         if (GameManager.Instance.CurrentMenuState == MenuState.OnNoteMenu) return;
         if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
 
         if (GameManager.Instance.CurrentGameState == GameState.OnPlaying)
         {

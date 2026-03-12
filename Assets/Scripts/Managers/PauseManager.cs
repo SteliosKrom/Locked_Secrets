@@ -34,6 +34,7 @@ public class PauseManager : MonoBehaviour
         if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
         if (GameManager.Instance.CanMenuInteract()) return;
         if (GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
