@@ -67,7 +67,7 @@ public class WoodPlankInteract : MonoBehaviour, IInteractable
         axeInteract.BaseAxeAnimator.SetTrigger("Chop");
 
         AudioManager.Instance.CutWoodPlank.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CutWoodPlank.source, AudioManager.Instance.CutWoodPlank.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CutWoodPlank);
 
         yield return new WaitForSeconds(chopDelay);
 

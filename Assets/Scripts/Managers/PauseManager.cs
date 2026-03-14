@@ -98,7 +98,7 @@ public class PauseManager : MonoBehaviour
 
         AudioManager.Instance.PauseMainGameMusic();
         AudioManager.Instance.PauseRainAudioSound();
-        AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockedDoor.source);
+        AudioManager.Instance.PauseSFX(AudioManager.Instance.UnlockDoor);
 
         PauseAllSFX();
 
@@ -123,7 +123,7 @@ public class PauseManager : MonoBehaviour
 
         AudioManager.Instance.UnpauseMainGameMusic();
         AudioManager.Instance.UnpauseRainAudioSound();
-        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
+        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockDoor);
 
         UnPauseAllSFX();
 
@@ -137,7 +137,7 @@ public class PauseManager : MonoBehaviour
     {
         foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
         {
-            AudioManager.Instance.PauseSFX(audioItem.source);
+            AudioManager.Instance.PauseSFX(audioItem);
         }
     }
 
@@ -145,7 +145,7 @@ public class PauseManager : MonoBehaviour
     {
         foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
         {
-            AudioManager.Instance.UnpauseSFX(audioItem.source);
+            AudioManager.Instance.UnpauseSFX(audioItem);
         }
     }
 

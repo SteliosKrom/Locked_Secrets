@@ -176,7 +176,7 @@ public class PuzzleManager : MonoBehaviour
     public void FirstPuzzleSolved()
     {
         smallCrateDoorAnimator.SetTrigger("Open");
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockSmallCrateDoor.source, AudioManager.Instance.UnlockSmallCrateDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockSmallCrateDoor);
 
         key.SetActive(true);
         keypadNumbers.SetActive(true);
@@ -197,8 +197,8 @@ public class PuzzleManager : MonoBehaviour
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
         DisableKeypadButtonColliders();
-        AudioManager.Instance.UnlockedDoor.source.transform.position = mainDoorHandle.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockedDoor.source, AudioManager.Instance.UnlockedDoor.clip);
+        AudioManager.Instance.UnlockDoor.source.transform.position = mainDoorHandle.transform.position;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockDoor);
     }
 
     public void KeypadPuzzleFailed()
@@ -268,7 +268,7 @@ public class PuzzleManager : MonoBehaviour
         DisableKeypadButtonColliders();
         EraseKeypadDisplayText();
 
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed.source, AudioManager.Instance.KeypadFailed.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadFailed);
 
         yield return new WaitForSeconds(keypadPuzzleRepeatDelay);
 

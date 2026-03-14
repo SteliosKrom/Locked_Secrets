@@ -42,8 +42,8 @@ public class SkeletonHandInteract : MonoBehaviour, IInteractable
                 playerCross.SetActive(false);
 
                 AudioManager.Instance.PlaceItem.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.PlaceItem.source, AudioManager.Instance.PlaceItem.clip);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockCrateDoor.source, AudioManager.Instance.UnlockCrateDoor.clip);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.PlaceItem);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockCrateDoor);
 
                 crateAnimator.SetTrigger("Open");
                 axeWorld.SetActive(true);

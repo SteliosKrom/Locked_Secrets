@@ -14,7 +14,7 @@ public class CrossInteract : MonoBehaviour, IInteractable
     [Header("OBJECTS")]
     [SerializeField] private GameObject playerCross;
     [SerializeField] private GameObject bathroomCross;
-    [SerializeField] private GameObject inventoryCrucifix;
+    [SerializeField] private GameObject crucifixInventoryItem;
     #endregion
 
     #region ANIMATIONS
@@ -26,12 +26,12 @@ public class CrossInteract : MonoBehaviour, IInteractable
     {
         GameManager.Instance.CurrentItemState = ItemState.Cross;
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnCrucifixMenu;
+        InventoryManager.Instance.AddToInventory(crucifixInventoryItem);
 
         doorInteract.OtherDoorHandleCollider.enabled = true;
 
         bathroomCross.SetActive(false);
         playerCross.SetActive(true);
-        inventoryCrucifix.SetActive(true);
         mainGameUIManager.GotCrucifixPanel.SetActive(true);
 
         crucifixAnimator.SetTrigger("Equip");
@@ -40,6 +40,6 @@ public class CrossInteract : MonoBehaviour, IInteractable
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(bathroomDoorInteract.gameObject.transform, false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor);
     }
 }

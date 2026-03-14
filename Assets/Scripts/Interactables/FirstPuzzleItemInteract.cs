@@ -10,6 +10,6 @@ public class FirstPuzzleItemInteract : MonoBehaviour, IInteractable
     {
         AudioManager.Instance.FirstPuzzleInteract.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         PuzzleManager.Instance.OnFirstPuzzleItemInteracted(this);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.FirstPuzzleInteract.source, AudioManager.Instance.FirstPuzzleInteract.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.FirstPuzzleInteract);
     }
 }

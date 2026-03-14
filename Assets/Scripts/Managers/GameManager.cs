@@ -14,6 +14,7 @@ public enum MenuState
     None,
     OnPausedMenu,
     OnInventoryMenu,
+    OnInventoryItemsMenu,
     OnNoteMenu,
     OnTitleMenu,
     OnMainMenu,
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
     public bool CanMenuInteract()
     {
         return currentMenuState == MenuState.OnInventoryMenu
+            || currentMenuState == MenuState.OnInventoryItemsMenu
             || currentMenuState == MenuState.OnNoteMenu;
     }
 

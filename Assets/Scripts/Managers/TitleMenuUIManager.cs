@@ -48,7 +48,7 @@ public class TitleMenuUIManager : MonoBehaviour
             GameManager.Instance.CurrentMenuState = MenuState.OnMainMenu;
             titleMenuAnimator.SetBool("Out", true);
             pressAnyKeyAnimator.SetBool("Out", true);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.PressAnyKeyAudioSource.source, AudioManager.Instance.PressAnyKeyAudioSource.clip);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.PressAnyKeyAudioSource);
             StartCoroutine(EnterMainMenu());
         }
     }

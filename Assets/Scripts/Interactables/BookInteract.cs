@@ -72,32 +72,32 @@ public class BookInteract : MonoBehaviour, IInteractable
         audioTransform.localPosition = Vector3.zero;
         audioTransform.localRotation = Quaternion.identity;
         audioTransform.localScale = Vector3.one;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor);
         yield return new WaitForSeconds(AudioManager.Instance.CloseDoor.clip.length + 5f);
 
         doorInteract.BaseDoorAnimator.SetTrigger("Open");
         doorInteract.CurrentDoorState = DoorState.Opening;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CreakingDoorOpening.source, AudioManager.Instance.CreakingDoorOpening.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CreakingDoorOpening);
         yield return new WaitForSeconds(AudioManager.Instance.CreakingDoorOpening.clip.length + 2);
 
         footstepsStarted = true;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.FootSteps.source, AudioManager.Instance.FootSteps.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.FootSteps);
         yield return new WaitForSeconds(AudioManager.Instance.FootSteps.clip.length + 3f);
 
         footstepsStarted = false;
         AudioManager.Instance.DoorKnock.source.pitch = 1f;
         AudioManager.Instance.DoorKnock.source.volume = 0.5f;
         AudioManager.Instance.DoorKnockLowPassFilter.cutoffFrequency = 3000f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.DoorKnock.source, AudioManager.Instance.DoorKnock.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.DoorKnock);
         yield return new WaitForSeconds(AudioManager.Instance.DoorKnock.clip.length + 5f);
 
         AudioManager.Instance.DoorKnock.source.pitch = 0.85f;
         AudioManager.Instance.DoorKnock.source.volume = 0.8f;
         AudioManager.Instance.DoorKnockLowPassFilter.cutoffFrequency = 4000f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.LongDoorKnock.source, AudioManager.Instance.LongDoorKnock.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LongDoorKnock);
         yield return new WaitForSeconds(AudioManager.Instance.DoorKnock.clip.length + 5f);
 
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.BehindYou.source, AudioManager.Instance.BehindYou.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.BehindYou);
         yield return new WaitForSeconds(AudioManager.Instance.BehindYou.clip.length + 2f);
 
         pointLightEye.enabled = true;
@@ -108,7 +108,7 @@ public class BookInteract : MonoBehaviour, IInteractable
     {
         lanternLightFlickering.LanternLightParticle.SetActive(true);
         AudioManager.Instance.LanternLightFlicker.source.Play();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.InstantJumpscare.source, AudioManager.Instance.InstantJumpscare.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.InstantJumpscare);
 
         ParticleSystem.EmissionModule emission = lanternLightFlickering.LanternLightParticleEffect.emission;
         float elapsedTime = 0;

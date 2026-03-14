@@ -1,44 +1,65 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AddTriggerEvent : MonoBehaviour
 {
-    #region AUDIO
-    [Header("AUDIO SOURCES")]
-    [SerializeField] private AudioSource hoverAudioSource;
-
-    [Header("AUDIO CLIPS")]
-    [SerializeField] private AudioClip hoverAudioClip;
+    #region OBJECTS
+    [Header("OBJECTS")]
+    [SerializeField] private GameObject lanternItemMenu;
+    [SerializeField] private GameObject keyItemMenu;
+    [SerializeField] private GameObject crucificItemMenu;
+    [SerializeField] private GameObject axeItemMenu;
+    [SerializeField] private GameObject inventoryItemButtons;
     #endregion
 
-    // Event Triggers on TextMeshProUGUI
-    public void PointerEnter(TextMeshProUGUI text)
+    public GameObject InventoryItemButtons { get => inventoryItemButtons; }
+
+    // Event Triggers on Menu Buttons
+    public void PointerEnterText(TextMeshProUGUI text)
     {
         text.color = Color.red;
-        AudioManager.Instance.PlaySFX(hoverAudioSource, hoverAudioClip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.HoverAudioSource);
     }
-
-    public void PointerExit(TextMeshProUGUI text)
+    public void PointerExitText(TextMeshProUGUI text)
+    {
+        text.color = Color.white;
+    }
+    public void PointerClickText(TextMeshProUGUI text)
     {
         text.color = Color.white;
     }
 
-    public void PointerClick(TextMeshProUGUI text)
+    // Event Triggers on Inventory Item Buttons
+    public void PointerEnterInventoryItemButton(Image itemButtonImage)
     {
-        text.color = Color.white;
+        itemButtonImage.color = new Color32(149, 149, 149, 255);
     }
-
-    // Event Triggers on Images
-
-    public void TogglePointerEnter(Image toggleImage)
+    public void PointerExitInventoryItemButton(Image itemButtonImage)
     {
-        toggleImage.color = Color.red;
-        AudioManager.Instance.PlaySFX(hoverAudioSource, hoverAudioClip);
+        itemButtonImage.color = new Color32(255, 255, 255, 255);
     }
-
-    public void TogglePointerExit(Image toggleImage)
+    public void PointerClickInventoryItemButton(Image itemButtonImage)
     {
-        toggleImage.color = Color.white;
+        switch (itemButtonImage.gameObject.tag)
+        {
+            case "Lantern":
+                lanternItemMenu.SetActive(true);
+                break;
+            case "Key":
+                keyItemMenu.SetActive(true);
+                break;
+            case "Crucifix":
+                crucificItemMenu.SetActive(true);
+                break;
+            case "Axe":
+                axeItemMenu.SetActive(true);
+                break;
+        }
+        inventoryItemButtons.SetActive(false);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.ClickInventoryItemAudioSource);
+        GameManager.Instance.CurrentMenuState = MenuState.OnInventoryItemsMenu;
+        itemButtonImage.color = new Color32(120, 120, 120, 255);
     }
 }

@@ -28,7 +28,7 @@ public class SmallCrateDoorInteract : MonoBehaviour, IInteractable
     public IEnumerator InteractWithCrateDelay()
     {
         AudioManager.Instance.LockedCrateDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedCrateDoor.source, AudioManager.Instance.LockedCrateDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedCrateDoor);
 
         smallCrateCollider.enabled = false;
         smallCrateInformText.SetActive(true);

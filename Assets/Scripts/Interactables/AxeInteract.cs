@@ -13,8 +13,8 @@ public class AxeInteract : MonoBehaviour, IInteractable
     [Header("OBJECTS")]
     [SerializeField] private GameObject worldAxe;
     [SerializeField] private GameObject playerAxe;
-    [SerializeField] private GameObject axeIcon;
     [SerializeField] private GameObject planksInformText;
+    [SerializeField] private GameObject axeInventoryItem;
     #endregion
 
     #region ANIMATORS
@@ -29,9 +29,10 @@ public class AxeInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        InventoryManager.Instance.AddToInventory(axeInventoryItem);
+
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
-        axeIcon.SetActive(true);
 
         mainGameUIManager.GotAxePanel.SetActive(true);
         baseAxeAnimator.SetTrigger("Equip");

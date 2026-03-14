@@ -23,11 +23,12 @@ public class KeyInteract : MonoBehaviour, IInteractable
     {
         GameManager.Instance.CurrentItemMenuState = ItemMenuState.OnRoomKeyMenu;
         GameManager.Instance.CurrentItemState = ItemState.Key;
+        InventoryManager.Instance.AddToInventory(keyInventoryItem);
 
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
 
         puzzleManager.Key.SetActive(false);
-        keyInventoryItem.SetActive(true);
         keyIcon.SetActive(true);
+
     }
 }

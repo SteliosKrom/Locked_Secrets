@@ -13,7 +13,7 @@ public class LanternInteract : MonoBehaviour, IInteractable
     [Header("OBJECTS")]
     [SerializeField] private GameObject worldLantern;
     [SerializeField] private GameObject playerLantern;
-    [SerializeField] private GameObject lanternIcon;
+    [SerializeField] private GameObject lanternInventoryItem;
     #endregion
 
     #region ANIMATIONS
@@ -25,15 +25,13 @@ public class LanternInteract : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        InventoryManager.Instance.AddToInventory(lanternInventoryItem);
         hasLantern = true;
 
         worldLantern.SetActive(false);
         playerLantern.SetActive(true);
-        lanternIcon.SetActive(true);
 
-        //mainGameUIManager.Dot.SetActive(false);
         mainGameUIManager.GotLanternPanel.SetActive(true);
-
 
         AudioManager.Instance.LanternLightFlicker.source.Play();
         baseEquipItemAnimator.SetTrigger("Equip");
