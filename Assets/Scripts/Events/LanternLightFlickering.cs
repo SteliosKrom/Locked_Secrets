@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class LanternLightFlickering : MonoBehaviour
@@ -47,15 +47,24 @@ public class LanternLightFlickering : MonoBehaviour
     [SerializeField] private ParticleSystem lanternLightParticleEffect;
     #endregion
 
+    #region LANTERN PROPERTIES
+    [Header("EMISSION")]
     public float MinLanternEmissionRate { get => minLanternEmissionRate; set => minLanternEmissionRate = value; }
     public float MaxLanternEmissionRate { get => maxLanternEmissionRate; set => maxLanternEmissionRate = value; }
+
+    [Header("VOLUME")]
     public float MinLanternLightVolume { get => minLanternLightVolume; set => minLanternLightVolume = value; }
     public float MaxLanternLightVolume { get => maxLanternLightVolume; set => maxLanternLightVolume = value; }
+
+    [Header("FLICKER")]
     public float MinFlickerIntensity { get => minFlickerIntensity; set => minFlickerIntensity = value; }
     public float MaxFlickerIntensity { get => maxFlickerIntensity; set => maxFlickerIntensity = value; }
-    public GameObject LanternLightParticle { get => lanternLightParticle; }
-    public ParticleSystem LanternLightParticleEffect { get => lanternLightParticleEffect; }
+
+    [Header("REFERENCES")]
+    public GameObject LanternLightParticle => lanternLightParticle;
+    public ParticleSystem LanternLightParticleEffect => lanternLightParticleEffect; 
     public Light LanternLight { get => lanternLight; set => lanternLight = value; }
+#endregion
 
     private void Update()
     {
@@ -99,7 +108,7 @@ public class LanternLightFlickering : MonoBehaviour
         doorInteract.CurrentDoorState = DoorState.Idle;
 
         AudioManager.Instance.CloseDoor.source.transform.position = otherDoorAnimator.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor);
 
         isFlickering = false;
     }

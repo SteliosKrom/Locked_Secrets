@@ -34,7 +34,7 @@ public class NoteInteract : MonoBehaviour, IInteractable
         mainGameUIManager.IsControlsTutorialPanelOpen = false;
 
         AudioManager.Instance.Letter.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.Letter.source, AudioManager.Instance.Letter.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.Letter);
 
         MainGameUIManager.Instance.SetCurrentNote(this);
         GameManager.Instance.CurrentMenuState = MenuState.OnNoteMenu;

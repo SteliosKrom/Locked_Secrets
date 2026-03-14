@@ -47,7 +47,7 @@ public class MainMenuUIManager : MonoBehaviour
     {
         GameManager.Instance.CurrentGameState = GameState.OnLoading;
 
-        AudioManager.Instance.StopSFX(AudioManager.Instance.PressAnyKeyAudioSource.source);
+        AudioManager.Instance.StopSFX(AudioManager.Instance.PressAnyKeyAudioSource);
         AudioManager.Instance.StopMenuMusic();
         AudioManager.Instance.StopRainAudio();
 

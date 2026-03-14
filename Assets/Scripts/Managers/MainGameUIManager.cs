@@ -22,6 +22,7 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private DoorInteract doorInteract;
     [SerializeField] private NoteInteract noteInteract;
     [SerializeField] private Interactor interactor;
+    [SerializeField] private AddTriggerEvent addTriggerEvent;
     #endregion
 
     #region OBJECTS
@@ -46,14 +47,24 @@ public class MainGameUIManager : MonoBehaviour
     [SerializeField] private Animator controlsPanelAnimator;
     #endregion
 
+    #region UI PANELS
     public GameObject Dot => dot;
+    public GameObject PauseMenu => pauseMenu;
     public GameObject ControlsTutorialPanel { get => controlsTutorialPanel; set => controlsTutorialPanel = value; }
-    public GameObject PauseMenu => pauseMenu; public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
-    public GameObject GotLanternPanel => gotLanternPanel; public GameObject GotAxePanel => gotAxePanel;
+    public GameObject GotRoomKeyPanel => gotRoomKeyPanel;
+    public GameObject GotLanternPanel => gotLanternPanel;
+    public GameObject GotAxePanel => gotAxePanel;
     public GameObject GotCrucifixPanel => gotCrucifixPanel;
+    #endregion
+
+    #region ANIMATORS
     public Animator ControlsPanelAnimator => controlsPanelAnimator;
+    #endregion
+
+    #region UI STATES
     public bool IsControlsTutorialPanelOpen { get => isControlsTutorialPanelOpen; set => isControlsTutorialPanelOpen = value; }
     public bool CanPressTab { get => canPressTab; set => canPressTab = value; }
+    #endregion
 
     private void Awake()
     {
@@ -143,7 +154,7 @@ public class MainGameUIManager : MonoBehaviour
 
         AudioManager.Instance.UnpauseRainAudioSound();
         AudioManager.Instance.UnpauseMainGameMusic();
-        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockedDoor.source);
+        AudioManager.Instance.UnpauseSFX(AudioManager.Instance.UnlockDoor);
 
         UnPauseAllSFX();
 
@@ -188,11 +199,19 @@ public class MainGameUIManager : MonoBehaviour
         noteInteract.IsInteracted = false;
     }
 
+    public void BackToInventory()
+    {
+        InventoryManager.Instance.DisableInventoryItemMenus();
+        InventoryManager.Instance.ResetInventoryItemsColor();
+        addTriggerEvent.InventoryItemButtons.SetActive(true);
+        GameManager.Instance.CurrentMenuState = MenuState.OnInventoryMenu;
+    }
+
     public void UnPauseAllSFX()
     {
         foreach (AudioManager.AudioItem audioItem in AudioManager.Instance.AllSFX)
         {
-            AudioManager.Instance.UnpauseSFX(audioItem.source);
+            AudioManager.Instance.UnpauseSFX(audioItem);
         }
     }
 

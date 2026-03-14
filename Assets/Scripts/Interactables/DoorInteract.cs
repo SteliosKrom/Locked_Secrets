@@ -49,7 +49,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
         baseDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor);
 
         DisableAllDoorColliders();
 
@@ -71,7 +71,7 @@ public class DoorInteract : MonoBehaviour, IInteractable
         currentDoorState = DoorState.Closing;
 
         AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor);
 
         DisableAllDoorColliders();
 

@@ -20,7 +20,7 @@ public class KeypadPuzzleButtonInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         PuzzleManager.Instance.OnKeypadPuzzleButtonInteracted(this);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadButton.source, AudioManager.Instance.KeypadButton.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadButton);
 
         keypadButtonAnimator.SetTrigger("Pressed");
         StartCoroutine(DisableColliderTemporarily());

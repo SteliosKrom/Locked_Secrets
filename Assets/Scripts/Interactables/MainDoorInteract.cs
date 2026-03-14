@@ -57,7 +57,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         currentDoorState = DoorState.Opening;
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor.source, AudioManager.Instance.OpenDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.OpenDoor);
 
         DisableAllDoorColliders();
 
@@ -73,7 +73,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         currentDoorState = DoorState.Closing;
 
         AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor.source, AudioManager.Instance.CloseDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CloseDoor);
 
         DisableAllDoorColliders();
 
@@ -100,7 +100,7 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
         doorHandleCollider.enabled = false;
 
         AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor.source, AudioManager.Instance.LockedDoor.clip);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor);
 
         yield return new WaitForSeconds(itsLockedTextDelay);
 

@@ -36,8 +36,8 @@ public class Jumpscare : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             priestAnimator.applyRootMotion = true;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.HorrorSound.source, AudioManager.Instance.HorrorSound.clip);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.BreathingSound.source, AudioManager.Instance.BreathingSound.clip);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.HorrorSound);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.BreathingSound);
             jumpscareTriggerZone.enabled = false;
             StartCoroutine(Delay());
         }
