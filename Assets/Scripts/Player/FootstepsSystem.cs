@@ -25,10 +25,9 @@ public class FootstepsSystem : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying) return;
-        if (GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
-        if (GameManager.Instance.CanMenuInteract()) return;
-        if (GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.CurrentGameState != GameState.OnPlaying || GameManager.Instance.CurrentGameState == GameState.OnEnding) return;
+        if (GameManager.Instance.CanMenuInteract() || GameManager.Instance.CanItemMenuInteract()) return;
+        if (GameManager.Instance.IsDoorUnlocking == true) return;
 
         string groundType = IsGrounded();
         Vector2 moveInput = new Vector2(playerController.HorizontaInput, playerController.VerticalInput);
