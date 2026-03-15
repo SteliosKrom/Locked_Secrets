@@ -44,15 +44,6 @@ public enum DoorState
 {
     None,
     Idle,
-    Opening,
-    Closing,
-    Locked,
-    Unlocked
-}
-
-public enum BathroomDoorState
-{
-    None, 
     OpenIdle,
     CloseIdle,
     Opening,

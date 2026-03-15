@@ -4,14 +4,7 @@ using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private bool detected = false;
-
-    #region SCRIPT REFERENCES
-    [Header("SCRIPT REFERENCES")]
-    [SerializeField] private SmallRoomDoorInteract smallRoomDoorInteract;
-    [SerializeField] private MainDoorInteract mainDoorInteract;
-    [SerializeField] private BathroomDoorInteract bathroomDoorInteract;
-    #endregion
+    private bool detected = false;
 
     #region LAYERS
     [Header("LAYERS")]
@@ -61,21 +54,7 @@ public class Interactor : MonoBehaviour
 
             if (layer == LayerMask.NameToLayer("Interactable"))
             {
-                bool isLocked = false;
-
-                if (hit.collider.CompareTag("SmallRoomDoor"))
-                    isLocked = (smallRoomDoorInteract.CurrentDoorState == DoorState.Locked);
-                else if (hit.collider.CompareTag("BathroomDoor"))
-                    isLocked = (bathroomDoorInteract.CurrentDoorState == BathroomDoorState.Locked);
-                else if (hit.collider.CompareTag("MainDoor"))
-                    isLocked = (bathroomDoorInteract.CurrentDoorState == BathroomDoorState.Locked);
-
-                if (isLocked)
-                {
-                    lockedIcon.SetActive(true);
-                    interactHUD.SetActive(false);
-                    Debug.Log(hit.collider.tag + " is locked. Display the lock icon!");
-                }
+                DetectLockedDoors(hit, interactable);
 
                 if (hit.collider.CompareTag("OutlineInteractable"))
                 {
@@ -86,7 +65,6 @@ public class Interactor : MonoBehaviour
                 if (!detected)
                 {
                     detected = true;
-                    interactHUD.SetActive(true);
                     dot.SetActive(false);
                 }
 
@@ -124,5 +102,19 @@ public class Interactor : MonoBehaviour
             OutlineEffect.Instance.DisableObjectsOutlineEffect();
         }
         return;
+    }
+
+    public void DetectLockedDoors(RaycastHit hit, IInteractable interactable)
+    {
+        if (interactable is IDoorInteractable door)
+        {
+            interactHUD.SetActive(!door.IsLocked());
+            lockedIcon.SetActive(door.IsLocked());
+        }
+        else
+        {
+            lockedIcon.SetActive(false);
+            interactHUD.SetActive(true);
+        }
     }
 }

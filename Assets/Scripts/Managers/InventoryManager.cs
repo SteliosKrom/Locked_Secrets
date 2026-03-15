@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERENCES")]
     [SerializeField] private AddTriggerEvent addTriggerEvent;
+    [SerializeField] private MainGameUIManager mainGameUIManager;
     #endregion
 
     #region OBJECTS
@@ -91,6 +92,7 @@ public class InventoryManager : MonoBehaviour
 
                 if (GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu && isInventoryOpen)
                 {
+                    mainGameUIManager.ControlsTutorialPanel.SetActive(true);
                     inventory.SetActive(false);
                     isInventoryOpen = false;
                     Cursor.visible = false;
@@ -100,6 +102,7 @@ public class InventoryManager : MonoBehaviour
                 }
                 else
                 {
+                    mainGameUIManager.ControlsTutorialPanel.SetActive(false);
                     inventory.SetActive(true);
                     isInventoryOpen = true;
                     Cursor.visible = true;

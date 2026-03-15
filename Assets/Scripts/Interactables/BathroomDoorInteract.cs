@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class BathroomDoorInteract : MonoBehaviour, IInteractable
+public class BathroomDoorInteract : MonoBehaviour, IDoorInteractable
 {
-    [SerializeField] private BathroomDoorState currentDoorState;
+    [SerializeField] private DoorState currentDoorState;
 
     private float doorAnimationDelay = 1f;
     private float doorHandleColliderDelay = 1f;
@@ -20,38 +20,43 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
     #endregion
 
     public Animator BathroomDoorAnimator { get => bathroomDoorAnimator; }
-    public BathroomDoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
+    public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 
     private void Start()
     {
         doorHandleCollider.enabled = false;
-        currentDoorState = BathroomDoorState.OpenIdle;
+        currentDoorState = DoorState.OpenIdle;
     }
 
     public void Interact()
     {
         switch (currentDoorState)
         {
-            case BathroomDoorState.OpenIdle:
+            case DoorState.OpenIdle:
                 StartCoroutine(CloseDoor());
                 break;
-            case BathroomDoorState.CloseIdle:
+            case DoorState.CloseIdle:
                 StartCoroutine(OpenDoor());
                 break;
-            case BathroomDoorState.Locked:
+            case DoorState.Locked:
                 AudioManager.Instance.LockedDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedDoor);
                 StartCoroutine(LockedBathroomDoorDelay());
                 break;
-            case BathroomDoorState.Unlocked:
+            case DoorState.Unlocked:
                 StartCoroutine(OpenDoor());
                 break;
         }
     }
 
+    public bool IsLocked()
+    {
+        return currentDoorState == DoorState.Locked;
+    }
+
     public IEnumerator OpenDoor()
     {
-        currentDoorState = BathroomDoorState.Opening;
+        currentDoorState = DoorState.Opening;
         bathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(transform, false);
@@ -62,12 +67,12 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(doorAnimationDelay);
 
         EnableAllDoorColliders();
-        currentDoorState = BathroomDoorState.OpenIdle;
+        currentDoorState = DoorState.OpenIdle;
     }
 
     public IEnumerator CloseDoor()
     {
-        currentDoorState = BathroomDoorState.Closing;
+        currentDoorState = DoorState.Closing;
         bathroomDoorAnimator.SetTrigger("Close");
 
         AudioManager.Instance.CloseDoor.source.transform.SetParent(transform, false);
@@ -78,7 +83,7 @@ public class BathroomDoorInteract : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(doorAnimationDelay);
 
         EnableAllDoorColliders();
-        currentDoorState = BathroomDoorState.CloseIdle;
+        currentDoorState = DoorState.CloseIdle;
     }
 
     public void EnableAllDoorColliders()
