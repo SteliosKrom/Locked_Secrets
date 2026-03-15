@@ -32,11 +32,12 @@ public class CrossInteract : MonoBehaviour, IInteractable
 
         bathroomCross.SetActive(false);
         playerCross.SetActive(true);
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
         mainGameUIManager.GotCrucifixPanel.SetActive(true);
 
         crucifixAnimator.SetTrigger("Equip");
 
-        bathroomDoorInteract.CurrentDoorState = BathroomDoorState.OpenIdle;
+        bathroomDoorInteract.CurrentDoorState = DoorState.OpenIdle;
         bathroomDoorInteract.BathroomDoorAnimator.SetTrigger("Open");
 
         AudioManager.Instance.OpenDoor.source.transform.SetParent(bathroomDoorInteract.gameObject.transform, false);

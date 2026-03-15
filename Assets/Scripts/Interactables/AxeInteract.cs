@@ -34,6 +34,7 @@ public class AxeInteract : MonoBehaviour, IInteractable
         worldAxe.SetActive(false);
         playerAxe.SetActive(true);
 
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
         mainGameUIManager.GotAxePanel.SetActive(true);
         baseAxeAnimator.SetTrigger("Equip");
 

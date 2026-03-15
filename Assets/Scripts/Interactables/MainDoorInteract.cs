@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MainDoorInteract : MonoBehaviour, IInteractable
+public class MainDoorInteract : MonoBehaviour, IDoorInteractable
 {
     [SerializeField] private DoorState currentDoorState = DoorState.Locked;
 
@@ -26,6 +26,11 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
 
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
 
+    private void Start()
+    {
+        currentDoorState = DoorState.Locked;
+    }
+
     public void Interact()
     {
         if (currentDoorState == DoorState.Locked)
@@ -44,6 +49,11 @@ public class MainDoorInteract : MonoBehaviour, IInteractable
                 StartCoroutine(CloseDoor());
                 break;
         }
+    }
+
+    public bool IsLocked()
+    {
+        return currentDoorState == DoorState.Locked;
     }
 
     public void ItsLocked()

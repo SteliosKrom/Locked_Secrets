@@ -2,9 +2,9 @@
 using TMPro;
 using UnityEngine;
 
-public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
+public class SmallRoomDoorInteract : MonoBehaviour, IDoorInteractable
 {
-    [SerializeField] private DoorState currentDoorState = DoorState.Locked;
+    [SerializeField] private DoorState currentDoorState;
 
     private float doorAnimationDelay = 1f;
     private float itsLockedTextDelay = 1f;
@@ -38,6 +38,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
     public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
     public GameObject NeedLanternText => needLanternText;
 
+    private void Start()
+    {
+        currentDoorState = DoorState.Locked;
+    }
+
     public void Interact()
     {
         switch (currentDoorState)
@@ -52,6 +57,11 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
                 StartCoroutine(CloseDoor());
                 break;
         }
+    }
+
+    public bool IsLocked()
+    {
+        return currentDoorState == DoorState.Locked;
     }
 
     public void TryInlock()
@@ -103,7 +113,6 @@ public class SmallRoomDoorInteract : MonoBehaviour, IInteractable
         foreach (var col in doorColliders)
             col.enabled = false;
     }
-
 
     private IEnumerator EnableDoorHandleColliderDelay()
     {

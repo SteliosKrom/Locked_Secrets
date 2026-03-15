@@ -31,6 +31,7 @@ public class LanternInteract : MonoBehaviour, IInteractable
         worldLantern.SetActive(false);
         playerLantern.SetActive(true);
 
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
         mainGameUIManager.GotLanternPanel.SetActive(true);
 
         AudioManager.Instance.LanternLightFlicker.source.Play();

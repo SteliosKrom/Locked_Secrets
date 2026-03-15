@@ -1,21 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class CrateDoorInteract : MonoBehaviour, IInteractable
+public class CrateDoorInteract : MonoBehaviour, IDoorInteractable
 {
-    private float interactDelay = 2f;
+    [SerializeField] private DoorState currentDoorState;
 
-    #region OBJECTS
-    [Header("OBJECTS")]
-    [SerializeField] private GameObject crateInformText;
-    #endregion
+    private float interactDelay = 2f;
 
     #region COLLIDERS
     [Header("COLLIDERS")]
-    [SerializeField] private BoxCollider crateCollider;
+    private BoxCollider crateCollider;
     #endregion
 
-    public GameObject CrateInformText { get => crateInformText; set => crateInformText = value; } 
+    public DoorState CurrentDoorState { get => currentDoorState; set => currentDoorState = value; }
+
+    private void Awake()
+    {
+        crateCollider = GetComponent<BoxCollider>();
+    }
+
+    private void Start()
+    {
+        currentDoorState = DoorState.Locked;
+    }
 
     public void Interact()
     {
@@ -25,17 +32,19 @@ public class CrateDoorInteract : MonoBehaviour, IInteractable
         }
     }
 
+    public bool IsLocked()
+    {
+        return currentDoorState == DoorState.Locked;
+    }
+
     public IEnumerator InteractWithCrateDelay()
     {
         AudioManager.Instance.LockedCrateDoor.source.transform.position = AudioManager.Instance.TriggerInteractable3DAudio.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LockedCrateDoor);
-
         crateCollider.enabled = false;
-        crateInformText.SetActive(true);
 
         yield return new WaitForSeconds(interactDelay);
 
-        crateInformText.SetActive(false);
         crateCollider.enabled = true;
     }
 }

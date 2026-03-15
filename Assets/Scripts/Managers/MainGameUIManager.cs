@@ -140,6 +140,7 @@ public class MainGameUIManager : MonoBehaviour
                     gotCrucifixPanel.SetActive(false);
                     break;
             }
+            controlsTutorialPanel.SetActive(true);
             dot.SetActive(true);
             GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
         }

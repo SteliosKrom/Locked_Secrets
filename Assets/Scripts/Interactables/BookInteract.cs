@@ -64,7 +64,7 @@ public class BookInteract : MonoBehaviour, IInteractable
     public IEnumerator DemonDelay()
     {
         var audioTransform = AudioManager.Instance.CloseDoor.source.transform;
-        bathroomDoorInteract.CurrentDoorState = BathroomDoorState.Locked;
+        bathroomDoorInteract.CurrentDoorState = DoorState.Locked;
 
         bathroomDoorAnimator.SetTrigger("Close");
 

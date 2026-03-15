@@ -25,6 +25,7 @@ public class KeyInteract : MonoBehaviour, IInteractable
         GameManager.Instance.CurrentItemState = ItemState.Key;
         InventoryManager.Instance.AddToInventory(keyInventoryItem);
 
+        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
         mainGameUIManager.GotRoomKeyPanel.SetActive(true);
 
         puzzleManager.Key.SetActive(false);
