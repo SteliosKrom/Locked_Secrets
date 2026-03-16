@@ -123,26 +123,29 @@ public class MainGameUIManager : MonoBehaviour
 
     public void InputToCloseItemPanel()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (IsOnPanel())
         {
-            switch (GameManager.Instance.CurrentItemMenuState)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                case ItemMenuState.OnRoomKeyMenu:
-                    gotRoomKeyPanel.SetActive(false);
-                    break;
-                case ItemMenuState.OnLanternMenu:
-                    gotLanternPanel.SetActive(false);
-                    break;
-                case ItemMenuState.OnAxeMenu:
-                    gotAxePanel.SetActive(false);
-                    break;
-                case ItemMenuState.OnCrucifixMenu:
-                    gotCrucifixPanel.SetActive(false);
-                    break;
+                switch (GameManager.Instance.CurrentItemMenuState)
+                {
+                    case ItemMenuState.OnRoomKeyMenu:
+                        gotRoomKeyPanel.SetActive(false);
+                        break;
+                    case ItemMenuState.OnLanternMenu:
+                        gotLanternPanel.SetActive(false);
+                        break;
+                    case ItemMenuState.OnAxeMenu:
+                        gotAxePanel.SetActive(false);
+                        break;
+                    case ItemMenuState.OnCrucifixMenu:
+                        gotCrucifixPanel.SetActive(false);
+                        break;
+                }
+                controlsTutorialPanel.SetActive(true);
+                dot.SetActive(true);
+                GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
             }
-            controlsTutorialPanel.SetActive(true);
-            dot.SetActive(true);
-            GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
         }
     }
 
@@ -214,6 +217,14 @@ public class MainGameUIManager : MonoBehaviour
         {
             AudioManager.Instance.UnpauseSFX(audioItem);
         }
+    }
+
+    public bool IsOnPanel()
+    {
+        return GameManager.Instance.CurrentItemMenuState == ItemMenuState.OnLanternMenu
+            || GameManager.Instance.CurrentItemMenuState == ItemMenuState.OnAxeMenu
+            || GameManager.Instance.CurrentItemMenuState == ItemMenuState.OnCrucifixMenu
+            || GameManager.Instance.CurrentItemMenuState == ItemMenuState.OnRoomKeyMenu;
     }
 
     public IEnumerator NoteInteractDelay()

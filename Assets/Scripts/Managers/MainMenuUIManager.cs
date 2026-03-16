@@ -34,7 +34,6 @@ public class MainMenuUIManager : MonoBehaviour
 
     private void Start()
     {
-        mainGameUIManager.ControlsTutorialPanel.SetActive(false);
         loadingDelay = Random.Range(1, 2); // 5-10
     }
 

@@ -75,8 +75,8 @@ public class SettingsManager : MonoBehaviour
         bool savedVSyncToggleValue = PlayerPrefs.GetInt("VSyncToggleValue", 0) == 1;
 
         //Graphics saved values
-        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 1);
-        int savedQualityDropdown = PlayerPrefs.GetInt("QualityDropdown", 1);
+        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 2); 
+        int savedQualityDropdown = PlayerPrefs.GetInt("QualityDropdown", 2);
 
         // Audio
         masterVolumeSlider.value = savedSliderMasterVolume;
