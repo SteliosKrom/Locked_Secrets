@@ -19,9 +19,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject loadingMenu;
-
     [SerializeField] private GameObject dot;
-    [SerializeField] private GameObject inDevelopment;
     #endregion
 
     #region CAMERAS
@@ -65,7 +63,6 @@ public class MainMenuUIManager : MonoBehaviour
 
         loadingMenu.SetActive(false);
         dot.SetActive(true);
-        inDevelopment.SetActive(true);
         secondaryCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
 
