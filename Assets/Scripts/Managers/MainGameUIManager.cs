@@ -143,6 +143,7 @@ public class MainGameUIManager : MonoBehaviour
                         break;
                 }
                 controlsTutorialPanel.SetActive(true);
+                isControlsTutorialPanelOpen = false;
                 dot.SetActive(true);
                 GameManager.Instance.CurrentItemMenuState = ItemMenuState.None;
             }

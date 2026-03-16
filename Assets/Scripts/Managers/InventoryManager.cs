@@ -93,6 +93,7 @@ public class InventoryManager : MonoBehaviour
                 if (GameManager.Instance.CurrentMenuState == MenuState.OnInventoryMenu && isInventoryOpen)
                 {
                     mainGameUIManager.ControlsTutorialPanel.SetActive(true);
+                    mainGameUIManager.IsControlsTutorialPanelOpen = false;
                     inventory.SetActive(false);
                     isInventoryOpen = false;
                     Cursor.visible = false;
