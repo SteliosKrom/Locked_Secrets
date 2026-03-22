@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioItem cutWoodPlank;
     [SerializeField] private AudioItem keypadButton;
     [SerializeField] private AudioItem keypadFailed;
+    [SerializeField] private AudioItem keypadGranted;
     [SerializeField] private AudioItem placeItem;
 
     [Header("UI SOUNDS")]
@@ -104,6 +105,7 @@ public class AudioManager : MonoBehaviour
     public AudioItem CutWoodPlank => cutWoodPlank;
     public AudioItem KeypadButton => keypadButton;
     public AudioItem KeypadFailed => keypadFailed;
+    public AudioItem KeypadGranted => keypadGranted;
     public AudioItem PlaceItem => placeItem;
     #endregion
 

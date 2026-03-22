@@ -1,10 +1,6 @@
-﻿using NUnit.Framework.Internal.Filters;
-using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public enum PuzzleRole { Chair, Lamp, Book, Radio }
 public enum KeypadButtonRoles { None, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Enter }
@@ -64,6 +60,7 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private GameObject keypadNumbers;
     [SerializeField] private GameObject key;
     [SerializeField] private GameObject mainDoorHandle;
+    [SerializeField] private GameObject grantedPanel;
     #endregion
 
     #region COLLIDERS
@@ -192,13 +189,18 @@ public class PuzzleManager : MonoBehaviour
     public void KeypadPuzzleSolved()
     {
         Debug.Log($"Correct step finished with {currentPuzzleStep}. You solved the puzzle! Try again!");
-        keypadPuzzleActive = false;
         mainDoorInteract.CurrentDoorState = DoorState.Idle;
+        keypadPuzzleActive = false;
+
+        grantedPanel.SetActive(true);
+
         EraseKeypadDisplayText();
         ResetSequencePuzzle();
         DisableKeypadButtonColliders();
+
         AudioManager.Instance.UnlockDoor.source.transform.position = mainDoorHandle.transform.position;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.UnlockDoor);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.KeypadGranted);
     }
 
     public void KeypadPuzzleFailed()
