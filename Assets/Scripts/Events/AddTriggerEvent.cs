@@ -62,4 +62,16 @@ public class AddTriggerEvent : MonoBehaviour
         GameManager.Instance.CurrentMenuState = MenuState.OnInventoryItemsMenu;
         itemButtonImage.color = new Color32(120, 120, 120, 255);
     }
+
+    // Event triggers on Quality Dropdown buttons
+
+    public void PointerEnterQualityDropdownButton(Image image)
+    {
+        image.color = Color.red;
+    }
+
+    public void PointerExitQualityDropdownButton(Image image)
+    {
+        image.color = Color.white;
+    }
 }

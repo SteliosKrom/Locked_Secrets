@@ -61070,7 +61070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Low
+  m_text: Very Low
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 673945ee42ad184488254a0ef010158b, type: 2}
   m_sharedMaterial: {fileID: -6953352866428076002, guid: 673945ee42ad184488254a0ef010158b, type: 2}
@@ -86989,7 +86989,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2095499005}
           m_TargetAssemblyTypeName: AddTriggerEvent, Assembly-CSharp
-          m_MethodName: TogglePointerEnter
+          m_MethodName: PointerEnterQualityDropdownButton
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1879545250}
@@ -87005,7 +87005,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2095499005}
           m_TargetAssemblyTypeName: AddTriggerEvent, Assembly-CSharp
-          m_MethodName: TogglePointerExit
+          m_MethodName: PointerExitQualityDropdownButton
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1879545250}

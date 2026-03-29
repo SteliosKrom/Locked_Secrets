@@ -202,6 +202,15 @@ public class SettingsManager : MonoBehaviour
             case 2:
                 QualitySettings.SetQualityLevel(2);
                 break;
+            case 3:
+                QualitySettings.SetQualityLevel(3);
+                break;
+            case 4:
+                QualitySettings.SetQualityLevel(4);
+                break;
+            case 5:
+                QualitySettings.SetQualityLevel(5);
+                break;
         }
         PlayerPrefs.SetInt("QualityLevel", QualitySettings.GetQualityLevel());
         PlayerPrefs.SetInt("QualityDropdown", qualityDropdown.value);
