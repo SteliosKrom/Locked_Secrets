@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -14,6 +13,7 @@ public class SettingsManager : MonoBehaviour
     #region SCRIPT REFERENCES
     [Header("SCRIPT REFERNCES")]
     [SerializeField] private FirstPersonCamera firstPersonCamera;
+    [SerializeField] private FPSCount fpsCount;
     #endregion
 
     #region AUDIO
@@ -37,10 +37,13 @@ public class SettingsManager : MonoBehaviour
     [Header("TOGGLE")]
     [SerializeField] private Toggle displayModeToggle;
     [SerializeField] private Toggle vSyncToggle;
+    [SerializeField] private Toggle showFPSToggle;
 
     [Header("DROPDOWN")]
     [SerializeField] private TMP_Dropdown qualityDropdown;
     #endregion
+
+    public Toggle ShowFPSToggle => showFPSToggle;
 
     private void Start()
     {
@@ -75,8 +78,9 @@ public class SettingsManager : MonoBehaviour
         bool savedVSyncToggleValue = PlayerPrefs.GetInt("VSyncToggleValue", 0) == 1;
 
         //Graphics saved values
-        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 2); 
+        int savedQualityLevel = PlayerPrefs.GetInt("QualityLevel", 2);
         int savedQualityDropdown = PlayerPrefs.GetInt("QualityDropdown", 2);
+        bool savedFPSToggleValue = PlayerPrefs.GetInt("FPS", 0) == 1;
 
         // Audio
         masterVolumeSlider.value = savedSliderMasterVolume;
@@ -99,6 +103,7 @@ public class SettingsManager : MonoBehaviour
         // Graphics
         QualitySettings.SetQualityLevel(savedQualityLevel);
         qualityDropdown.value = savedQualityDropdown;
+        showFPSToggle.isOn = savedFPSToggleValue;
     }
 
     public void MasterVolumeSlider()
@@ -226,14 +231,27 @@ public class SettingsManager : MonoBehaviour
         {
             SetWindowedMode();
         }
-        PlayerPrefs.Save();
     }
 
     public void SetVSync()
     {
         QualitySettings.vSyncCount = vSyncToggle.isOn ? 1 : 0;
         PlayerPrefs.SetInt("VSyncToggleValue", vSyncToggle.isOn ? 1 : 0);
-        PlayerPrefs.Save();
+    }
+
+    public void ShowFPS()
+    {
+        if (showFPSToggle.isOn)
+        {
+            showFPSToggle.isOn = true;
+            fpsCount.FpsCountText.enabled = true;
+        }
+        else
+        {
+            showFPSToggle.isOn = false;
+            fpsCount.FpsCountText.enabled = false;
+        }
+        PlayerPrefs.SetInt("FPS", showFPSToggle.isOn ? 1 : 0);
     }
 
     public void SetFullscreenMode()
