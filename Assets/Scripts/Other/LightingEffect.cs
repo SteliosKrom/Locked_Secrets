@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class LightingEffect : MonoBehaviour
 {
-    private float minInterval = 40f;
-    private float maxInterval = 60f;
+    private float minInterval = 5f; // 40
+    private float maxInterval = 10f; //60
     private float effectDuration = 0;
 
     #region LIGHTING
@@ -30,7 +30,7 @@ public class LightingEffect : MonoBehaviour
 
     public void EnableLighting()
     {
-        foreach (Light light in windowLights) light.enabled = true;
+        StartCoroutine(LightningFlashSequence());
 
         foreach (ParticleSystem particle in lightingEffects)
         {
@@ -41,6 +41,20 @@ public class LightingEffect : MonoBehaviour
             if (lifetime >= effectDuration)
                 effectDuration = lifetime;
         }
+    }
+
+    private IEnumerator LightningFlashSequence()
+    {
+        foreach (Light light in windowLights) { light.enabled = true; light.intensity = 15f; }
+        yield return new WaitForSeconds(0.05f);
+
+        foreach (Light light in windowLights) { light.intensity = 0f; }
+        yield return new WaitForSeconds(0.02f);
+
+        foreach (Light light in windowLights) { light.intensity = 40f; }
+        yield return new WaitForSeconds(0.15f);
+
+        foreach (Light light in windowLights) { light.enabled = false; }
     }
 
     public void DisableLighting()
@@ -62,7 +76,7 @@ public class LightingEffect : MonoBehaviour
 
                 EnableLighting();
 
-                yield return new WaitForSeconds(effectDuration);
+                yield return new WaitForSeconds(effectDuration + 0.2f);
                 DisableLighting();
             }
             else
